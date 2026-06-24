@@ -1491,6 +1491,19 @@ const queryTabs = [
   }
 ];
 
+const getTabIcon = (id: string) => {
+  switch (id) {
+    case "finance": return <Calculator size={18} />;
+    case "sales": return <Briefcase size={18} />;
+    case "marketing": return <Megaphone size={18} />;
+    case "hr": return <Users size={18} />;
+    case "operations": return <Zap size={18} />;
+    case "procurement": return <Truck size={18} />;
+    case "compliance": return <ShieldCheck size={18} />;
+    default: return <Calculator size={18} />;
+  }
+};
+
 function IrisDetailPage() {
   const [activeTab, setActiveTab] = useState("finance");
   return (
@@ -1727,8 +1740,23 @@ function IrisDetailPage() {
                     key={t.id}
                     className={`iris-query-tab-btn ${activeTab === t.id ? 'active' : ''}`}
                     onClick={() => setActiveTab(t.id)}
+                    style={{ '--colleague-color': t.colleagueBg } as React.CSSProperties}
                   >
-                    <span className="tab-icon">{t.icon}</span>
+                    <span 
+                      className="tab-icon-wrapper"
+                      style={{ 
+                        backgroundColor: activeTab === t.id ? `${t.colleagueBg}15` : 'rgba(0,0,0,0.03)'
+                      }}
+                    >
+                      <span 
+                        className="tab-icon-lucide"
+                        style={{ 
+                          color: activeTab === t.id ? t.colleagueBg : '#86868b'
+                        }}
+                      >
+                        {getTabIcon(t.id)}
+                      </span>
+                    </span>
                     <span className="tab-dept">{t.dept}</span>
                   </button>
                 ))}
