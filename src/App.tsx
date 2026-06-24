@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Fragment } from "react";
 import {
   motion,
   AnimatePresence,
@@ -1644,23 +1644,39 @@ function IrisDetailPage() {
           
           <div className="iris-process-flow">
             {[
-              { num: "01", title: "Engage", desc: "Describe your objective in plain language — exactly as you'd brief a colleague." },
-              { num: "02", title: "Reason", desc: "IRIS retrieves data across systems, applies business context, and builds a complete picture." },
-              { num: "03", title: "Recommend", desc: "Delivers structured insights and recommendations with supporting evidence and rationale." },
-              { num: "04", title: "Act", desc: "With your approval, IRIS executes workflows across enterprise systems with a full audit trail." }
+              { num: "01", title: "Engage", desc: "Describe your objective in plain language — exactly as you'd brief a colleague.", color: "#5e5ce6", icon: "💬" },
+              { num: "02", title: "Reason", desc: "IRIS retrieves data across systems, applies business context, and builds a complete picture.", color: "#0a84ff", icon: "🧠" },
+              { num: "03", title: "Recommend", desc: "Delivers structured insights and recommendations with supporting evidence and rationale.", color: "#30d158", icon: "📊" },
+              { num: "04", title: "Act", desc: "With your approval, IRIS executes workflows across enterprise systems with a full audit trail.", color: "#ff9f0a", icon: "⚡" }
             ].map((step, idx) => (
-              <motion.div 
-                key={idx} 
-                className="iris-process-card"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-              >
-                <div className="iris-process-num">{step.num}</div>
-                <h3 className="iris-process-title">{step.title}</h3>
-                <p className="iris-process-desc">{step.desc}</p>
-              </motion.div>
+              <Fragment key={idx}>
+                <motion.div
+                  className="iris-process-card"
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.7, delay: idx * 0.12, ease: [0.25, 1, 0.5, 1] }}
+                >
+                  <div className="iris-process-icon-ring" style={{ background: `${step.color}15`, borderColor: `${step.color}30` }}>
+                    <span className="iris-process-icon-emoji">{step.icon}</span>
+                  </div>
+                  <div className="iris-process-num" style={{ color: step.color }}>{step.num}</div>
+                  <h3 className="iris-process-title">{step.title}</h3>
+                  <p className="iris-process-desc">{step.desc}</p>
+                  <div className="iris-process-accent-line" style={{ background: `linear-gradient(90deg, ${step.color}, transparent)` }} />
+                </motion.div>
+                {idx < 3 && (
+                  <motion.div
+                    className="iris-process-arrow"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.5, delay: idx * 0.12 + 0.3 }}
+                  >
+                    <ChevronRight size={20} strokeWidth={2.5} />
+                  </motion.div>
+                )}
+              </Fragment>
             ))}
           </div>
         </div>
