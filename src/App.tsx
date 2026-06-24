@@ -1355,7 +1355,144 @@ function ListingPage({ groupKey }: { groupKey: string }) {
 // ============================================================
 // CUSTOM IRIS DETAIL PAGE (Apple-Style Showcase)
 // ============================================================
+const queryTabs = [
+  {
+    id: "finance",
+    dept: "Finance",
+    icon: "💰",
+    colleague: "Cyrus",
+    prompt: "Cash flow forecast for next quarter?",
+    response: "Based on current accounts receivable and recurring contracts, Q3 cash flow is projected at $2.4M. This represents a 14% growth quarter-over-quarter.",
+    colleagueBg: "#34c759",
+    initials: "CY",
+    visual: {
+      type: "metric",
+      label: "Projected Cash Flow",
+      value: "$2,420,000",
+      detail: "+14% growth vs Q2",
+      items: [
+        { name: "Receivables", value: "$1.8M" },
+        { name: "Contracts", value: "$0.6M" }
+      ]
+    }
+  },
+  {
+    id: "sales",
+    dept: "Sales",
+    icon: "📈",
+    colleague: "Vedant",
+    prompt: "Win rate by region this month?",
+    response: "North America leads with a 68% win rate, followed by EMEA at 54% and APAC at 42%. Overall global win rate is up 4% this month.",
+    colleagueBg: "#007aff",
+    initials: "VE",
+    visual: {
+      type: "bars",
+      items: [
+        { name: "North America", value: "68%", width: "68%", color: "#34c759" },
+        { name: "EMEA", value: "54%", width: "54%", color: "#007aff" },
+        { name: "APAC", value: "42%", width: "42%", color: "#8e8e93" }
+      ]
+    }
+  },
+  {
+    id: "marketing",
+    dept: "Marketing",
+    icon: "📢",
+    colleague: "Kiara",
+    prompt: "Which campaign had the best ROI?",
+    response: "The Q2 Enterprise Cloud campaign yielded the highest ROI at 4.2x, driven by strong response rates in North American financial services.",
+    colleagueBg: "#ffcc00",
+    initials: "KI",
+    visual: {
+      type: "metric",
+      label: "Top Campaign ROI",
+      value: "4.2x ROI",
+      detail: "Q2 Enterprise Cloud",
+      items: [
+        { name: "Lead Gen", value: "1,240 new MQLs" },
+        { name: "Pipeline", value: "$1.8M created" }
+      ]
+    }
+  },
+  {
+    id: "hr",
+    dept: "HR",
+    icon: "👥",
+    colleague: "Aria",
+    prompt: "Attrition rate by department?",
+    response: "Global attrition is at 5.2% annualized. Engineering remains the lowest at 4.2%, with Sales at 8.5% and Operations at 6.0%.",
+    colleagueBg: "#ff2d55",
+    initials: "AR",
+    visual: {
+      type: "bars",
+      items: [
+        { name: "Engineering", value: "4.2%", width: "42%", color: "#34c759" },
+        { name: "Operations", value: "6.0%", width: "60%", color: "#ff9500" },
+        { name: "Sales", value: "8.5%", width: "85%", color: "#ff2d55" }
+      ]
+    }
+  },
+  {
+    id: "operations",
+    dept: "Operations",
+    icon: "⚙️",
+    colleague: "Aarush",
+    prompt: "SLA compliance this week?",
+    response: "SLA compliance is currently at 99.4%, outperforming our target of 98.5%. Incident resolution times are down to 18 minutes.",
+    colleagueBg: "#ff9500",
+    initials: "AA",
+    visual: {
+      type: "metric",
+      label: "SLA Compliance Rate",
+      value: "99.4%",
+      detail: "Target: 98.5% | Avg: 18m",
+      items: [
+        { name: "Total Tickets", value: "1,840" },
+        { name: "On-Time SLA", value: "1,829" }
+      ]
+    }
+  },
+  {
+    id: "procurement",
+    dept: "Procurement",
+    icon: "🛒",
+    colleague: "Atlas",
+    prompt: "Top vendors by spend this year?",
+    response: "Year-to-date procurement spend is concentrated in Cloud Infrastructure ($1.4M) and Hardware Provisioning ($850K).",
+    colleagueBg: "#5856d6",
+    initials: "AT",
+    visual: {
+      type: "bars",
+      items: [
+        { name: "AWS Cloud Services", value: "$1.4M", width: "90%", color: "#5856d6" },
+        { name: "Dell Hardware Systems", value: "$850K", width: "55%", color: "#8e8e93" }
+      ]
+    }
+  },
+  {
+    id: "compliance",
+    dept: "Compliance",
+    icon: "🛡️",
+    colleague: "Rachel",
+    prompt: "Transactions flagged this month?",
+    response: "Out of 124,000 total transactions processed, 14 were flagged for high-risk manual review. All 14 have been fully audited.",
+    colleagueBg: "#28cd41",
+    initials: "RA",
+    visual: {
+      type: "metric",
+      label: "Compliance Status",
+      value: "14 Flagged",
+      detail: "100% resolved",
+      items: [
+        { name: "Audited Transactions", value: "124,000" },
+        { name: "Pending Audits", value: "0" }
+      ]
+    }
+  }
+];
+
 function IrisDetailPage() {
+  const [activeTab, setActiveTab] = useState("finance");
   return (
     <div className="iris-page-container">
       {/* HERO SECTION */}
@@ -1552,7 +1689,6 @@ function IrisDetailPage() {
       {/* SECTION: ASK ANYTHING QUERIES */}
       <section className="iris-section-card iris-queries-section">
         <div className="container">
-          {/* Ask Anything Queries */}
           <div className="iris-queries-container">
             <motion.p 
               className="iris-label"
@@ -1583,31 +1719,124 @@ function IrisDetailPage() {
               Each team only sees what's relevant to them — and can ask in their own language.
             </motion.p>
             
-            <div className="iris-queries-list">
-              {[
-                { dept: "FINANCE", icon: "💰", text: "Cash flow forecast for next quarter?" },
-                { dept: "SALES", icon: "📈", text: "Win rate by region this month?" },
-                { dept: "MARKETING", icon: "📢", text: "Which campaign had the best ROI?" },
-                { dept: "HR", icon: "👥", text: "Attrition rate by department?" },
-                { dept: "OPERATIONS", icon: "⚙️", text: "SLA compliance this week?" },
-                { dept: "PROCUREMENT", icon: "🛒", text: "Top vendors by spend this year?" },
-                { dept: "COMPLIANCE", icon: "🛡️", text: "Transactions flagged this month?" }
-              ].map((q, idx) => (
-                <motion.div 
-                  key={idx} 
-                  className="iris-query-row"
-                  initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                >
-                  <span className="iris-query-icon">{q.icon}</span>
-                  <div className="iris-query-text-block">
-                    <p className="iris-query-dept">{q.dept}</p>
-                    <p className="iris-query-prompt">"{q.text}"</p>
+            <div className="iris-queries-showcase">
+              {/* Tabs */}
+              <div className="iris-queries-tabs">
+                {queryTabs.map((t) => (
+                  <button 
+                    key={t.id}
+                    className={`iris-query-tab-btn ${activeTab === t.id ? 'active' : ''}`}
+                    onClick={() => setActiveTab(t.id)}
+                  >
+                    <span className="tab-icon">{t.icon}</span>
+                    <span className="tab-dept">{t.dept}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Preview Window */}
+              <div className="iris-queries-preview">
+                <div className="preview-window-header">
+                  <div className="window-controls">
+                    <span className="dot red"></span>
+                    <span className="dot yellow"></span>
+                    <span className="dot green"></span>
                   </div>
-                </motion.div>
-              ))}
+                  <span className="window-title">IRIS Colleague Interface</span>
+                </div>
+
+                <div className="preview-window-body">
+                  <AnimatePresence mode="wait">
+                    {(() => {
+                      const t = queryTabs.find((x) => x.id === activeTab);
+                      if (!t) return null;
+                      return (
+                        <motion.div
+                          key={t.id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="iris-queries-preview-content"
+                        >
+                          {/* User Query Block */}
+                          <div className="user-query-container">
+                            <div className="user-avatar-tag">User Query</div>
+                            <div className="user-query-bubble">
+                              "{t.prompt}"
+                            </div>
+                          </div>
+
+                          {/* Divider line */}
+                          <div className="chat-divider"></div>
+
+                          {/* Colleague Response Block */}
+                          <div className="colleague-response-container">
+                            <div className="colleague-info-header">
+                              <div className="colleague-avatar" style={{ backgroundColor: t.colleagueBg }}>
+                                {t.initials}
+                              </div>
+                              <div className="colleague-details">
+                                <span className="colleague-name">{t.colleague}</span>
+                                <span className="colleague-role">{t.dept} Colleague</span>
+                              </div>
+                              <span className="colleague-status-badge">Online</span>
+                            </div>
+                            
+                            <p className="colleague-response-text">
+                              {t.response}
+                            </p>
+
+                            {/* Visual Data Representation */}
+                            <div className="colleague-visual-card">
+                              {t.visual.type === "metric" ? (
+                                <div className="metric-visual">
+                                  <span className="metric-label">{t.visual.label}</span>
+                                  <div className="metric-main-row">
+                                    <span className="metric-value">{t.visual.value}</span>
+                                    <span className="metric-change" style={{ color: t.colleagueBg }}>{t.visual.detail}</span>
+                                  </div>
+                                  <div className="submetrics-list">
+                                    {t.visual.items?.map((item: any, i: number) => (
+                                      <div key={i} className="submetric-row">
+                                        <span className="submetric-name">{item.name}</span>
+                                        <span className="submetric-value">{item.value}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="bars-visual">
+                                  <span className="metric-label">Operational Metrics</span>
+                                  <div className="bars-list">
+                                    {t.visual.items?.map((item: any, i: number) => (
+                                      <div key={i} className="bar-row">
+                                        <div className="bar-info">
+                                          <span className="bar-name">{item.name}</span>
+                                          <span className="bar-value">{item.value}</span>
+                                        </div>
+                                        <div className="bar-track-bg">
+                                          <motion.div 
+                                            className="bar-fill-indicator"
+                                            style={{ backgroundColor: item.color }}
+                                            initial={{ width: 0 }}
+                                            animate={{ width: item.width }}
+                                            transition={{ duration: 0.8, delay: 0.1 }}
+                                          />
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </motion.div>
+                      );
+                    })()}
+                  </AnimatePresence>
+                </div>
+              </div>
             </div>
           </div>
         </div>
