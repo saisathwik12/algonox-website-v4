@@ -1360,32 +1360,54 @@ function IrisDetailPage() {
     <div className="iris-page-container">
       {/* HERO SECTION */}
       <section className="iris-section-card iris-hero">
-        <motion.div 
-          className="iris-hero-content"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <p className="iris-hero-eyebrow">ALGONOX • ENTERPRISE AI</p>
-          <h1 className="iris-hero-title">
+        <div className="iris-hero-content">
+          <motion.p 
+            className="iris-hero-eyebrow"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
+            ALGONOX • ENTERPRISE AI
+          </motion.p>
+          <motion.h1 
+            className="iris-hero-title"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          >
             IRIS<span className="iris-dot">.</span>
-          </h1>
-          <p className="iris-hero-subtitle">
+          </motion.h1>
+          <motion.p 
+            className="iris-hero-subtitle"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
+          >
             Your enterprise, now with an AI colleague for every team. Ask. Retrieve. Act.
-          </p>
-          <div className="iris-hero-ctas">
+          </motion.p>
+          <motion.div 
+            className="iris-hero-ctas"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.45 }}
+          >
             <Link to="/contact" className="btn-solid-blue">Schedule a Demo</Link>
             <a href="#how-iris-works" className="btn-outline-blue">Learn more ↓</a>
-          </div>
+          </motion.div>
           
-          <div className="iris-hero-pills">
+          <motion.div 
+            className="iris-hero-pills"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.6 }}
+          >
             <span>Enterprise AI Colleagues</span>
             <span>Natural Language Queries</span>
             <span>Role-Based Access</span>
             <span>Workflow Automation</span>
             <span>Multi-System Integration</span>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
       
       {/* Colleagues Marquee Bar */}
