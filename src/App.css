@@ -2542,42 +2542,82 @@ button {
 .iris-bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 16px;
   max-width: 1100px;
-  margin: 56px auto 0;
+  margin: 64px auto 0;
 }
 
 .iris-bento-card {
   border-radius: 24px;
-  padding: 44px 36px;
+  padding: 40px 32px 36px;
   text-align: left;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   justify-content: flex-start;
-  min-height: 250px;
-  transition: transform 0.3s ease;
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .iris-bento-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-.iris-bento-card:nth-child(1) {
+.iris-bento-card.bento-wide {
   grid-column: span 2;
 }
 
-.iris-bento-card-title {
+.iris-bento-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  border: 1.5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
   font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.iris-bento-card:hover .iris-bento-icon {
+  transform: scale(1.12) rotate(-3deg);
+}
+
+.iris-bento-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .iris-bento-card-desc {
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
+.iris-bento-glow {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(50px);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.iris-bento-card:hover .iris-bento-glow {
+  opacity: 0.15;
+}
+
+/* Theme: Dark */
 .iris-bento-card.theme-dark {
   background: #1c1c1e;
   color: #ffffff;
@@ -2588,11 +2628,12 @@ button {
 }
 
 .iris-bento-card.theme-dark .iris-bento-card-desc {
-  color: #86868b;
+  color: #a1a1a6;
 }
 
+/* Theme: Blue */
 .iris-bento-card.theme-blue {
-  background: #5e5ce6;
+  background: linear-gradient(145deg, #5e5ce6, #4a48c7);
   color: #ffffff;
 }
 
@@ -2604,6 +2645,12 @@ button {
   color: rgba(255, 255, 255, 0.85);
 }
 
+.iris-bento-card.theme-blue .iris-bento-icon {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Theme: Light */
 .iris-bento-card.theme-light {
   background: #f5f5f7;
   color: #1d1d1f;
@@ -2615,7 +2662,26 @@ button {
 }
 
 .iris-bento-card.theme-light .iris-bento-card-desc {
-  color: #515154;
+  color: #6e6e73;
+}
+
+/* Theme: Gradient */
+.iris-bento-card.theme-gradient {
+  background: linear-gradient(135deg, #1c1c1e 0%, #2c1e3e 100%);
+  color: #ffffff;
+}
+
+.iris-bento-card.theme-gradient .iris-bento-card-title {
+  color: #ffffff;
+}
+
+.iris-bento-card.theme-gradient .iris-bento-card-desc {
+  color: #a1a1a6;
+}
+
+.iris-bento-card.theme-gradient .iris-bento-icon {
+  background: rgba(191, 90, 242, 0.15) !important;
+  border-color: rgba(191, 90, 242, 0.3) !important;
 }
 
 /* Section: Business Impact */
@@ -2827,7 +2893,7 @@ button {
   .iris-bento-card {
     min-height: auto;
   }
-  .iris-bento-card:nth-child(1) {
+  .iris-bento-card.bento-wide {
     grid-column: span 1;
   }
   .iris-impact-split {

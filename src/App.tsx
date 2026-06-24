@@ -1952,44 +1952,66 @@ function IrisDetailPage() {
               { 
                 title: "Role-Based Access", 
                 desc: "Each AI colleague accesses enterprise data based on department roles, permissions, and organizational hierarchy. No over-exposure, no silos broken unnecessarily.",
-                theme: "dark"
+                theme: "dark",
+                icon: "🔐",
+                accent: "#5e5ce6",
+                span: "wide"
               },
               { 
                 title: "Universal Connectivity", 
                 desc: "ERP, CRM, HRMS, dashboards, APIs, databases — no rip-and-replace required.",
-                theme: "blue"
+                theme: "blue",
+                icon: "🔗",
+                accent: "#0a84ff",
+                span: "normal"
               },
               { 
                 title: "Workflow Automation", 
                 desc: "Schedule meetings, assign tasks, create tickets, trigger approvals, escalate incidents — all with audit trails.",
-                theme: "light"
+                theme: "light",
+                icon: "⚙️",
+                accent: "#ff9f0a",
+                span: "normal"
               },
               { 
                 title: "Enterprise Memory", 
                 desc: "IRIS retains interaction history, decisions, and preferences to deliver increasingly contextual support.",
-                theme: "light"
+                theme: "light",
+                icon: "🧠",
+                accent: "#30d158",
+                span: "normal"
               },
               { 
                 title: "Multi-Tenant Architecture", 
                 desc: "Isolated environments with separate data and workflows for different organizations or business units.",
-                theme: "dark"
+                theme: "dark",
+                icon: "🏢",
+                accent: "#ff375f",
+                span: "normal"
               },
               { 
                 title: "Continuous Improvement", 
                 desc: "Learns from every interaction and outcome. Your IRIS gets sharper as your team uses it.",
-                theme: "light"
+                theme: "gradient",
+                icon: "📈",
+                accent: "#bf5af2",
+                span: "wide"
               }
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
-                className={`iris-bento-card theme-${item.theme}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className={`iris-bento-card theme-${item.theme} ${item.span === 'wide' ? 'bento-wide' : ''}`}
+                initial={{ opacity: 0, y: 40, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.25, 1, 0.5, 1] }}
               >
+                <div className="iris-bento-icon" style={{ background: `${item.accent}18`, borderColor: `${item.accent}35` }}>
+                  <span>{item.icon}</span>
+                </div>
                 <h3 className="iris-bento-card-title">{item.title}</h3>
                 <p className="iris-bento-card-desc">{item.desc}</p>
+                <div className="iris-bento-glow" style={{ background: item.accent }} />
               </motion.div>
             ))}
           </div>
