@@ -1289,13 +1289,15 @@ function HomePage() {
                 <span className="dot green"></span>
               </div>
               <video 
-                src="/flow_video.mp4" 
                 autoPlay 
                 loop 
                 muted 
                 playsInline 
                 className="ace-architecture-video"
-              />
+              >
+                <source src="flow_video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>
@@ -2181,13 +2183,15 @@ function DetailPage({ slug }: { slug: string }) {
                 <span className="dot green"></span>
               </div>
               <video 
-                src="/flow_video.mp4" 
                 autoPlay 
                 loop 
                 muted 
                 playsInline 
                 className="ace-architecture-video"
-              />
+              >
+                <source src="flow_video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </section>
