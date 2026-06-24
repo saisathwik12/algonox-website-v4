@@ -3184,3 +3184,149 @@ button {
     justify-content: center;
   }
 }
+
+/* ACE Architecture Section */
+.ace-architecture-section {
+  padding: 80px 0;
+  background: #0b0b0c;
+  color: #ffffff;
+}
+
+.ace-architecture-title-large {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.ace-architecture-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.ace-video-frame-container {
+  position: relative;
+  background: #1c1c1e;
+  border-radius: 20px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.ace-video-window-dots {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding-left: 4px;
+}
+
+.ace-video-window-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.ace-video-window-dots .red { background: #ff5f56; }
+.ace-video-window-dots .yellow { background: #ffbd2e; }
+.ace-video-window-dots .green { background: #27c93f; }
+
+.ace-architecture-video {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.ace-architecture-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.arch-interactive-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.arch-tab-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 16px 20px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.arch-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.arch-tab-btn.active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--tab-color, #007aff);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.arch-tab-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #86868b;
+  text-transform: uppercase;
+}
+
+.arch-tab-btn.active .arch-tab-badge {
+  color: var(--tab-color, #007aff);
+}
+
+.arch-tab-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #86868b;
+  transition: color 0.3s ease;
+}
+
+.arch-tab-btn.active .arch-tab-title {
+  color: #ffffff;
+}
+
+/* Showcase Panel details box */
+.arch-showcase-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+}
+
+.arch-details-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.arch-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e8e8ed;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .ace-architecture-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

@@ -2089,6 +2089,7 @@ function IrisDetailPage() {
 // DETAIL PAGE
 // ============================================================
 function DetailPage({ slug }: { slug: string }) {
+  const [archTab, setArchTab] = useState("ingestion");
   const ctaRef = useRef(null);
   const isCtaInView = useInView(ctaRef, { once: true, margin: "-100px" });
   let foundItem: any = null;
@@ -2136,6 +2137,81 @@ function DetailPage({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
+
+      {slug === "ace" && (
+        <section className="ace-architecture-section">
+          <div className="container">
+            <p className="label text-center" style={{ color: '#007aff' }}>Platform Blueprint</p>
+            <h2 className="ace-architecture-title-large">ACE Architecture</h2>
+            <p className="subtitle text-center" style={{ maxWidth: '640px', margin: '0 auto 3rem', color: '#86868b' }}>
+              Designed for high-performance enterprise automation. Select components to inspect execution flows.
+            </p>
+            
+            <div className="ace-architecture-grid">
+              {/* Left Column: Video */}
+              <div className="ace-video-frame-container">
+                <div className="ace-video-window-dots">
+                  <span className="dot red"></span>
+                  <span className="dot yellow"></span>
+                  <span className="dot green"></span>
+                </div>
+                <video 
+                  src="/flow_video.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="ace-architecture-video"
+                />
+              </div>
+
+              {/* Right Column: Interactive details */}
+              <div className="ace-architecture-sidebar">
+                <div className="arch-interactive-tabs">
+                  {[
+                    { key: "ingestion", title: "1. Intelligent Ingestion", badge: "INPUT LAYER", color: "#34c759", desc: "Ingests raw structured and unstructured data streams (PDFs, scans, emails, API payloads) and converts them into standardized cognitive tokens." },
+                    { key: "orchestrator", title: "2. Logic Orchestration", badge: "COGNITIVE CORE", color: "#007aff", desc: "Applies GEARS rules, enterprise models, and agentic workflows to reason and execute business decisions with 100% compliance." },
+                    { key: "execution", title: "3. Action Gateways", badge: "OUTPUT GATEWAY", color: "#ff9500", desc: "Distributes structured output payloads and triggers target API endpoints, RPA bots, ERP updates, and database logs." }
+                  ].map((item) => (
+                    <button
+                      key={item.key}
+                      className={`arch-tab-btn ${archTab === item.key ? 'active' : ''}`}
+                      onClick={() => setArchTab(item.key)}
+                      style={{ '--tab-color': item.color } as React.CSSProperties}
+                    >
+                      <span className="arch-tab-badge">{item.badge}</span>
+                      <span className="arch-tab-title">{item.title}</span>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="arch-showcase-panel">
+                  {(() => {
+                    const current = [
+                      { key: "ingestion", title: "Intelligent Ingestion", color: "#34c759", desc: "Ingests raw structured and unstructured data streams (PDFs, scans, emails, API payloads) and converts them into standardized cognitive tokens." },
+                      { key: "orchestrator", title: "Logic Orchestration", color: "#007aff", desc: "Applies GEARS rules, enterprise models, and agentic workflows to reason and execute business decisions with 100% compliance." },
+                      { key: "execution", title: "Action Gateways", color: "#ff9500", desc: "Distributes structured output payloads and triggers target API endpoints, RPA bots, ERP updates, and database logs." }
+                    ].find(x => x.key === archTab);
+                    if (!current) return null;
+                    return (
+                      <motion.div
+                        key={current.key}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="arch-details-content"
+                      >
+                        <h3 style={{ color: current.color }}>{current.title}</h3>
+                        <p className="arch-desc">{current.desc}</p>
+                      </motion.div>
+                    );
+                  })()}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <Tile kicker={`${foundItem[3]} Overview`} title={`${name} in action`} subtitle="See how it integrates with your existing enterprise workflows." ctaText="Watch Demo" ctaLink="/contact" />
 
