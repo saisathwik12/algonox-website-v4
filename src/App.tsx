@@ -1247,6 +1247,7 @@ function DarkIndustriesSection() {
 // HOME PAGE
 // ============================================================
 function HomePage() {
+  const [archTab, setArchTab] = useState("ingestion");
   const page = corePages[0];
   const gridTiles = [
     { kicker: "Media Intelligence Platform", title: "Spectra", subtitle: "Operational intelligence for complex enterprise signals and business data streams.", link: "/spectra", backgroundImage: "/AI_products/Spectra.png", bgGradient: "linear-gradient(135deg, #fff5e6 0%, #fafafc 50%, #ebf5ff 100%)", bgColor: "#fbf9f6" },
@@ -1274,6 +1275,86 @@ function HomePage() {
       <Hero page={page} className="homepage-hero" />
       
       <ScrollAnimatedSection isFirst={true}>
+        <div className="ace-architecture-section" style={{ background: 'transparent', color: '#1d1d1f', padding: '60px 0 20px' }}>
+          <div className="container">
+            <p className="label text-center" style={{ color: '#007aff' }}>Platform Blueprint</p>
+            <h2 className="ace-architecture-title-large" style={{ color: '#1d1d1f' }}>ACE Architecture</h2>
+            <p className="subtitle text-center" style={{ maxWidth: '640px', margin: '0 auto 3rem', color: '#86868b' }}>
+              Designed for high-performance enterprise automation. Select components to inspect execution flows.
+            </p>
+            
+            <div className="ace-architecture-grid">
+              {/* Left Column: Video */}
+              <div className="ace-video-frame-container" style={{ background: '#f5f5f7', border: '1px solid rgba(0, 0, 0, 0.08)', boxShadow: '0 20px 40px rgba(0, 0, 0, 0.05)' }}>
+                <div className="ace-video-window-dots">
+                  <span className="dot red"></span>
+                  <span className="dot yellow"></span>
+                  <span className="dot green"></span>
+                </div>
+                <video 
+                  src="/flow_video.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="ace-architecture-video"
+                />
+              </div>
+
+              {/* Right Column: Interactive details */}
+              <div className="ace-architecture-sidebar">
+                <div className="arch-interactive-tabs">
+                  {[
+                    { key: "ingestion", title: "1. Intelligent Ingestion", badge: "INPUT LAYER", color: "#34c759", desc: "Ingests raw structured and unstructured data streams (PDFs, scans, emails, API payloads) and converts them into standardized cognitive tokens." },
+                    { key: "orchestrator", title: "2. Logic Orchestration", badge: "COGNITIVE CORE", color: "#007aff", desc: "Applies GEARS rules, enterprise models, and agentic workflows to reason and execute business decisions with 100% compliance." },
+                    { key: "execution", title: "3. Action Gateways", badge: "OUTPUT GATEWAY", color: "#ff9500", desc: "Distributes structured output payloads and triggers target API endpoints, RPA bots, ERP updates, and database logs." }
+                  ].map((item) => (
+                    <button
+                      key={item.key}
+                      className={`arch-tab-btn ${archTab === item.key ? 'active' : ''}`}
+                      onClick={() => setArchTab(item.key)}
+                      style={{ 
+                        '--tab-color': item.color,
+                        background: archTab === item.key ? '#ffffff' : 'rgba(0, 0, 0, 0.02)',
+                        border: archTab === item.key ? '1px solid rgba(0, 0, 0, 0.08)' : '1px solid rgba(0, 0, 0, 0.03)',
+                        boxShadow: archTab === item.key ? '0 8px 24px rgba(0, 0, 0, 0.04)' : 'none'
+                      } as React.CSSProperties}
+                    >
+                      <span className="arch-tab-badge" style={{ color: archTab === item.key ? item.color : '#86868b' }}>{item.badge}</span>
+                      <span className="arch-tab-title" style={{ color: archTab === item.key ? '#1d1d1f' : '#86868b' }}>{item.title}</span>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="arch-showcase-panel" style={{ background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.02)' }}>
+                  {(() => {
+                    const current = [
+                      { key: "ingestion", title: "Intelligent Ingestion", color: "#34c759", desc: "Ingests raw structured and unstructured data streams (PDFs, scans, emails, API payloads) and converts them into standardized cognitive tokens." },
+                      { key: "orchestrator", title: "Logic Orchestration", color: "#007aff", desc: "Applies GEARS rules, enterprise models, and agentic workflows to reason and execute business decisions with 100% compliance." },
+                      { key: "execution", title: "Action Gateways", color: "#ff9500", desc: "Distributes structured output payloads and triggers target API endpoints, RPA bots, ERP updates, and database logs." }
+                    ].find(x => x.key === archTab);
+                    if (!current) return null;
+                    return (
+                      <motion.div
+                        key={current.key}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="arch-details-content"
+                      >
+                        <h3 style={{ color: current.color }}>{current.title}</h3>
+                        <p className="arch-desc" style={{ color: '#1d1d1f' }}>{current.desc}</p>
+                      </motion.div>
+                    );
+                  })()}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ScrollAnimatedSection>
+
+      <ScrollAnimatedSection>
         <div className="container" style={{ marginTop: "5rem", marginBottom: "2rem", textAlign: "left" }}>
           <p className="label">AI Products</p>
           <h2 className="title-medium" style={{ fontSize: "48px", letterSpacing: "-0.02em" }}>Intelligent Core Solutions</h2>
