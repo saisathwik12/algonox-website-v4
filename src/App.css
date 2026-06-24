@@ -2087,8 +2087,11 @@ button {
 
 /* Section: AI Colleagues Studio (Dark) */
 .iris-studio-section {
-  background: #0b0b0c;
+  background: #000000;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(94, 92, 230, 0.08) 0%, transparent 60%);
   color: #ffffff;
+  position: relative;
+  overflow: hidden;
 }
 
 .iris-studio-section .iris-title-large {
@@ -2099,65 +2102,166 @@ button {
   color: #86868b;
 }
 
+.iris-label-dark {
+  color: #5e5ce6 !important;
+}
+
 .iris-colleagues-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 16px;
   max-width: 1100px;
-  margin: 56px auto 0;
+  margin: 64px auto 0;
   text-align: left;
 }
 
 .iris-colleague-card {
-  background: #1c1c1e;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 20px;
-  padding: 36px 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  padding: 32px 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), 
+              background 0.35s ease, 
+              border-color 0.35s ease, 
+              box-shadow 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .iris-colleague-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-  background: #242426;
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Avatar wrapper with glow */
+.iris-avatar-wrap {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 20px;
 }
 
 .iris-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.iris-colleague-card:hover .iris-avatar {
+  transform: scale(1.08);
+}
+
+.iris-avatar-glow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border-radius: 16px;
+  filter: blur(16px);
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.iris-colleague-card:hover .iris-avatar-glow {
+  opacity: 0.5;
+}
+
+/* Online status dot */
+.iris-status-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid #000000;
+  background: #1c1c1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.iris-status-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #30d158;
+  animation: iris-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes iris-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+/* Colleague info */
+.iris-colleague-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .iris-colleague-role {
   font-size: 11px;
   font-weight: 700;
-  color: #86868b;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  margin: 0;
+  transition: color 0.3s ease;
 }
 
 .iris-colleague-name {
-  font-size: 20px;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  color: #f5f5f7;
   margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .iris-colleague-desc {
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
+  color: #6e6e73;
+  margin-top: 4px;
+  transition: color 0.3s ease;
+}
+
+.iris-colleague-card:hover .iris-colleague-desc {
   color: #a1a1a6;
+}
+
+/* Arrow indicator */
+.iris-colleague-arrow {
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  color: rgba(255, 255, 255, 0.15);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.iris-colleague-card:hover .iris-colleague-arrow {
+  color: rgba(255, 255, 255, 0.5);
+  transform: translateX(3px);
 }
 
 /* Ask Anything Queries */

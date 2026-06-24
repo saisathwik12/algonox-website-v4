@@ -1686,7 +1686,7 @@ function IrisDetailPage() {
       <section className="iris-section-card iris-studio-section">
         <div className="container">
           <motion.p 
-            className="iris-label"
+            className="iris-label iris-label-dark"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -1728,17 +1728,28 @@ function IrisDetailPage() {
               <motion.div 
                 key={idx} 
                 className="iris-colleague-card"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 35, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.25, 1, 0.5, 1] }}
               >
-                <div className="iris-avatar" style={{ backgroundColor: colleague.bg }}>
-                  {colleague.code}
+                <div className="iris-avatar-wrap">
+                  <div className="iris-avatar" style={{ backgroundColor: colleague.bg }}>
+                    {colleague.code}
+                  </div>
+                  <div className="iris-avatar-glow" style={{ background: colleague.bg }} />
+                  <div className="iris-status-dot" style={{ borderColor: '#0b0b0c' }}>
+                    <div className="iris-status-inner" />
+                  </div>
                 </div>
-                <p className="iris-colleague-role">{colleague.role}</p>
-                <h3 className="iris-colleague-name">{colleague.name}</h3>
-                <p className="iris-colleague-desc">{colleague.desc}</p>
+                <div className="iris-colleague-info">
+                  <p className="iris-colleague-role" style={{ color: colleague.bg }}>{colleague.role}</p>
+                  <h3 className="iris-colleague-name">{colleague.name}</h3>
+                  <p className="iris-colleague-desc">{colleague.desc}</p>
+                </div>
+                <div className="iris-colleague-arrow">
+                  <ChevronRight size={16} />
+                </div>
               </motion.div>
             ))}
           </div>
