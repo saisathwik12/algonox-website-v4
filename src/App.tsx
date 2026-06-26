@@ -7,7 +7,7 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight, Lightbulb, CheckCircle, TrendingUp } from "lucide-react";
+import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight, Lightbulb, CheckCircle, TrendingUp, Plus } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { groups, corePages, testimonials } from "./data";
 import "./App.css";
@@ -2482,8 +2482,9 @@ function SpectraDetailPage() {
 
           <div className="spectra-pro-works-flow">
             {spectraSteps.map((step, idx) => (
-              <div 
+              <Link 
                 key={idx}
+                to="/contact"
                 className="spectra-pro-works-card"
               >
                 <div className="works-card-icon-box">
@@ -2491,10 +2492,10 @@ function SpectraDetailPage() {
                 </div>
                 <h3>{step.title}</h3>
                 <p>{step.desc}</p>
-                <Link to="/contact" className="works-card-cta">
-                  {step.cta} <span className="arrow-sym">›</span>
-                </Link>
-              </div>
+                <div className="works-card-plus-btn">
+                  <Plus size={16} strokeWidth={2.5} />
+                </div>
+              </Link>
             ))}
           </div>
         </motion.div>
