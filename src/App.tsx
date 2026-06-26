@@ -2171,6 +2171,758 @@ function IrisDetailPage() {
 }
 
 // ============================================================
+// CUSTOM SPECTRA DETAIL PAGE (Apple-Style Showcase)
+// ============================================================
+const spectraQueryTabs = [
+  {
+    id: "budget",
+    dept: "Budget & Bids",
+    icon: "💰",
+    colleague: "Atlas",
+    prompt: "How is our Google Ads budget pacing, and where can we optimize ROAS?",
+    response: "Your Google Ads search campaigns are pacing 14% ahead of budget. However, we detected a 22% higher ROAS on your Meta Retargeting campaigns. I recommend transferring $4,500 from Google Search to Meta Retargeting to capture late-quarter demand.",
+    colleagueBg: "#34c759",
+    initials: "AT",
+    visual: {
+      type: "metric",
+      label: "Optimal Budget Shift",
+      value: "$4,500 Shift",
+      detail: "+22% higher ROAS on Meta",
+      items: [
+        { name: "Google Search (YTD)", value: "$32.4K (-$4.5K pacing)" },
+        { name: "Meta Retargeting (YTD)", value: "$24.1K (+$4.5K cap)" }
+      ]
+    }
+  },
+  {
+    id: "creative",
+    dept: "Creative Performance",
+    icon: "🎨",
+    colleague: "Kiara",
+    prompt: "Which of our ad creatives are experiencing fatigue this week?",
+    response: "Meta ad set 'US-Pros-V2' shows a 18% decline in CTR over the last 4 days. Anomaly detected: Creative 'video_ad_blue.mp4' frequency has reached 4.2. I recommend replacing it with 'video_ad_green.mp4' from your asset library.",
+    colleagueBg: "#bf5af2",
+    initials: "KI",
+    visual: {
+      type: "bars",
+      items: [
+        { name: "video_ad_blue.mp4 (4.2 Freq)", value: "1.1% CTR (-18% drop)", width: "35%", color: "#ff2d55" },
+        { name: "image_ad_static.jpg (2.1 Freq)", value: "1.9% CTR (Stable)", width: "65%", color: "#8e8e93" },
+        { name: "video_ad_green.mp4 (Queue)", value: "2.4% Est CTR (Target)", width: "85%", color: "#34c759" }
+      ]
+    }
+  },
+  {
+    id: "performance",
+    dept: "ROAS & CAC",
+    icon: "📈",
+    colleague: "Cyrus",
+    prompt: "Show me a breakdown of our Customer Acquisition Cost across Meta, Google, and TikTok.",
+    response: "Here is your blended CAC breakdown. Meta leads at $34.50 (optimal), Google is at $42.10 (within bounds), and TikTok has spiked to $58.00 due to audience saturation. I suggest narrowing the TikTok targeting to high-intent audiences.",
+    colleagueBg: "#007aff",
+    initials: "CY",
+    visual: {
+      type: "bars",
+      items: [
+        { name: "Meta Ads CAC", value: "$34.50", width: "85%", color: "#34c759" },
+        { name: "Google Ads CAC", value: "$42.10", width: "68%", color: "#007aff" },
+        { name: "TikTok Ads CAC", value: "$58.00", width: "42%", color: "#ff2d55" }
+      ]
+    }
+  },
+  {
+    id: "reporting",
+    dept: "Reporting Automation",
+    icon: "📊",
+    colleague: "Rachel",
+    prompt: "Generate a cross-channel performance report for the executive board.",
+    response: "Cross-channel executive summary compiled. Key metrics: Total Spend: $142,500 (+8% MoM), Net Conversions: 3,420 (+12% MoM), Blended ROAS: 3.2x (+4% MoM). The PDF report has been generated and queued for approval.",
+    colleagueBg: "#ff9500",
+    initials: "RA",
+    visual: {
+      type: "metric",
+      label: "Executive Report Preview",
+      value: "3.2x Blended ROAS",
+      detail: "+12% MoM conversions growth",
+      items: [
+        { name: "Total Media Spend", value: "$142,500" },
+        { name: "Net Leads/Conversions", value: "3,420" }
+      ]
+    }
+  }
+];
+
+const getSpectraTabIcon = (id: string) => {
+  switch (id) {
+    case "budget": return <Calculator size={18} />;
+    case "creative": return <Megaphone size={18} />;
+    case "performance": return <Zap size={18} />;
+    case "reporting": return <ShieldCheck size={18} />;
+    default: return <Calculator size={18} />;
+  }
+};
+
+function SpectraDetailPage() {
+  const [activeTab, setActiveTab] = useState("budget");
+  return (
+    <div className="iris-page-container">
+      {/* HERO SECTION */}
+      <section className="iris-section-card iris-hero">
+        <div className="iris-hero-content">
+          <motion.p 
+            className="iris-hero-eyebrow"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
+            ALGONOX • ENTERPRISE MARKETING INTELLIGENCE
+          </motion.p>
+          <motion.h1 
+            className="iris-hero-title"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          >
+            SPECTRA<span className="iris-dot">.</span>
+          </motion.h1>
+          <motion.p 
+            className="iris-hero-subtitle"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
+          >
+            Your marketing operations, powered by AI. Turn raw data into decisions, and decisions into measurable business impact.
+          </motion.p>
+          <motion.div 
+            className="iris-hero-ctas"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.45 }}
+          >
+            <Link to="/contact" className="btn-solid-blue">Schedule a Demo</Link>
+            <a href="#how-spectra-works" className="btn-outline-blue">Learn more ↓</a>
+          </motion.div>
+          
+          <motion.div 
+            className="iris-hero-pills"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.6 }}
+          >
+            <span>Marketing Intelligence</span>
+            <span>Continuous Monitoring</span>
+            <span>Budget Optimization</span>
+            <span>Creative Effectiveness</span>
+            <span>Workflow Automation</span>
+          </motion.div>
+        </div>
+      </section>
+      
+      {/* Channels Marquee Bar */}
+      <div className="iris-section-card iris-colleagues-bar-card">
+        <div className="iris-colleagues-bar">
+          <div className="iris-colleagues-bar-track">
+            {[
+              "Meta Ads", "Google Ads", "LinkedIn Ads", "TikTok Ads", 
+              "Pinterest Ads", "Snapchat Ads", "Programmatic DSPs", "GA4 Analytics"
+            ].map((item, idx) => (
+              <span key={idx}>{item}</span>
+            ))}
+            {/* Duplicate for infinite loop */}
+            {[
+              "Meta Ads", "Google Ads", "LinkedIn Ads", "TikTok Ads", 
+              "Pinterest Ads", "Snapchat Ads", "Programmatic DSPs", "GA4 Analytics"
+            ].map((item, idx) => (
+              <span key={`dup-${idx}`}>{item}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* SECTION: HOW SPECTRA WORKS */}
+      <section id="how-spectra-works" className="iris-section-card iris-process-section">
+        <div className="container">
+          <motion.p 
+            className="iris-label"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
+            HOW SPECTRA WORKS
+          </motion.p>
+          <motion.h2 
+            className="iris-title-large"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          >
+            Continuous intelligence and optimization cycle.
+          </motion.h2>
+          <motion.p 
+            className="iris-subtitle"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
+          >
+            Spectra connects, analyzes, recommends, executes, and learns in real-time.
+          </motion.p>
+          
+          <div className="iris-process-flow">
+            {[
+              { num: "01", title: "Connect & Ingest", desc: "Connects securely with advertising platforms to ingest campaign, audience, creative, and performance data.", color: "#5e5ce6", icon: "🔌" },
+              { num: "02", title: "Analyze & Detect", desc: "AI models continuously analyze campaign performance, identify trends, detect anomalies, and uncover opportunities.", color: "#0a84ff", icon: "🔍" },
+              { num: "03", title: "Recommend", desc: "Generates recommendations that help marketers improve budget allocation, campaign performance, and creative effectiveness.", color: "#30d158", icon: "💡" },
+              { num: "04", title: "Approve & Execute", desc: "Marketers review recommendations, approve actions, or automate execution with complete transparency.", color: "#ff9f0a", icon: "⚡" },
+              { num: "05", title: "Learn & Optimize", desc: "Learns from campaign outcomes, enabling continuous optimization and increasingly accurate recommendations.", color: "#bf5af2", icon: "📈" }
+            ].map((step, idx) => (
+              <Fragment key={idx}>
+                <motion.div
+                  className="iris-process-card"
+                  initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.25, 1, 0.5, 1] }}
+                >
+                  <div className="iris-process-icon-ring" style={{ background: `${step.color}15`, borderColor: `${step.color}30` }}>
+                    <span className="iris-process-icon-emoji">{step.icon}</span>
+                  </div>
+                  <div className="iris-process-num" style={{ color: step.color }}>{step.num}</div>
+                  <h3 className="iris-process-title">{step.title}</h3>
+                  <p className="iris-process-desc">{step.desc}</p>
+                  <div className="iris-process-accent-line" style={{ background: `linear-gradient(90deg, ${step.color}, transparent)` }} />
+                </motion.div>
+                {idx < 4 && (
+                  <motion.div
+                    className="iris-process-arrow"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 + 0.25 }}
+                  >
+                    <ChevronRight size={20} strokeWidth={2.5} />
+                  </motion.div>
+                )}
+              </Fragment>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: TARGET AUDIENCES / WORKSPACES */}
+      <section className="iris-section-card iris-studio-section">
+        <div className="container">
+          <motion.p 
+            className="iris-label iris-label-dark"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
+            WHO SPECTRA IS FOR
+          </motion.p>
+          <motion.h2 
+            className="iris-title-large"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          >
+            Tailored workspaces for marketing teams.
+          </motion.h2>
+          <motion.p 
+            className="iris-subtitle"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
+          >
+            Spectra provides specialized tools designed to reduce operational complexity and drive growth.
+          </motion.p>
+          
+          {/* Workspaces Grid */}
+          <div className="iris-colleagues-grid">
+            {[
+              { code: "CM", name: "CMOs & Leaders", role: "MARKETING LEADERS", desc: "Strategic alignment, blended cross-channel ROAS, and overall media productivity.", bg: "#5856d6" },
+              { code: "PM", name: "Performance Teams", role: "PERFORMANCE MARKETING", desc: "Real-time campaign tracking, budget optimization, and creative fatigue alerts.", bg: "#34c759" },
+              { code: "DA", name: "Digital Agencies", role: "MARKETING AGENCIES", desc: "Consolidate reporting, manage client accounts, and automate routine performance reviews.", bg: "#ff2d55" },
+              { code: "MB", name: "Media Buyers", role: "MEDIA BUYING TEAMS", desc: "Audience targeting, programmatic bid optimization, and multi-platform media spend.", bg: "#007aff" },
+              { code: "MO", name: "Marketing Ops", role: "OPERATIONS TEAMS", desc: "Connect systems, automate workflows, and reduce manual reporting efforts.", bg: "#ff9500" },
+              { code: "GM", name: "Growth Teams", role: "GROWTH MARKETING", desc: "Identify hidden opportunities, scale acquisitions, and optimize budget pacing.", bg: "#ffcc00" },
+              { code: "MA", name: "Analysts", role: "MARKETING ANALYSTS", desc: "Automated data extraction, anomaly detection, and cross-channel report generation.", bg: "#28cd41" },
+              { code: "EN", name: "Enterprise Teams", role: "ENTERPRISE MARKETING", desc: "Scale campaigns, maintain governance, and unify multi-brand performance views.", bg: "#8e8e93" }
+            ].map((colleague, idx) => (
+              <motion.div 
+                key={idx} 
+                className="iris-colleague-card"
+                initial={{ opacity: 0, y: 35, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <div className="iris-avatar-wrap">
+                  <div className="iris-avatar" style={{ backgroundColor: colleague.bg }}>
+                    {colleague.code}
+                  </div>
+                  <div className="iris-avatar-glow" style={{ background: colleague.bg }} />
+                  <div className="iris-status-dot" style={{ borderColor: '#0b0b0c' }}>
+                    <div className="iris-status-inner" />
+                  </div>
+                </div>
+                <div className="iris-colleague-info">
+                  <p className="iris-colleague-role" style={{ color: colleague.bg }}>{colleague.role}</p>
+                  <h3 className="iris-colleague-name">{colleague.name}</h3>
+                  <p className="iris-colleague-desc">{colleague.desc}</p>
+                </div>
+                <div className="iris-colleague-arrow">
+                  <ChevronRight size={16} />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: ASK ANYTHING QUERIES */}
+      <section className="iris-section-card iris-queries-section">
+        <div className="container">
+          <div className="iris-queries-container">
+            <motion.p 
+              className="iris-label"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+            >
+              REAL-TIME REVENUE OPTIMIZATION
+            </motion.p>
+            <motion.h2 
+              className="iris-queries-title" 
+              style={{ marginBottom: "16px" }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+            >
+              Marketers get instant, actionable insights.
+            </motion.h2>
+            <motion.p 
+              className="iris-queries-subtitle"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
+            >
+              Ask questions about your campaigns, creatives, and budgets in natural language.
+            </motion.p>
+            
+            <motion.div 
+              className="iris-queries-showcase"
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+            >
+              {/* Tabs */}
+              <div className="iris-queries-tabs">
+                {spectraQueryTabs.map((t) => (
+                  <button 
+                    key={t.id}
+                    className={`iris-query-tab-btn ${activeTab === t.id ? 'active' : ''}`}
+                    onClick={() => setActiveTab(t.id)}
+                    style={{ '--colleague-color': t.colleagueBg } as React.CSSProperties}
+                  >
+                    <span 
+                      className="tab-icon-wrapper"
+                      style={{ 
+                        backgroundColor: activeTab === t.id ? `${t.colleagueBg}15` : 'rgba(0,0,0,0.03)'
+                      }}
+                    >
+                      <span 
+                        className="tab-icon-lucide"
+                        style={{ 
+                          color: activeTab === t.id ? t.colleagueBg : '#86868b'
+                        }}
+                      >
+                        {getSpectraTabIcon(t.id)}
+                      </span>
+                    </span>
+                    <span className="tab-dept">{t.dept}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Preview Window */}
+              <div className="iris-queries-preview">
+                <div className="preview-window-header">
+                  <div className="window-controls">
+                    <span className="dot red"></span>
+                    <span className="dot yellow"></span>
+                    <span className="dot green"></span>
+                  </div>
+                  <span className="window-title">Spectra Optimization Interface</span>
+                </div>
+
+                <div className="preview-window-body">
+                  <AnimatePresence mode="wait">
+                    {(() => {
+                      const t = spectraQueryTabs.find((x) => x.id === activeTab);
+                      if (!t) return null;
+                      return (
+                        <motion.div
+                          key={t.id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.3 }}
+                          className="iris-queries-preview-content"
+                        >
+                          {/* User Query Block */}
+                          <div className="user-query-container">
+                            <div className="user-avatar-tag">User Query</div>
+                            <div className="user-query-bubble">
+                              "{t.prompt}"
+                            </div>
+                          </div>
+
+                          {/* Divider line */}
+                          <div className="chat-divider"></div>
+
+                          {/* Colleague Response Block */}
+                          <div className="colleague-response-container">
+                            <div className="colleague-info-header">
+                              <div className="colleague-avatar" style={{ backgroundColor: t.colleagueBg }}>
+                                {t.initials}
+                              </div>
+                              <div className="colleague-details">
+                                <span className="colleague-name">{t.colleague}</span>
+                                <span className="colleague-role">{t.dept} Optimizer</span>
+                              </div>
+                              <span className="colleague-status-badge">Online</span>
+                            </div>
+                            
+                            <p className="colleague-response-text">
+                              {t.response}
+                            </p>
+
+                            {/* Visual Data Representation */}
+                            <div className="colleague-visual-card">
+                              {t.visual.type === "metric" ? (
+                                <div className="metric-visual">
+                                  <span className="metric-label">{t.visual.label}</span>
+                                  <div className="metric-main-row">
+                                    <span className="metric-value">{t.visual.value}</span>
+                                    <span className="metric-change" style={{ color: t.colleagueBg }}>{t.visual.detail}</span>
+                                  </div>
+                                  <div className="submetrics-list">
+                                    {t.visual.items?.map((item: any, i: number) => (
+                                      <div key={i} className="submetric-row">
+                                        <span className="submetric-name">{item.name}</span>
+                                        <span className="submetric-value">{item.value}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="bars-visual">
+                                  <span className="metric-label">Operational Metrics</span>
+                                  <div className="bars-list">
+                                    {t.visual.items?.map((item: any, i: number) => (
+                                      <div key={i} className="bar-row">
+                                        <div className="bar-info">
+                                          <span className="bar-name">{item.name}</span>
+                                          <span className="bar-value">{item.value}</span>
+                                        </div>
+                                        <div className="bar-track-bg">
+                                          <motion.div 
+                                            className="bar-fill-indicator"
+                                            style={{ backgroundColor: item.color }}
+                                            initial={{ width: 0 }}
+                                            animate={{ width: item.width }}
+                                            transition={{ duration: 0.8, delay: 0.1 }}
+                                          />
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </motion.div>
+                      );
+                    })()}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: PLATFORM CAPABILITIES */}
+      <section className="iris-section-card iris-capabilities-section">
+        <div className="container">
+          <motion.p 
+            className="iris-label"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
+            CORE VALUE PROPOSITION
+          </motion.p>
+          <motion.h2 
+            className="iris-title-large"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          >
+            Empowering proactive marketing operations.
+          </motion.h2>
+          <motion.p 
+            className="iris-subtitle"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
+          >
+            Move beyond traditional reporting with an intelligent platform built for action.
+          </motion.p>
+          
+          <div className="iris-bento-grid">
+            {[
+              { 
+                title: "Continuous Monitoring", 
+                desc: "Continuous evaluation of marketing performance across all campaigns, creatives, and platforms.",
+                theme: "dark",
+                icon: "📊",
+                accent: "#5e5ce6",
+                span: "wide"
+              },
+              { 
+                title: "Predictive Intelligence", 
+                desc: "Specialized AI models detect inefficiencies and anomalies before they impact business results.",
+                theme: "blue",
+                icon: "🧠",
+                accent: "#0a84ff",
+                span: "normal"
+              },
+              { 
+                title: "Cross-Channel Optimization", 
+                desc: "Automatically identify and capture optimization opportunities across Meta, Google, TikTok, and more.",
+                theme: "light",
+                icon: "📈",
+                accent: "#ff9f0a",
+                span: "normal"
+              },
+              { 
+                title: "Data-Driven Decisions", 
+                desc: "Turn raw marketing data into timely, actionable insights for more confident decision-making.",
+                theme: "light",
+                icon: "⚙️",
+                accent: "#30d158",
+                span: "normal"
+              },
+              { 
+                title: "Simplified Workflows", 
+                desc: "Simplify campaign planning, review cycles, and execution through approval automation.",
+                theme: "dark",
+                icon: "🔌",
+                accent: "#ff375f",
+                span: "normal"
+              },
+              { 
+                title: "Unified Governance", 
+                desc: "Complete transparency and operational control over budgets, recommendations, and automated actions.",
+                theme: "gradient",
+                icon: "🛡️",
+                accent: "#bf5af2",
+                span: "wide"
+              }
+            ].map((item, idx) => (
+              <motion.div 
+                key={idx}
+                className={`iris-bento-card theme-${item.theme} ${item.span === 'wide' ? 'bento-wide' : ''}`}
+                initial={{ opacity: 0, y: 40, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <div className="iris-bento-icon" style={{ background: `${item.accent}18`, borderColor: `${item.accent}35` }}>
+                  <span>{item.icon}</span>
+                </div>
+                <h3 className="iris-bento-card-title">{item.title}</h3>
+                <p className="iris-bento-card-desc">{item.desc}</p>
+                <div className="iris-bento-glow" style={{ background: item.accent }} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: BUSINESS IMPACT */}
+      <section className="iris-section-card iris-impact-section">
+        <div className="container">
+          <motion.p 
+            className="iris-label"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
+            BUSINESS OUTCOMES
+          </motion.p>
+          <motion.h2 
+            className="iris-title-large iris-impact-title"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          >
+            Measurable outcomes across the enterprise.
+          </motion.h2>
+          
+          <div className="iris-impact-split">
+            {/* Without SPECTRA */}
+            <motion.div 
+              className="iris-impact-col without"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <h3>THE CHALLENGE</h3>
+              <ul>
+                <li><span className="iris-cross">✖</span> Fragmented campaign data spread across multiple platforms</li>
+                <li><span className="iris-cross">✖</span> Creative fatigue identified only after performance declines</li>
+                <li><span className="iris-cross">✖</span> Budget inefficiencies caused by delayed optimization</li>
+                <li><span className="iris-cross">✖</span> Manual campaign reviews requiring significant analyst effort</li>
+                <li><span className="iris-cross">✖</span> Slow decision-making due to disconnected reporting systems</li>
+              </ul>
+            </motion.div>
+            
+            {/* With SPECTRA */}
+            <motion.div 
+              className="iris-impact-col with"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <h3>THE SPECTRA APPROACH</h3>
+              <ul>
+                <li><span className="iris-check">✔</span> Blended cross-channel visibility in a single unified view</li>
+                <li><span className="iris-check">✔</span> Proactive alert systems for creative fatigue detection</li>
+                <li><span className="iris-check">✔</span> Real-time automated budget reallocation for optimal ROAS</li>
+                <li><span className="iris-check">✔</span> Automated intelligence layer reducing manual reporting</li>
+                <li><span className="iris-check">✔</span> Instant, actionable recommendations in natural language</li>
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: WORKS WITH YOUR ENTIRE STACK */}
+      <section className="iris-section-card iris-stack-section">
+        <div className="container">
+          <motion.p 
+            className="iris-label iris-label-dark"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+          >
+            INTEGRATIONS
+          </motion.p>
+          <motion.h2 
+            className="iris-title-large" 
+            style={{ color: "#ffffff", textAlign: "center" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+          >
+            Connects with your entire marketing stack.
+          </motion.h2>
+          <motion.p 
+            className="iris-subtitle" 
+            style={{ textAlign: "center", marginBottom: "64px" }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
+          >
+            Spectra acts as an intelligent layer above your existing advertising and marketing channels.
+          </motion.p>
+          
+          <div className="iris-stack-grid">
+            {[
+              { name: "Meta Ads", icon: "👥", desc: "Facebook & Instagram campaigns, creatives, and lead tracking.", accent: "#5e5ce6" },
+              { name: "Google Ads", icon: "🔍", desc: "Search, Display, YouTube, and Performance Max channels.", accent: "#0a84ff" },
+              { name: "TikTok Ads", icon: "🎵", desc: "Short-form video ads, custom audiences, and conversions.", accent: "#ff375f" },
+              { name: "LinkedIn Ads", icon: "💼", desc: "B2B campaigns, lead gen forms, and account-based marketing.", accent: "#30d158" },
+              { name: "Programmatic DSPs", icon: "📡", desc: "Display, native, and video programmatic ad exchanges.", accent: "#ff9f0a" },
+              { name: "GA4 Analytics", icon: "📈", desc: "On-site conversions, traffic attribution, and events.", accent: "#64d2ff" },
+              { name: "CRM Platforms", icon: "🏛️", desc: "Salesforce, HubSpot, and Microsoft Dynamics integrations.", accent: "#bf5af2" },
+              { name: "Workflow Tools", icon: "⚙️", desc: "Slack, Jira, and email notifications for recommendations.", accent: "#ff6482" }
+            ].map((stack, idx) => (
+              <motion.div 
+                key={idx} 
+                className="iris-stack-card"
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <div className="iris-stack-icon" style={{ background: `${stack.accent}15`, borderColor: `${stack.accent}30` }}>
+                  <span>{stack.icon}</span>
+                </div>
+                <h4 className="iris-stack-name">{stack.name}</h4>
+                <p className="iris-stack-desc">{stack.desc}</p>
+                <div className="iris-stack-glow" style={{ background: stack.accent }} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA SECTION */}
+      <section className="iris-section-card iris-cta-section">
+        <div className="container" style={{ textAlign: "center" }}>
+          <motion.h2 
+            className="iris-cta-title"
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.1 }}
+          >
+            Ready to transform your<br />
+            <span className="iris-cta-gradient">decision-driven growth?</span>
+          </motion.h2>
+          <motion.p 
+            className="iris-cta-subtitle"
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+          >
+            Deploy Spectra across your marketing teams to turn raw data into decisions, and decisions into measurable business impact.
+          </motion.p>
+          <div className="iris-hero-ctas" style={{ justifyContent: "center", marginTop: "32px" }}>
+            <Link to="/contact" className="btn-solid-blue">Schedule a Demo</Link>
+            <Link to="/contact" className="btn-outline-blue" style={{ background: "#ffffff" }}>Talk to Sales</Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ============================================================
 // DETAIL PAGE
 // ============================================================
 function DetailPage({ slug }: { slug: string }) {
@@ -2199,6 +2951,10 @@ function DetailPage({ slug }: { slug: string }) {
 
   if (slug === "iris") {
     return <IrisDetailPage />;
+  }
+
+  if (slug === "spectra") {
+    return <SpectraDetailPage />;
   }
 
   return (
