@@ -9,7 +9,6 @@ import {
 } from "framer-motion";
 import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight, Lightbulb, CheckCircle, TrendingUp, TrendingDown, Plus, Layers, EyeOff, FileText, Clock, Compass, BarChart2,
 Workflow,
-Database,
 BarChart3 } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { groups, corePages, testimonials } from "./data";
