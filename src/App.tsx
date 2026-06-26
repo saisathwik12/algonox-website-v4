@@ -2048,13 +2048,14 @@ function IrisDetailPage() {
             BUSINESS IMPACT
           </motion.p>
           <motion.h2 
-            className="iris-title-large iris-impact-title"
+            className="iris-title-large"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
           >
-            Measurable outcomes across the enterprise.
+            Measurable outcomes<br />
+            <span className="iris-impact-title-grad">across the enterprise.</span>
           </motion.h2>
           
           <div className="iris-impact-split">
