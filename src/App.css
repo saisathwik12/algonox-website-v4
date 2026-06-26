@@ -3527,86 +3527,972 @@ button {
 }
 
 /* ============================================================
-   SPECTRA PRODUCT PAGE OVERRIDES (Apple-Style Purple/Magenta Theme)
+   SPECTRA PRODUCT PAGE STYLING (Same Colors as IRIS Page)
    ============================================================ */
 .spectra-page-container {
-  background: linear-gradient(180deg, #fbfafd 0%, #f5f3f7 100%) !important;
+  background-color: #f5f5f7;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 72px 20px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.spectra-page-container .spectra-dot {
-  color: #bf5af2 !important;
+.spectra-section-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 100px 24px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.spectra-page-container .spectra-label-dark {
-  color: #bf5af2 !important;
+.spectra-hero {
+  padding: 120px 24px;
+  text-align: center;
 }
 
-/* Hero Section Pills dot indicator */
-.spectra-page-container .iris-hero-pills span::before {
-  background-color: #bf5af2 !important;
+.spectra-hero-content {
+  max-width: 850px;
+  margin: 0 auto;
 }
 
-/* Hero background glow - make it purple/magenta */
-.spectra-page-container .iris-hero {
-  background-image: radial-gradient(circle at 50% -20%, rgba(191, 90, 242, 0.06) 0%, transparent 60%);
+.spectra-hero-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  color: #86868b;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
 }
 
-/* Studio Section background glow - make it purple/magenta */
-.spectra-page-container .iris-studio-section {
-  background-image: radial-gradient(ellipse at 50% 0%, rgba(191, 90, 242, 0.08) 0%, transparent 60%) !important;
+.spectra-hero-title {
+  font-size: 110px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  line-height: 1;
 }
 
-/* CTA buttons override for Spectra purple */
-.spectra-page-container .btn-solid-blue {
-  background: #bf5af2 !important;
-}
-.spectra-page-container .btn-solid-blue:hover {
-  background: #c96bf5 !important;
-  transform: scale(1.02);
-}
-.spectra-page-container .btn-outline-blue {
-  border-color: #bf5af2 !important;
-  color: #bf5af2 !important;
-}
-.spectra-page-container .btn-outline-blue:hover {
-  background: rgba(191, 90, 242, 0.04) !important;
-  transform: scale(1.02);
+.spectra-dot {
+  color: #5e5ce6; /* Apple standard indigo accent dot */
 }
 
-/* User query bubble styling override (purple instead of blue) */
-.spectra-page-container .user-query-bubble {
-  background: #bf5af2 !important;
-  box-shadow: 0 4px 12px rgba(191, 90, 242, 0.2) !important;
+.spectra-hero-subtitle {
+  font-size: 32px;
+  font-weight: 500;
+  color: #515154;
+  line-height: 1.3;
+  max-width: 760px;
+  margin: 0 auto 36px;
+  letter-spacing: -0.02em;
 }
 
-/* Bento Card theme blue override to purple-magenta gradient */
-.spectra-page-container .iris-bento-card.theme-blue {
-  background: linear-gradient(145deg, #bf5af2, #ff2d55) !important;
-}
-.spectra-page-container .iris-bento-card.theme-blue .iris-bento-icon {
-  background: rgba(255, 255, 255, 0.18) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+.spectra-hero-ctas {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 48px;
 }
 
-/* Business Outcomes Title Gradient */
-.spectra-page-container .iris-impact-title {
-  background: linear-gradient(180deg, #1d1d1f 30%, #bf5af2 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
+.spectra-hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.spectra-hero-pills span {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1d1d1f;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spectra-hero-pills span::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #5e5ce6;
+  border-radius: 50%;
+}
+
+.spectra-colleagues-bar-card {
+  background: #000000;
+  padding: 32px 0;
+  min-height: auto;
+}
+
+.spectra-colleagues-bar {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.spectra-colleagues-bar-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 25s linear infinite;
+  gap: 64px;
+}
+
+.spectra-colleagues-bar-track span {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.spectra-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #86868b;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.spectra-title-large {
+  font-size: 56px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.spectra-subtitle {
+  font-size: 21px;
+  line-height: 1.45;
+  color: #86868b;
+  font-weight: 500;
+  max-width: 700px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+/* ============================================================
+   SPECTRA PROCESS FLOW ADJUSTMENTS (Card & Alignment)
+   ============================================================ */
+.spectra-process-section {
+  background: #ffffff;
+  text-align: center;
+}
+
+.spectra-process-flow {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 16px; /* Added gap to give breathing room for cards */
+  max-width: 1100px;
+  margin: 64px auto 0;
+  width: 100%;
+}
+
+.spectra-process-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 24px;
+  padding: 40px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centered alignment for visual balance */
+  text-align: center; /* Centered text */
+  gap: 14px; /* Even spacing between elements */
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.spectra-process-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.spectra-process-icon-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  border: 1.5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.spectra-process-card:hover .spectra-process-icon-ring {
+  transform: scale(1.1);
+}
+
+.spectra-process-icon-emoji {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.spectra-process-num {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.spectra-process-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.spectra-process-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6e6e73;
+  flex: 1;
+}
+
+.spectra-process-accent-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 0 0 24px 24px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.spectra-process-card:hover .spectra-process-accent-line {
+  opacity: 1;
+}
+
+.spectra-process-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px; /* Narrower width for tighter spacing */
+  color: #86868b;
+  z-index: 1;
+}
+
+.spectra-process-arrow svg {
+  opacity: 0.4;
+}
+
+/* Studio Section (Spectra) */
+.spectra-studio-section {
+  background: #000000;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(94, 92, 230, 0.08) 0%, transparent 60%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.spectra-studio-section .spectra-title-large {
+  color: #ffffff;
+}
+
+.spectra-studio-section .spectra-subtitle {
+  color: #86868b;
+}
+
+.spectra-label-dark {
+  color: #5e5ce6 !important;
+}
+
+.spectra-colleagues-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: 64px auto 0;
+  text-align: left;
+}
+
+.spectra-colleague-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  padding: 32px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), 
+              background 0.35s ease, 
+              border-color 0.35s ease, 
+              box-shadow 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.spectra-colleague-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.spectra-avatar-wrap {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 20px;
+}
+
+.spectra-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.spectra-colleague-card:hover .spectra-avatar {
+  transform: scale(1.08);
+}
+
+.spectra-avatar-glow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border-radius: 16px;
+  filter: blur(16px);
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.spectra-colleague-card:hover .spectra-avatar-glow {
+  opacity: 0.5;
+}
+
+.spectra-status-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid #000000;
+  background: #1c1c1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.spectra-status-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #30d158;
+  animation: iris-pulse 2.5s ease-in-out infinite;
+}
+
+.spectra-colleague-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.spectra-colleague-role {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.spectra-colleague-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f5f5f7;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.spectra-colleague-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6e6e73;
+  margin-top: 4px;
+  transition: color 0.3s ease;
+}
+
+.spectra-colleague-card:hover .spectra-colleague-desc {
+  color: #a1a1a6;
+}
+
+.spectra-colleague-arrow {
+  position: absolute;
+  top: 28px;
+  right: 20px;
+  color: rgba(255, 255, 255, 0.15);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.spectra-colleague-card:hover .spectra-colleague-arrow {
+  color: rgba(255, 255, 255, 0.5);
+  transform: translateX(3px);
+}
+
+/* Queries Section (Spectra) */
+.spectra-queries-section {
+  background: #ffffff;
+}
+
+.spectra-queries-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.spectra-queries-title {
+  font-size: 40px;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.02em;
+}
+
+.spectra-queries-subtitle {
+  font-size: 17px;
+  color: #86868b;
+  margin-bottom: 40px;
+}
+
+.spectra-queries-showcase {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  text-align: left;
+  margin-top: 40px;
+  background: #f5f5f7;
+  padding: 32px;
+  border-radius: 24px;
+}
+
+.spectra-queries-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spectra-query-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.spectra-queries-preview {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+}
+
+.spectra-queries-preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+/* Capabilities (Spectra) */
+.spectra-capabilities-section {
+  background: #ffffff;
+}
+
+.spectra-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: 64px auto 0;
+}
+
+.spectra-bento-card {
+  border-radius: 24px;
+  padding: 40px 32px 36px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: 260px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.spectra-bento-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.spectra-bento-card.bento-wide {
+  grid-column: span 2;
+}
+
+.spectra-bento-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  border: 1.5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.spectra-bento-card:hover .spectra-bento-icon {
+  transform: scale(1.12) rotate(-3deg);
+}
+
+.spectra-bento-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.spectra-bento-card-desc {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.spectra-bento-glow {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(50px);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.spectra-bento-card:hover .spectra-bento-glow {
+  opacity: 0.15;
+}
+
+.spectra-bento-card.theme-dark {
+  background: #1c1c1e;
+  color: #ffffff;
+}
+
+.spectra-bento-card.theme-dark .spectra-bento-card-title {
+  color: #ffffff;
+}
+
+.spectra-bento-card.theme-dark .spectra-bento-card-desc {
+  color: #a1a1a6;
+}
+
+.spectra-bento-card.theme-blue {
+  background: linear-gradient(145deg, #5e5ce6, #4a48c7); /* Same as Iris blue gradient */
+  color: #ffffff;
+}
+
+.spectra-bento-card.theme-blue .spectra-bento-card-title {
+  color: #ffffff;
+}
+
+.spectra-bento-card.theme-blue .spectra-bento-card-desc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.spectra-bento-card.theme-blue .spectra-bento-icon {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.spectra-bento-card.theme-light {
+  background: #f5f5f7;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.spectra-bento-card.theme-light .spectra-bento-card-title {
+  color: #1d1d1f;
+}
+
+.spectra-bento-card.theme-light .spectra-bento-card-desc {
+  color: #6e6e73;
+}
+
+.spectra-bento-card.theme-gradient {
+  background: linear-gradient(135deg, #1c1c1e 0%, #2c1e3e 100%);
+  color: #ffffff;
+}
+
+.spectra-bento-card.theme-gradient .spectra-bento-card-title {
+  color: #ffffff;
+}
+
+.spectra-bento-card.theme-gradient .spectra-bento-card-desc {
+  color: #a1a1a6;
+}
+
+.spectra-bento-card.theme-gradient .spectra-bento-icon {
+  background: rgba(191, 90, 242, 0.15) !important;
+  border-color: rgba(191, 90, 242, 0.3) !important;
+}
+
+/* Impact (Spectra) */
+.spectra-impact-section {
+  background: #ffffff;
+}
+
+.spectra-impact-title {
+  background: linear-gradient(180deg, #1d1d1f 30%, #86868b 100%); /* Same as Iris impact gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   color: transparent !important;
 }
 
-/* Final CTA Title Highlight */
-.spectra-page-container .iris-cta-gradient {
-  background: linear-gradient(90deg, #bf5af2 0%, #ff2d55 50%, #ff9500 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
+.spectra-impact-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: 1000px;
+  margin: 56px auto 0;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.spectra-impact-col {
+  padding: 60px 48px;
+  text-align: left;
+}
+
+.spectra-impact-col.without {
+  background: #ffffff;
+}
+
+.spectra-impact-col.with {
+  background: #0b0b0c;
+  color: #ffffff;
+}
+
+.spectra-impact-col h3 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+}
+
+.spectra-impact-col.without h3 {
+  color: #ef6441;
+}
+
+.spectra-impact-col.with h3 {
+  color: #34c759;
+}
+
+.spectra-impact-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.spectra-impact-col li {
+  font-size: 16px;
+  line-height: 1.45;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.spectra-impact-col.without li {
+  color: #1d1d1f;
+}
+
+.spectra-impact-col.with li {
+  color: #ffffff;
+}
+
+.spectra-cross {
+  color: #ef6441;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.spectra-check {
+  color: #34c759;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ============================================================
+   SPECTRA INTEGRATIONS STACK ADJUSTMENTS (Card & Alignment)
+   ============================================================ */
+.spectra-stack-section {
+  background: #0b0b0c;
+  color: #ffffff;
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(94, 92, 230, 0.06) 0%, transparent 60%);
+}
+
+.spectra-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1000px;
+  margin: 56px auto 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.spectra-stack-card {
+  background: transparent;
+  padding: 40px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column; /* Fixed alignment to stack items vertically */
+  align-items: center; /* Centered icons and titles */
+  text-align: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.spectra-stack-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.spectra-stack-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1.5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.spectra-stack-card:hover .spectra-stack-icon {
+  transform: scale(1.1);
+}
+
+.spectra-stack-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.spectra-stack-desc {
+  font-size: 13px;
+  color: #a1a1a6;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.spectra-stack-glow {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(30px);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.spectra-stack-card:hover .spectra-stack-glow {
+  opacity: 0.15;
+}
+
+/* CTA Section (Spectra) */
+.spectra-cta-section {
+  background: #ffffff;
+}
+
+.spectra-cta-title {
+  font-size: 64px;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.spectra-cta-gradient {
+  background: linear-gradient(90deg, #ef6441 0%, #ee4b54 25%, #d7699b 50%, #9d6ca6 75%, #6c7ebc 100%); /* Same as Iris CTA gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   color: transparent !important;
 }
 
-/* Stack Section background glow - make it purple/magenta */
-.spectra-page-container .iris-stack-section {
-  background-image: radial-gradient(ellipse at 50% 0%, rgba(191, 90, 242, 0.06) 0%, transparent 60%) !important;
+.spectra-cta-subtitle {
+  font-size: 21px;
+  color: #86868b;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* Spectra Responsive Adjustments */
+@media (max-width: 833px) {
+  .spectra-page-container {
+    padding: 60px 12px 12px;
+    gap: 12px;
+  }
+  .spectra-section-card {
+    border-radius: 20px;
+    padding: 60px 16px;
+  }
+  .spectra-hero-title {
+    font-size: 64px;
+  }
+  .spectra-hero-subtitle {
+    font-size: 22px;
+  }
+  .spectra-title-large {
+    font-size: 36px;
+  }
+  .spectra-subtitle {
+    font-size: 17px;
+    margin-bottom: 36px;
+  }
+  .spectra-process-flow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .spectra-process-arrow {
+    display: none;
+  }
+  .spectra-process-card {
+    padding: 32px 24px 28px;
+  }
+  .spectra-colleagues-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .spectra-queries-title {
+    font-size: 30px;
+  }
+  .spectra-queries-subtitle {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .spectra-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .spectra-bento-card {
+    min-height: auto;
+  }
+  .spectra-bento-card.bento-wide {
+    grid-column: span 1;
+  }
+  .spectra-impact-split {
+    grid-template-columns: 1fr;
+    border-radius: 20px;
+  }
+  .spectra-impact-col {
+    padding: 40px 24px;
+  }
+  .spectra-stack-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .spectra-stack-card {
+    padding: 30px 16px;
+  }
+  .spectra-cta-title {
+    font-size: 40px;
+  }
+  .spectra-cta-subtitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spectra-colleagues-grid {
+    grid-template-columns: 1fr;
+  }
+  .spectra-stack-grid {
+    grid-template-columns: 1fr;
+  }
+  .spectra-process-flow {
+    grid-template-columns: 1fr;
+  }
 }

@@ -2265,12 +2265,12 @@ const getSpectraTabIcon = (id: string) => {
 function SpectraDetailPage() {
   const [activeTab, setActiveTab] = useState("budget");
   return (
-    <div className="iris-page-container spectra-page-container">
+    <div className="spectra-page-container">
       {/* HERO SECTION */}
-      <section className="iris-section-card iris-hero">
-        <div className="iris-hero-content">
+      <section className="spectra-section-card spectra-hero">
+        <div className="spectra-hero-content">
           <motion.p 
-            className="iris-hero-eyebrow"
+            className="spectra-hero-eyebrow"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
@@ -2278,15 +2278,15 @@ function SpectraDetailPage() {
             ALGONOX • ENTERPRISE MARKETING INTELLIGENCE
           </motion.p>
           <motion.h1 
-            className="iris-hero-title"
+            className="spectra-hero-title"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
           >
-            SPECTRA<span className="iris-dot spectra-dot">.</span>
+            SPECTRA<span className="spectra-dot">.</span>
           </motion.h1>
           <motion.p 
-            className="iris-hero-subtitle"
+            className="spectra-hero-subtitle"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
@@ -2294,7 +2294,7 @@ function SpectraDetailPage() {
             Your marketing operations, powered by AI. Turn raw data into decisions, and decisions into measurable business impact.
           </motion.p>
           <motion.div 
-            className="iris-hero-ctas"
+            className="spectra-hero-ctas"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.45 }}
@@ -2304,7 +2304,7 @@ function SpectraDetailPage() {
           </motion.div>
           
           <motion.div 
-            className="iris-hero-pills"
+            className="spectra-hero-pills"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.6 }}
@@ -2319,9 +2319,9 @@ function SpectraDetailPage() {
       </section>
       
       {/* Channels Marquee Bar */}
-      <div className="iris-section-card iris-colleagues-bar-card">
-        <div className="iris-colleagues-bar">
-          <div className="iris-colleagues-bar-track">
+      <div className="spectra-section-card spectra-colleagues-bar-card">
+        <div className="spectra-colleagues-bar">
+          <div className="spectra-colleagues-bar-track">
             {[
               "Meta Ads", "Google Ads", "LinkedIn Ads", "TikTok Ads", 
               "Pinterest Ads", "Snapchat Ads", "Programmatic DSPs", "GA4 Analytics"
@@ -2340,10 +2340,10 @@ function SpectraDetailPage() {
       </div>
 
       {/* SECTION: HOW SPECTRA WORKS */}
-      <section id="how-spectra-works" className="iris-section-card iris-process-section">
+      <section id="how-spectra-works" className="spectra-section-card spectra-process-section">
         <div className="container">
           <motion.p 
-            className="iris-label"
+            className="spectra-label"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2352,7 +2352,7 @@ function SpectraDetailPage() {
             HOW SPECTRA WORKS
           </motion.p>
           <motion.h2 
-            className="iris-title-large"
+            className="spectra-title-large"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2361,7 +2361,7 @@ function SpectraDetailPage() {
             Continuous intelligence and optimization cycle.
           </motion.h2>
           <motion.p 
-            className="iris-subtitle"
+            className="spectra-subtitle"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2370,33 +2370,33 @@ function SpectraDetailPage() {
             Spectra connects, analyzes, recommends, executes, and learns in real-time.
           </motion.p>
           
-          <div className="iris-process-flow">
+          <div className="spectra-process-flow">
             {[
-              { num: "01", title: "Connect & Ingest", desc: "Connects securely with advertising platforms to ingest campaign, audience, creative, and performance data.", color: "#bf5af2", icon: "🔌" },
+              { num: "01", title: "Connect & Ingest", desc: "Connects securely with advertising platforms to ingest campaign, audience, creative, and performance data.", color: "#5e5ce6", icon: "🔌" },
               { num: "02", title: "Analyze & Detect", desc: "AI models continuously analyze campaign performance, identify trends, detect anomalies, and uncover opportunities.", color: "#0a84ff", icon: "🔍" },
               { num: "03", title: "Recommend", desc: "Generates recommendations that help marketers improve budget allocation, campaign performance, and creative effectiveness.", color: "#30d158", icon: "💡" },
               { num: "04", title: "Approve & Execute", desc: "Marketers review recommendations, approve actions, or automate execution with complete transparency.", color: "#ff9f0a", icon: "⚡" },
-              { num: "05", title: "Learn & Optimize", desc: "Learns from campaign outcomes, enabling continuous optimization and increasingly accurate recommendations.", color: "#ff2d55", icon: "📈" }
+              { num: "05", title: "Learn & Optimize", desc: "Learns from campaign outcomes, enabling continuous optimization and increasingly accurate recommendations.", color: "#bf5af2", icon: "📈" }
             ].map((step, idx) => (
               <Fragment key={idx}>
                 <motion.div
-                  className="iris-process-card"
+                  className="spectra-process-card"
                   initial={{ opacity: 0, y: 40, scale: 0.95 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.25, 1, 0.5, 1] }}
                 >
-                  <div className="iris-process-icon-ring" style={{ background: `${step.color}15`, borderColor: `${step.color}30` }}>
-                    <span className="iris-process-icon-emoji">{step.icon}</span>
+                  <div className="spectra-process-icon-ring" style={{ background: `${step.color}15`, borderColor: `${step.color}30` }}>
+                    <span className="spectra-process-icon-emoji">{step.icon}</span>
                   </div>
-                  <div className="iris-process-num" style={{ color: step.color }}>{step.num}</div>
-                  <h3 className="iris-process-title">{step.title}</h3>
-                  <p className="iris-process-desc">{step.desc}</p>
-                  <div className="iris-process-accent-line" style={{ background: `linear-gradient(90deg, ${step.color}, transparent)` }} />
+                  <div className="spectra-process-num" style={{ color: step.color }}>{step.num}</div>
+                  <h3 className="spectra-process-title">{step.title}</h3>
+                  <p className="spectra-process-desc">{step.desc}</p>
+                  <div className="spectra-process-accent-line" style={{ background: `linear-gradient(90deg, ${step.color}, transparent)` }} />
                 </motion.div>
                 {idx < 4 && (
                   <motion.div
-                    className="iris-process-arrow"
+                    className="spectra-process-arrow"
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-80px" }}
@@ -2412,10 +2412,10 @@ function SpectraDetailPage() {
       </section>
 
       {/* SECTION: TARGET AUDIENCES / WORKSPACES */}
-      <section className="iris-section-card iris-studio-section">
+      <section className="spectra-section-card spectra-studio-section">
         <div className="container">
           <motion.p 
-            className="iris-label iris-label-dark"
+            className="spectra-label spectra-label-dark"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2424,7 +2424,7 @@ function SpectraDetailPage() {
             WHO SPECTRA IS FOR
           </motion.p>
           <motion.h2 
-            className="iris-title-large"
+            className="spectra-title-large"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2433,7 +2433,7 @@ function SpectraDetailPage() {
             Tailored workspaces for marketing teams.
           </motion.h2>
           <motion.p 
-            className="iris-subtitle"
+            className="spectra-subtitle"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2443,9 +2443,9 @@ function SpectraDetailPage() {
           </motion.p>
           
           {/* Workspaces Grid */}
-          <div className="iris-colleagues-grid">
+          <div className="spectra-colleagues-grid">
             {[
-              { code: "CM", name: "CMOs & Leaders", role: "MARKETING LEADERS", desc: "Strategic alignment, blended cross-channel ROAS, and overall media productivity.", bg: "#bf5af2" },
+              { code: "CM", name: "CMOs & Leaders", role: "MARKETING LEADERS", desc: "Strategic alignment, blended cross-channel ROAS, and overall media productivity.", bg: "#5856d6" },
               { code: "PM", name: "Performance Teams", role: "PERFORMANCE MARKETING", desc: "Real-time campaign tracking, budget optimization, and creative fatigue alerts.", bg: "#34c759" },
               { code: "DA", name: "Digital Agencies", role: "MARKETING AGENCIES", desc: "Consolidate reporting, manage client accounts, and automate routine performance reviews.", bg: "#ff2d55" },
               { code: "MB", name: "Media Buyers", role: "MEDIA BUYING TEAMS", desc: "Audience targeting, programmatic bid optimization, and multi-platform media spend.", bg: "#007aff" },
@@ -2456,27 +2456,27 @@ function SpectraDetailPage() {
             ].map((colleague, idx) => (
               <motion.div 
                 key={idx} 
-                className="iris-colleague-card"
+                className="spectra-colleague-card"
                 initial={{ opacity: 0, y: 35, scale: 0.96 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.25, 1, 0.5, 1] }}
               >
-                <div className="iris-avatar-wrap">
-                  <div className="iris-avatar" style={{ backgroundColor: colleague.bg }}>
+                <div className="spectra-avatar-wrap">
+                  <div className="spectra-avatar" style={{ backgroundColor: colleague.bg }}>
                     {colleague.code}
                   </div>
-                  <div className="iris-avatar-glow" style={{ background: colleague.bg }} />
-                  <div className="iris-status-dot" style={{ borderColor: '#0b0b0c' }}>
-                    <div className="iris-status-inner" />
+                  <div className="spectra-avatar-glow" style={{ background: colleague.bg }} />
+                  <div className="spectra-status-dot" style={{ borderColor: '#0b0b0c' }}>
+                    <div className="spectra-status-inner" />
                   </div>
                 </div>
-                <div className="iris-colleague-info">
-                  <p className="iris-colleague-role" style={{ color: colleague.bg }}>{colleague.role}</p>
-                  <h3 className="iris-colleague-name">{colleague.name}</h3>
-                  <p className="iris-colleague-desc">{colleague.desc}</p>
+                <div className="spectra-colleague-info">
+                  <p className="spectra-colleague-role" style={{ color: colleague.bg }}>{colleague.role}</p>
+                  <h3 className="spectra-colleague-name">{colleague.name}</h3>
+                  <p className="spectra-colleague-desc">{colleague.desc}</p>
                 </div>
-                <div className="iris-colleague-arrow">
+                <div className="spectra-colleague-arrow">
                   <ChevronRight size={16} />
                 </div>
               </motion.div>
@@ -2486,11 +2486,11 @@ function SpectraDetailPage() {
       </section>
 
       {/* SECTION: ASK ANYTHING QUERIES */}
-      <section className="iris-section-card iris-queries-section">
+      <section className="spectra-section-card spectra-queries-section">
         <div className="container">
-          <div className="iris-queries-container">
+          <div className="spectra-queries-container">
             <motion.p 
-              className="iris-label"
+              className="spectra-label"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -2499,7 +2499,7 @@ function SpectraDetailPage() {
               REAL-TIME REVENUE OPTIMIZATION
             </motion.p>
             <motion.h2 
-              className="iris-queries-title" 
+              className="spectra-queries-title" 
               style={{ marginBottom: "16px" }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -2509,7 +2509,7 @@ function SpectraDetailPage() {
               Marketers get instant, actionable insights.
             </motion.h2>
             <motion.p 
-              className="iris-queries-subtitle"
+              className="spectra-queries-subtitle"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -2519,18 +2519,18 @@ function SpectraDetailPage() {
             </motion.p>
             
             <motion.div 
-              className="iris-queries-showcase"
+              className="spectra-queries-showcase"
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
             >
               {/* Tabs */}
-              <div className="iris-queries-tabs">
+              <div className="spectra-queries-tabs">
                 {spectraQueryTabs.map((t) => (
                   <button 
                     key={t.id}
-                    className={`iris-query-tab-btn ${activeTab === t.id ? 'active' : ''}`}
+                    className={`spectra-query-tab-btn ${activeTab === t.id ? 'active' : ''}`}
                     onClick={() => setActiveTab(t.id)}
                     style={{ '--colleague-color': t.colleagueBg } as React.CSSProperties}
                   >
@@ -2555,7 +2555,7 @@ function SpectraDetailPage() {
               </div>
 
               {/* Preview Window */}
-              <div className="iris-queries-preview">
+              <div className="spectra-queries-preview">
                 <div className="preview-window-header">
                   <div className="window-controls">
                     <span className="dot red"></span>
@@ -2577,7 +2577,7 @@ function SpectraDetailPage() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.3 }}
-                          className="iris-queries-preview-content"
+                          className="spectra-queries-preview-content"
                         >
                           {/* User Query Block */}
                           <div className="user-query-container">
@@ -2663,10 +2663,10 @@ function SpectraDetailPage() {
       </section>
 
       {/* SECTION: PLATFORM CAPABILITIES */}
-      <section className="iris-section-card iris-capabilities-section">
+      <section className="spectra-section-card spectra-capabilities-section">
         <div className="container">
           <motion.p 
-            className="iris-label"
+            className="spectra-label"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2675,7 +2675,7 @@ function SpectraDetailPage() {
             CORE VALUE PROPOSITION
           </motion.p>
           <motion.h2 
-            className="iris-title-large"
+            className="spectra-title-large"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2684,7 +2684,7 @@ function SpectraDetailPage() {
             Empowering proactive marketing operations.
           </motion.h2>
           <motion.p 
-            className="iris-subtitle"
+            className="spectra-subtitle"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2693,7 +2693,7 @@ function SpectraDetailPage() {
             Move beyond traditional reporting with an intelligent platform built for action.
           </motion.p>
           
-          <div className="iris-bento-grid">
+          <div className="spectra-bento-grid">
             {[
               { 
                 title: "Continuous Monitoring", 
@@ -2740,24 +2740,24 @@ function SpectraDetailPage() {
                 desc: "Complete transparency and operational control over budgets, recommendations, and automated actions.",
                 theme: "gradient",
                 icon: "🛡️",
-                accent: "#bf5af2",
+                accent: "#5e5ce6",
                 span: "wide"
               }
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
-                className={`iris-bento-card theme-${item.theme} ${item.span === 'wide' ? 'bento-wide' : ''}`}
+                className={`spectra-bento-card theme-${item.theme} ${item.span === 'wide' ? 'bento-wide' : ''}`}
                 initial={{ opacity: 0, y: 40, scale: 0.96 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.25, 1, 0.5, 1] }}
               >
-                <div className="iris-bento-icon" style={{ background: `${item.accent}18`, borderColor: `${item.accent}35` }}>
+                <div className="spectra-bento-icon" style={{ background: `${item.accent}18`, borderColor: `${item.accent}35` }}>
                   <span>{item.icon}</span>
                 </div>
-                <h3 className="iris-bento-card-title">{item.title}</h3>
-                <p className="iris-bento-card-desc">{item.desc}</p>
-                <div className="iris-bento-glow" style={{ background: item.accent }} />
+                <h3 className="spectra-bento-card-title">{item.title}</h3>
+                <p className="spectra-bento-card-desc">{item.desc}</p>
+                <div className="spectra-bento-glow" style={{ background: item.accent }} />
               </motion.div>
             ))}
           </div>
@@ -2765,10 +2765,10 @@ function SpectraDetailPage() {
       </section>
 
       {/* SECTION: BUSINESS IMPACT */}
-      <section className="iris-section-card iris-impact-section">
+      <section className="spectra-section-card spectra-impact-section">
         <div className="container">
           <motion.p 
-            className="iris-label"
+            className="spectra-label"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2777,7 +2777,7 @@ function SpectraDetailPage() {
             BUSINESS OUTCOMES
           </motion.p>
           <motion.h2 
-            className="iris-title-large iris-impact-title"
+            className="spectra-title-large spectra-impact-title"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2786,10 +2786,10 @@ function SpectraDetailPage() {
             Measurable outcomes across the enterprise.
           </motion.h2>
           
-          <div className="iris-impact-split">
+          <div className="spectra-impact-split">
             {/* Without SPECTRA */}
             <motion.div 
-              className="iris-impact-col without"
+              className="spectra-impact-col without"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -2797,17 +2797,17 @@ function SpectraDetailPage() {
             >
               <h3>THE CHALLENGE</h3>
               <ul>
-                <li><span className="iris-cross">✖</span> Fragmented campaign data spread across multiple platforms</li>
-                <li><span className="iris-cross">✖</span> Creative fatigue identified only after performance declines</li>
-                <li><span className="iris-cross">✖</span> Budget inefficiencies caused by delayed optimization</li>
-                <li><span className="iris-cross">✖</span> Manual campaign reviews requiring significant analyst effort</li>
-                <li><span className="iris-cross">✖</span> Slow decision-making due to disconnected reporting systems</li>
+                <li><span className="spectra-cross">✖</span> Fragmented campaign data spread across multiple platforms</li>
+                <li><span className="spectra-cross">✖</span> Creative fatigue identified only after performance declines</li>
+                <li><span className="spectra-cross">✖</span> Budget inefficiencies caused by delayed optimization</li>
+                <li><span className="spectra-cross">✖</span> Manual campaign reviews requiring significant analyst effort</li>
+                <li><span className="spectra-cross">✖</span> Slow decision-making due to disconnected reporting systems</li>
               </ul>
             </motion.div>
             
             {/* With SPECTRA */}
             <motion.div 
-              className="iris-impact-col with"
+              className="spectra-impact-col with"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -2815,11 +2815,11 @@ function SpectraDetailPage() {
             >
               <h3>THE SPECTRA APPROACH</h3>
               <ul>
-                <li><span className="iris-check">✔</span> Blended cross-channel visibility in a single unified view</li>
-                <li><span className="iris-check">✔</span> Proactive alert systems for creative fatigue detection</li>
-                <li><span className="iris-check">✔</span> Real-time automated budget reallocation for optimal ROAS</li>
-                <li><span className="iris-check">✔</span> Automated intelligence layer reducing manual reporting</li>
-                <li><span className="iris-check">✔</span> Instant, actionable recommendations in natural language</li>
+                <li><span className="spectra-check">✔</span> Blended cross-channel visibility in a single unified view</li>
+                <li><span className="spectra-check">✔</span> Proactive alert systems for creative fatigue detection</li>
+                <li><span className="spectra-check">✔</span> Real-time automated budget reallocation for optimal ROAS</li>
+                <li><span className="spectra-check">✔</span> Automated intelligence layer reducing manual reporting</li>
+                <li><span className="spectra-check">✔</span> Instant, actionable recommendations in natural language</li>
               </ul>
             </motion.div>
           </div>
@@ -2827,10 +2827,10 @@ function SpectraDetailPage() {
       </section>
 
       {/* SECTION: WORKS WITH YOUR ENTIRE STACK */}
-      <section className="iris-section-card iris-stack-section">
+      <section className="spectra-section-card spectra-stack-section">
         <div className="container">
           <motion.p 
-            className="iris-label iris-label-dark"
+            className="spectra-label spectra-label-dark"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -2839,7 +2839,7 @@ function SpectraDetailPage() {
             INTEGRATIONS
           </motion.p>
           <motion.h2 
-            className="iris-title-large" 
+            className="spectra-title-large" 
             style={{ color: "#ffffff", textAlign: "center" }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2849,7 +2849,7 @@ function SpectraDetailPage() {
             Connects with your entire marketing stack.
           </motion.h2>
           <motion.p 
-            className="iris-subtitle" 
+            className="spectra-subtitle" 
             style={{ textAlign: "center", marginBottom: "64px" }}
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2859,31 +2859,31 @@ function SpectraDetailPage() {
             Spectra acts as an intelligent layer above your existing advertising and marketing channels.
           </motion.p>
           
-          <div className="iris-stack-grid">
+          <div className="spectra-stack-grid">
             {[
-              { name: "Meta Ads", icon: "👥", desc: "Facebook & Instagram campaigns, creatives, and lead tracking.", accent: "#bf5af2" },
+              { name: "Meta Ads", icon: "👥", desc: "Facebook & Instagram campaigns, creatives, and lead tracking.", accent: "#5e5ce6" },
               { name: "Google Ads", icon: "🔍", desc: "Search, Display, YouTube, and Performance Max channels.", accent: "#0a84ff" },
               { name: "TikTok Ads", icon: "🎵", desc: "Short-form video ads, custom audiences, and conversions.", accent: "#ff375f" },
               { name: "LinkedIn Ads", icon: "💼", desc: "B2B campaigns, lead gen forms, and account-based marketing.", accent: "#30d158" },
               { name: "Programmatic DSPs", icon: "📡", desc: "Display, native, and video programmatic ad exchanges.", accent: "#ff9f0a" },
               { name: "GA4 Analytics", icon: "📈", desc: "On-site conversions, traffic attribution, and events.", accent: "#64d2ff" },
-              { name: "CRM Platforms", icon: "🏛️", desc: "Salesforce, HubSpot, and Microsoft Dynamics integrations.", accent: "#bf5af2" },
+              { name: "CRM Platforms", icon: "🏛️", desc: "Salesforce, HubSpot, and Microsoft Dynamics integrations.", accent: "#5e5ce6" },
               { name: "Workflow Tools", icon: "⚙️", desc: "Slack, Jira, and email notifications for recommendations.", accent: "#ff6482" }
             ].map((stack, idx) => (
               <motion.div 
                 key={idx} 
-                className="iris-stack-card"
+                className="spectra-stack-card"
                 initial={{ opacity: 0, y: 30, scale: 0.96 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: idx * 0.06, ease: [0.25, 1, 0.5, 1] }}
               >
-                <div className="iris-stack-icon" style={{ background: `${stack.accent}15`, borderColor: `${stack.accent}30` }}>
+                <div className="spectra-stack-icon" style={{ background: `${stack.accent}15`, borderColor: `${stack.accent}30` }}>
                   <span>{stack.icon}</span>
                 </div>
-                <h4 className="iris-stack-name">{stack.name}</h4>
-                <p className="iris-stack-desc">{stack.desc}</p>
-                <div className="iris-stack-glow" style={{ background: stack.accent }} />
+                <h4 className="spectra-stack-name">{stack.name}</h4>
+                <p className="spectra-stack-desc">{stack.desc}</p>
+                <div className="spectra-stack-glow" style={{ background: stack.accent }} />
               </motion.div>
             ))}
           </div>
@@ -2891,20 +2891,20 @@ function SpectraDetailPage() {
       </section>
 
       {/* FINAL CTA SECTION */}
-      <section className="iris-section-card iris-cta-section">
+      <section className="spectra-section-card spectra-cta-section">
         <div className="container" style={{ textAlign: "center" }}>
           <motion.h2 
-            className="iris-cta-title"
+            className="spectra-cta-title"
             initial={{ opacity: 0, scale: 0.85 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.1 }}
           >
             Ready to transform your<br />
-            <span className="iris-cta-gradient">decision-driven growth?</span>
+            <span className="spectra-cta-gradient">decision-driven growth?</span>
           </motion.h2>
           <motion.p 
-            className="iris-cta-subtitle"
+            className="spectra-cta-subtitle"
             initial={{ opacity: 0, scale: 0.85 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, margin: "-100px" }}
@@ -2912,7 +2912,7 @@ function SpectraDetailPage() {
           >
             Deploy Spectra across your marketing teams to turn raw data into decisions, and decisions into measurable business impact.
           </motion.p>
-          <div className="iris-hero-ctas" style={{ justifyContent: "center", marginTop: "32px" }}>
+          <div className="spectra-hero-ctas" style={{ justifyContent: "center", marginTop: "32px" }}>
             <Link to="/contact" className="btn-solid-blue">Schedule a Demo</Link>
             <Link to="/contact" className="btn-outline-blue" style={{ background: "#ffffff" }}>Talk to Sales</Link>
           </div>
