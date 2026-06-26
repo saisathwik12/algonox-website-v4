@@ -2048,7 +2048,7 @@ function IrisDetailPage() {
             BUSINESS IMPACT
           </motion.p>
           <motion.h2 
-            className="iris-title-large"
+            className="iris-title-large iris-impact-title"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
