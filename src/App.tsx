@@ -2341,7 +2341,7 @@ function SpectraDetailPage() {
       </section>
 
       {/* 2. THE CHALLENGE SECTION (DARK) */}
-      <section id="challenge" className="spectra-pro-section spectra-pro-challenge-section theme-dark">
+      <section id="challenge" className="spectra-pro-section spectra-pro-challenge-section">
         <motion.div className="container" {...sectionAnimation}>
           <div className="spectra-pro-split">
             <div className="spectra-pro-split-left">
@@ -2384,7 +2384,7 @@ function SpectraDetailPage() {
       </section>
 
       {/* 3. THE SPECTRA APPROACH SECTION (LIGHT) */}
-      <section className="spectra-pro-section spectra-pro-approach-section theme-light">
+      <section className="spectra-pro-section spectra-pro-approach-section">
         <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "56px" }}>
             <p className="spectra-pro-section-kicker">A NEW METHODOLOGY</p>
@@ -2468,7 +2468,7 @@ function SpectraDetailPage() {
       </section>
 
       {/* 4. HOW SPECTRA WORKS SECTION (DARK) */}
-      <section className="spectra-pro-section spectra-pro-works-section theme-dark">
+      <section className="spectra-pro-section spectra-pro-works-section">
         <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
             <p className="spectra-pro-section-kicker">ENGINEERING CYCLE</p>
@@ -2505,7 +2505,7 @@ function SpectraDetailPage() {
       </section>
 
       {/* 5. CORE VALUE PROPOSITIONS BENTO GRID (LIGHT) */}
-      <section className="spectra-pro-section spectra-pro-capabilities-section theme-light">
+      <section className="spectra-pro-section spectra-pro-capabilities-section">
         <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
             <p className="spectra-pro-section-kicker">CORE CAPABILITIES</p>
@@ -2595,7 +2595,7 @@ function SpectraDetailPage() {
       </section>
 
       {/* 6. WHO SPECTRA IS FOR SECTION (DARK) */}
-      <section className="spectra-pro-section spectra-pro-person-section theme-dark">
+      <section className="spectra-pro-section spectra-pro-person-section">
         <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "56px" }}>
             <p className="spectra-pro-section-kicker">BUILT FOR SCALE</p>
@@ -2667,7 +2667,7 @@ function SpectraDetailPage() {
       </section>
 
       {/* 7. BUSINESS OUTCOMES SECTION (LIGHT) */}
-      <section className="spectra-pro-section spectra-pro-outcomes-section theme-light">
+      <section className="spectra-pro-section spectra-pro-outcomes-section">
         <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
             <p className="spectra-pro-section-kicker">MEASURABLE VALUE</p>
@@ -2716,7 +2716,7 @@ function SpectraDetailPage() {
       </section>
 
       {/* 8. WHY SPECTRA COMPARISON SECTION (DARK) */}
-      <section className="spectra-pro-section spectra-pro-why-section theme-dark">
+      <section className="spectra-pro-section spectra-pro-why-section">
         <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
             <p className="spectra-pro-section-kicker">THE COMPETITIVE EDGE</p>
@@ -2755,7 +2755,7 @@ function SpectraDetailPage() {
       </section>
 
       {/* 9. VISION & FINAL CTA (LIGHT) */}
-      <section className="spectra-pro-section spectra-pro-vision-section theme-light">
+      <section className="spectra-pro-section spectra-pro-vision-section">
         <div className="spectra-pro-vision-glow" />
         <motion.div className="container text-center" {...sectionAnimation}>
           <p className="spectra-pro-section-kicker">THE FUTURE OF OPERATIONS</p>
