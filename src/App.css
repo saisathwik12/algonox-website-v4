@@ -3530,11 +3530,11 @@ button {
    SPECTRA PRODUCT PAGE STYLING (Same Colors as IRIS Page)
    ============================================================ */
 /* ============================================================
-   SPECTRA PRO DETAIL PAGE (Apple Space-Black Theme & Glow Animations)
+   SPECTRA PRO DETAIL PAGE (Apple Light-Mode Theme & Animations)
    ============================================================ */
 .spectra-pro-container {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
   min-height: 100vh;
   overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -3544,39 +3544,6 @@ button {
 
 .spectra-pro-container * {
   box-sizing: border-box;
-}
-
-/* Dark Page Navbar overrides */
-.spectra-dark-page .nav {
-  background: rgba(10, 10, 10, 0.8) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  color: #ffffff !important;
-  backdrop-filter: saturate(180%) blur(20px) !important;
-  -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
-}
-
-.spectra-dark-page .nav-page-title {
-  color: #ffffff !important;
-}
-
-.spectra-dark-page .nav-item a {
-  color: rgba(255, 255, 255, 0.7) !important;
-}
-
-.spectra-dark-page .nav-item a:hover {
-  color: #ffffff !important;
-}
-
-.spectra-dark-page .logo img {
-  filter: invert(1) brightness(2) !important;
-}
-
-.spectra-dark-page .nav-book-btn {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-.spectra-dark-page .nav-book-btn:hover {
-  background: rgba(255, 255, 255, 0.9) !important;
 }
 
 /* 1. HERO SECTION */
@@ -3589,6 +3556,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #ffffff;
 }
 
 .spectra-pro-hero-glow {
@@ -3598,7 +3566,7 @@ button {
   transform: translateX(-50%);
   width: 900px;
   height: 600px;
-  background: radial-gradient(circle, rgba(94, 92, 230, 0.12) 0%, rgba(191, 90, 242, 0.08) 30%, rgba(100, 210, 255, 0.04) 60%, transparent 100%);
+  background: radial-gradient(circle, rgba(94, 92, 230, 0.06) 0%, rgba(191, 90, 242, 0.04) 30%, rgba(100, 210, 255, 0.02) 60%, transparent 100%);
   filter: blur(80px);
   pointer-events: none;
   z-index: 1;
@@ -3614,7 +3582,7 @@ button {
 .spectra-pro-kicker {
   font-size: 14px;
   font-weight: 700;
-  color: #a1a1a6;
+  color: #86868b;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 24px;
@@ -3626,7 +3594,7 @@ button {
   letter-spacing: -0.04em;
   line-height: 0.95;
   margin: 0 0 24px;
-  background: linear-gradient(90deg, #64d2ff 0%, #5e5ce6 30%, #bf5af2 60%, #ff2d55 100%);
+  background: linear-gradient(90deg, #1d1d1f 0%, #5e5ce6 35%, #bf5af2 70%, #ff2d55 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -3636,7 +3604,7 @@ button {
 .spectra-pro-hero-subtitle {
   font-size: 26px;
   font-weight: 500;
-  color: #d2d2d7;
+  color: #515154;
   line-height: 1.35;
   max-width: 780px;
   margin: 0 auto 48px;
@@ -3654,8 +3622,8 @@ button {
 .btn-pro-solid {
   font-size: 16px;
   font-weight: 600;
-  background: #ffffff;
-  color: #000000;
+  background: #1d1d1f;
+  color: #ffffff;
   padding: 12px 28px;
   border-radius: 980px;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -3666,15 +3634,15 @@ button {
 }
 
 .btn-pro-solid:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: #272729;
   transform: scale(1.02);
 }
 
 .btn-pro-outline {
   font-size: 16px;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  border: 1px solid #0071e3;
+  color: #0071e3;
   background: transparent;
   padding: 11px 28px;
   border-radius: 980px;
@@ -3686,8 +3654,7 @@ button {
 }
 
 .btn-pro-outline:hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 113, 227, 0.04);
   transform: scale(1.02);
 }
 
@@ -3718,7 +3685,7 @@ button {
 .spectra-pro-hero-marquee .marquee-track span {
   font-size: 15px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(29, 29, 31, 0.4);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -3732,7 +3699,7 @@ button {
 .spectra-pro-section-kicker {
   font-size: 12px;
   font-weight: 700;
-  color: #64d2ff;
+  color: #0071e3;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -3742,7 +3709,7 @@ button {
 .spectra-pro-section-title {
   font-size: 48px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin-bottom: 24px;
@@ -3751,7 +3718,7 @@ button {
 .spectra-pro-section-desc {
   font-size: 18px;
   line-height: 1.5;
-  color: #a1a1a6;
+  color: #86868b;
   max-width: 600px;
   margin-bottom: 32px;
 }
@@ -3762,6 +3729,10 @@ button {
 }
 
 /* Challenge Split Layout */
+.spectra-pro-challenge-section {
+  background: #ffffff;
+}
+
 .spectra-pro-split {
   display: grid;
   grid-template-columns: 1.1fr 1.3fr;
@@ -3781,8 +3752,8 @@ button {
 }
 
 .spectra-pro-challenge-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 20px;
   padding: 24px;
   display: flex;
@@ -3791,8 +3762,9 @@ button {
 }
 
 .spectra-pro-challenge-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
   transform: translateY(-2px);
 }
 
@@ -3800,7 +3772,7 @@ button {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(255, 45, 85, 0.15);
+  background: rgba(255, 45, 85, 0.1);
   color: #ff2d55;
   display: flex;
   align-items: center;
@@ -3812,25 +3784,24 @@ button {
 .challenge-text-box h4 {
   font-size: 18px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   margin: 0 0 6px;
 }
 
 .challenge-text-box p {
   font-size: 14px;
   line-height: 1.45;
-  color: #a1a1a6;
+  color: #86868b;
   margin: 0;
 }
 
 .spectra-pro-challenge-quote {
   margin-top: 100px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 28px;
   padding: 60px 40px;
   text-align: center;
-  backdrop-filter: blur(20px);
 }
 
 .spectra-pro-challenge-quote h3 {
@@ -3843,11 +3814,11 @@ button {
 .spectra-pro-challenge-quote h2 {
   font-size: 32px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   line-height: 1.3;
   margin: 0;
   letter-spacing: -0.015em;
-  background: linear-gradient(135deg, #ffffff 40%, #a1a1a6 100%);
+  background: linear-gradient(135deg, #1d1d1f 30%, #515154 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -3866,8 +3837,8 @@ button {
 }
 
 .spectra-pro-approach-toggle button {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   color: #86868b;
   padding: 12px 28px;
   border-radius: 980px;
@@ -3878,27 +3849,27 @@ button {
 }
 
 .spectra-pro-approach-toggle button:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+  color: #1d1d1f;
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .spectra-pro-approach-toggle button.active {
-  background: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
+  background: #1d1d1f;
+  color: #ffffff;
+  border-color: #1d1d1f;
 }
 
 .spectra-pro-approach-card {
-  background: #0d0d0d;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 28px;
   padding: 48px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
 }
 
 .spectra-pro-approach-card.spectra-card {
-  border-color: rgba(94, 92, 230, 0.25);
-  box-shadow: 0 0 40px rgba(94, 92, 230, 0.05), inset 0 0 20px rgba(94, 92, 230, 0.05);
+  border-color: rgba(94, 92, 230, 0.15);
+  box-shadow: 0 15px 40px rgba(94, 92, 230, 0.03);
 }
 
 .approach-grid {
@@ -3910,14 +3881,14 @@ button {
 .approach-col h4 {
   font-size: 18px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   margin: 0 0 12px;
 }
 
 .approach-col p {
   font-size: 14px;
   line-height: 1.5;
-  color: #a1a1a6;
+  color: #86868b;
   margin: 0;
 }
 
@@ -3927,6 +3898,10 @@ button {
 }
 
 /* 4. HOW SPECTRA WORKS - STEPS FLOW */
+.spectra-pro-works-section {
+  background: #ffffff;
+}
+
 .spectra-pro-works-flow {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -3936,8 +3911,8 @@ button {
 }
 
 .spectra-pro-works-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 24px;
   padding: 32px 20px;
   display: flex;
@@ -3951,10 +3926,10 @@ button {
 
 .spectra-pro-works-card:hover,
 .spectra-pro-works-card.active {
-  background: rgba(255, 255, 255, 0.04);
+  background: #ffffff;
   transform: translateY(-8px);
-  border-color: rgba(94, 92, 230, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(94, 92, 230, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .works-card-header {
@@ -3966,7 +3941,7 @@ button {
 .works-num {
   font-size: 14px;
   font-weight: 700;
-  color: #64d2ff;
+  color: #0071e3;
   font-family: monospace;
 }
 
@@ -3977,20 +3952,20 @@ button {
 .spectra-pro-works-card h4 {
   font-size: 18px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   margin: 0;
 }
 
 .spectra-pro-works-card p {
   font-size: 13px;
   line-height: 1.45;
-  color: #a1a1a6;
+  color: #86868b;
   margin: 0;
   flex: 1;
 }
 
 .works-card-meta {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   padding-top: 12px;
   display: flex;
   flex-direction: column;
@@ -4007,7 +3982,7 @@ button {
 .meta-val {
   font-size: 13px;
   font-weight: 600;
-  color: #ffffff;
+  color: #1d1d1f;
 }
 
 .works-card-border-glow {
@@ -4017,7 +3992,7 @@ button {
   right: 0;
   height: 3px;
   border-radius: 0 0 24px 24px;
-  background: linear-gradient(90deg, #64d2ff, #5e5ce6);
+  background: linear-gradient(90deg, #0071e3, #5e5ce6);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -4038,8 +4013,8 @@ button {
 
 .bento-card {
   position: relative;
-  background: #0d0d0d;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 28px;
   padding: 40px;
   overflow: hidden;
@@ -4049,8 +4024,8 @@ button {
 
 .bento-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
 }
 
 .bento-card.bento-wide {
@@ -4063,7 +4038,7 @@ button {
   right: -40px;
   width: 150px;
   height: 150px;
-  background: radial-gradient(circle, rgba(94, 92, 230, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(94, 92, 230, 0.06) 0%, transparent 70%);
   filter: blur(20px);
   pointer-events: none;
 }
@@ -4084,14 +4059,14 @@ button {
 .bento-content h3 {
   font-size: 22px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   margin: 0 0 10px;
 }
 
 .bento-content p {
   font-size: 14px;
   line-height: 1.5;
-  color: #a1a1a6;
+  color: #86868b;
   margin: 0 0 24px;
   max-width: 90%;
 }
@@ -4110,17 +4085,17 @@ button {
 
 .chart-bar {
   flex: 1;
-  background: rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.05);
   border-radius: 4px;
 }
 
 .chart-bar.active {
-  background: linear-gradient(0deg, #5e5ce6, #64d2ff);
+  background: linear-gradient(0deg, #5e5ce6, #0071e3);
 }
 
 .alert-box {
-  background: rgba(255, 45, 85, 0.08);
-  border: 1px solid rgba(255, 45, 85, 0.2);
+  background: rgba(255, 45, 85, 0.05);
+  border: 1px solid rgba(255, 45, 85, 0.15);
   border-radius: 12px;
   padding: 12px 18px;
   display: flex;
@@ -4136,7 +4111,7 @@ button {
 
 .alert-metric {
   font-size: 12px;
-  color: #ffffff;
+  color: #1d1d1f;
 }
 
 .platform-strip {
@@ -4147,8 +4122,8 @@ button {
 .platform-strip span {
   font-size: 11px;
   font-weight: 700;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.06);
   padding: 6px 12px;
   border-radius: 8px;
 }
@@ -4162,7 +4137,7 @@ button {
 .step-point {
   font-size: 12px;
   font-weight: 600;
-  color: #a1a1a6;
+  color: #86868b;
 }
 
 .step-point.active {
@@ -4170,7 +4145,7 @@ button {
 }
 
 .step-arrow {
-  color: rgba(255,255,255,0.2);
+  color: rgba(0,0,0,0.15);
 }
 
 .dashboard-mock {
@@ -4180,8 +4155,8 @@ button {
 
 .mock-widget {
   flex: 1;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.05);
   padding: 12px;
   border-radius: 12px;
   font-size: 12px;
@@ -4189,7 +4164,67 @@ button {
   text-align: center;
 }
 
+/* Bento Themes Overrides for light mode */
+.bento-card.theme-dark {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.bento-card.theme-dark h3 {
+  color: #1d1d1f;
+}
+
+.bento-card.theme-dark p {
+  color: #86868b;
+}
+
+.bento-card.theme-blue {
+  background: linear-gradient(145deg, #5e5ce6, #0071e3);
+  color: #ffffff;
+}
+
+.bento-card.theme-blue h3 {
+  color: #ffffff;
+}
+
+.bento-card.theme-blue p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.bento-card.theme-blue .bento-icon {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.bento-card.theme-light {
+  background: #ffffff;
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.bento-card.theme-gradient {
+  background: linear-gradient(135deg, #f5f5f7 0%, #e4e7f0 100%);
+  color: #1d1d1f;
+}
+
+.bento-card.theme-gradient h3 {
+  color: #1d1d1f;
+}
+
+.bento-card.theme-gradient p {
+  color: #86868b;
+}
+
+.bento-card.theme-gradient .bento-icon {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.05) !important;
+}
+
 /* 6. WHO SPECTRA IS FOR */
+.spectra-pro-person-section {
+  background: #ffffff;
+}
+
 .spectra-pro-persona-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -4201,7 +4236,7 @@ button {
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 32px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   padding-bottom: 24px;
 }
 
@@ -4218,20 +4253,21 @@ button {
 }
 
 .persona-tab-btn:hover {
-  color: #ffffff;
+  color: #1d1d1f;
 }
 
 .persona-tab-btn.active {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+  color: #1d1d1f;
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .persona-content-panel {
-  background: #0d0d0d;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 28px;
   padding: 48px;
   min-height: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
 }
 
 .persona-panel-inner {
@@ -4243,14 +4279,14 @@ button {
 .persona-info-col h3 {
   font-size: 24px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   margin: 0 0 16px;
 }
 
 .persona-desc-text {
   font-size: 16px;
   line-height: 1.5;
-  color: #a1a1a6;
+  color: #86868b;
   margin-bottom: 28px;
 }
 
@@ -4264,7 +4300,7 @@ button {
   display: flex;
   gap: 12px;
   font-size: 14px;
-  color: #e8e8ed;
+  color: #515154;
 }
 
 .check-bullet {
@@ -4279,8 +4315,8 @@ button {
 }
 
 .persona-metric-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 16px;
   padding: 24px;
   display: flex;
@@ -4298,7 +4334,7 @@ button {
 .met-val {
   font-size: 32px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
 }
 
 .met-diff {
@@ -4317,8 +4353,8 @@ button {
 }
 
 .spectra-pro-outcome-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 24px;
   padding: 40px 24px;
   text-align: center;
@@ -4328,8 +4364,9 @@ button {
 }
 
 .spectra-pro-outcome-card:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(94, 92, 230, 0.25);
+  background: #ffffff;
+  border-color: rgba(94, 92, 230, 0.15);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
   transform: translateY(-4px);
 }
 
@@ -4340,17 +4377,17 @@ button {
   transform: translateX(-50%);
   width: 100px;
   height: 100px;
-  background: radial-gradient(circle, rgba(94, 92, 230, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(94, 92, 230, 0.04) 0%, transparent 70%);
   filter: blur(20px);
 }
 
 .outcome-val {
   font-size: 56px;
   font-weight: 800;
-  color: #ffffff;
+  color: #1d1d1f;
   margin: 0 0 8px;
   letter-spacing: -0.02em;
-  background: linear-gradient(180deg, #ffffff, #64d2ff);
+  background: linear-gradient(180deg, #1d1d1f, #0071e3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -4358,30 +4395,31 @@ button {
 .outcome-label {
   font-size: 16px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   margin: 0 0 12px;
 }
 
 .outcome-desc {
   font-size: 13px;
   line-height: 1.45;
-  color: #a1a1a6;
+  color: #86868b;
   margin: 0;
 }
 
 .spectra-pro-outcomes-list {
   max-width: 850px;
   margin: 80px auto 0;
-  background: #0d0d0d;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 28px;
   padding: 48px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
 }
 
 .spectra-pro-outcomes-list .list-title {
   font-size: 20px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   margin: 0 0 28px;
   text-align: center;
 }
@@ -4399,26 +4437,30 @@ button {
 }
 
 .benefit-item .bullet {
-  color: #64d2ff;
+  color: #0071e3;
   font-weight: 700;
 }
 
 .benefit-item p {
   font-size: 14px;
   line-height: 1.45;
-  color: #d2d2d7;
+  color: #515154;
   margin: 0;
 }
 
 /* 8. COMPARISON TABLE */
+.spectra-pro-why-section {
+  background: #ffffff;
+}
+
 .spectra-pro-comparison-table-wrapper {
   max-width: 1000px;
   margin: 0 auto;
-  background: #0d0d0d;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.02);
 }
 
 .spectra-pro-comparison-table {
@@ -4430,12 +4472,12 @@ button {
 .spectra-pro-comparison-table th,
 .spectra-pro-comparison-table td {
   padding: 24px 32px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   font-size: 15px;
 }
 
 .spectra-pro-comparison-table th {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(0, 0, 0, 0.02);
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
@@ -4444,7 +4486,7 @@ button {
 }
 
 .spectra-pro-comparison-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(0, 0, 0, 0.01);
 }
 
 .spectra-pro-comparison-table td.old-tool {
@@ -4452,12 +4494,12 @@ button {
 }
 
 .spectra-pro-comparison-table td.new-tool {
-  color: #ffffff;
+  color: #1d1d1f;
   font-weight: 500;
 }
 
 .spectra-pro-comparison-table td .spark {
-  color: #64d2ff;
+  color: #0071e3;
   margin-right: 6px;
 }
 
@@ -4466,6 +4508,7 @@ button {
   position: relative;
   overflow: hidden;
   padding: 160px 24px;
+  background: #f5f5f7;
 }
 
 .spectra-pro-vision-glow {
@@ -4475,7 +4518,7 @@ button {
   transform: translateX(-50%);
   width: 1000px;
   height: 600px;
-  background: radial-gradient(circle, rgba(191, 90, 242, 0.1) 0%, rgba(94, 92, 230, 0.05) 40%, transparent 100%);
+  background: radial-gradient(circle, rgba(191, 90, 242, 0.05) 0%, rgba(94, 92, 230, 0.03) 40%, transparent 100%);
   filter: blur(80px);
   pointer-events: none;
 }
@@ -4483,7 +4526,7 @@ button {
 .spectra-pro-vision-heading {
   font-size: 40px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1d1d1f;
   line-height: 1.25;
   max-width: 900px;
   margin: 0 auto 28px;
@@ -4493,7 +4536,7 @@ button {
 .spectra-pro-vision-sub {
   font-size: 20px;
   line-height: 1.5;
-  color: #a1a1a6;
+  color: #86868b;
   max-width: 800px;
   margin: 0 auto 48px;
 }
@@ -4501,8 +4544,8 @@ button {
 .spectra-pro-vision-tagline-box {
   max-width: 850px;
   margin: 0 auto;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   padding: 40px 20px;
 }
 
@@ -4511,7 +4554,7 @@ button {
   font-weight: 700;
   line-height: 1.35;
   margin: 0;
-  background: linear-gradient(90deg, #64d2ff, #bf5af2, #ff2d55);
+  background: linear-gradient(90deg, #0071e3, #bf5af2, #ff2d55);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

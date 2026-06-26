@@ -2267,12 +2267,6 @@ function SpectraDetailPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [approachActive, setApproachActive] = useState("spectra");
 
-  useEffect(() => {
-    document.documentElement.classList.add("spectra-dark-page");
-    return () => {
-      document.documentElement.classList.remove("spectra-dark-page");
-    };
-  }, []);
 
   return (
     <div className="spectra-pro-container">
