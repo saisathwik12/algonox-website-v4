@@ -1909,6 +1909,85 @@ button {
   border-radius: 50%;
 }
 
+/* ============================================================
+   WHAT IRIS AUTOMATIONS ENABLES (Light Theme Aligned)
+   ============================================================ */
+.iris-automations-section {
+  width: 100%;
+  padding: 100px 24px;
+  background: var(--bg); /* #ffffff */
+  text-align: center;
+}
+
+.iris-automations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 56px auto 0;
+}
+
+.iris-automation-card {
+  background: var(--bg-light); /* #f5f5f7 */
+  border: 1px solid var(--border); /* rgba(0,0,0,0.08) */
+  border-radius: 24px;
+  padding: 36px 28px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+
+.iris-automation-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+.iris-automation-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(0, 113, 227, 0.08); /* Light blue tint using --link */
+  color: var(--link); /* #0066cc */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.iris-automation-card:hover .iris-automation-icon {
+  transform: scale(1.1) rotate(-3deg);
+  background: rgba(0, 113, 227, 0.12);
+}
+
+.iris-automation-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text); /* #1d1d1f */
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.iris-automation-desc {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary); /* #6e6e73 */
+  margin: 0;
+}
+
+@media (max-width: 833px) {
+  .iris-automations-section {
+    padding: 80px 20px;
+  }
+  .iris-automations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Colleagues Marquee Bar */
 .iris-colleagues-bar-card {
   background: #000000;

@@ -7,7 +7,10 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight, Lightbulb, CheckCircle, TrendingUp, TrendingDown, Plus, Layers, EyeOff, FileText, Clock, Compass, BarChart2 } from "lucide-react";
+import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight, Lightbulb, CheckCircle, TrendingUp, TrendingDown, Plus, Layers, EyeOff, FileText, Clock, Compass, BarChart2,
+Workflow,
+Database,
+BarChart3 } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { groups, corePages, testimonials } from "./data";
 import "./App.css";
@@ -1975,10 +1978,10 @@ function IrisDetailPage() {
                 span: "wide"
               },
               { 
-                title: "Universal Connectivity", 
-                desc: "ERP, CRM, HRMS, dashboards, APIs, databases — no rip-and-replace required.",
+                title: "Built for Every Business Function", 
+                desc: "IRIS Automations empowers AI colleagues to proactively monitor events and automate business actions with minimal human intervention.",
                 theme: "blue",
-                icon: "🔗",
+                icon: "📊",
                 accent: "#0a84ff",
                 span: "normal"
               },
@@ -2013,7 +2016,16 @@ function IrisDetailPage() {
                 icon: "📈",
                 accent: "#bf5af2",
                 span: "wide"
-              }
+              },
+              { 
+                title: "Universal Connectivity", 
+                desc: "ERP, CRM, HRMS, dashboards, APIs, databases — no rip-and-replace required.",
+                theme: "blue",
+                icon: "🔗",
+                accent: "#0a84ff",
+                span: "normal"
+              },
+
             ].map((item, idx) => (
               <motion.div 
                 key={idx}
@@ -2022,7 +2034,7 @@ function IrisDetailPage() {
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.25, 1, 0.5, 1] }}
-              >
+                >
                 <div className="iris-bento-icon" style={{ background: `${item.accent}18`, borderColor: `${item.accent}35` }}>
                   <span>{item.icon}</span>
                 </div>
@@ -2032,6 +2044,68 @@ function IrisDetailPage() {
               </motion.div>
             ))}
           </div>
+      {/* ============================================================
+          WHAT IRIS AUTOMATIONS ENABLES (Light Theme Aligned)
+      ============================================================ */}
+      <div className="iris-automations-section" style={{ padding: '100px 0 0' }}>
+        <motion.p 
+          className="iris-label"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          style={{ textAlign: 'center' }}
+        >
+          AUTOMATION POWER
+        </motion.p>
+
+        <motion.h2 
+          className="iris-title-large"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8 }}
+          style={{ textAlign: 'center', marginBottom: '16px' }}
+        >
+          What IRIS Automations Enables
+        </motion.h2>
+
+        <motion.p 
+          className="iris-subtitle"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          style={{ textAlign: 'center', margin: '0 auto' }}
+        >
+          Powerful capabilities designed to streamline every enterprise workflow.
+        </motion.p>
+
+        <div className="iris-automations-grid">
+          {[
+            { icon: <Zap size={28} />, title: 'Intelligent Triggers', desc: 'Start automations based on events, schedules, or business conditions.' },
+            { icon: <Cpu size={28} />, title: 'Smart Actions', desc: 'Automate notifications, reports, approvals, and routine business tasks.' },
+            { icon: <Workflow size={28} />, title: 'Connected Workflows', desc: 'Integrate seamlessly with your existing business applications and processes.' },
+            { icon: <Users size={28} />, title: 'Flexible Access', desc: 'Enable automations for individuals, teams, or the entire organization.' },
+            { icon: <BarChart3 size={28} />, title: 'Centralized Monitoring', desc: 'Track automation activity, status, and performance from one place.' }
+          ].map((item, idx) => (
+            <motion.div
+              key={idx}
+              className="iris-automation-card"
+              initial={{ opacity: 0, y: 40, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <div className="iris-automation-icon">
+                {item.icon}
+              </div>
+              <h3 className="iris-automation-title">{item.title}</h3>
+              <p className="iris-automation-desc">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>        
         </div>
       </section>
 
