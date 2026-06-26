@@ -2255,6 +2255,17 @@ const spectraPersonas = [
 function SpectraDetailPage() {
   const [activePersona, setActivePersona] = useState("cmo");
   const [approachActive, setApproachActive] = useState("spectra");
+  const challengeScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollChallengeCards = (direction: "left" | "right") => {
+    if (challengeScrollRef.current) {
+      const scrollAmount = 340;
+      challengeScrollRef.current.scrollBy({
+        left: direction === "right" ? scrollAmount : -scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
 
   const sectionAnimation = {
     initial: { opacity: 0, y: 60, scale: 0.97 },
@@ -2366,8 +2377,11 @@ function SpectraDetailPage() {
               </p>
             </div>
           </div>
+        </motion.div>
 
-          <div className="spectra-pro-challenge-list">
+        {/* Full-width card track — overflows past container to screen edge */}
+        <div className="spectra-pro-challenge-track">
+          <div className="spectra-pro-challenge-list" ref={challengeScrollRef}>
             {[
               { title: "Fragmented campaign data", desc: "Data spread across multiple platforms with inconsistent reporting structures.", iconName: "Layers" },
               { title: "Unidentified creative fatigue", desc: "Creative decay that is often identified only after campaign performance declines.", iconName: "EyeOff" },
@@ -2384,13 +2398,27 @@ function SpectraDetailPage() {
                 </div>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
-                <button className="challenge-card-plus">
-                  <Plus size={18} strokeWidth={2.5} color="#ffffff" />
+                <button className="challenge-card-plus" aria-label="Learn more">
+                  <Plus size={18} strokeWidth={2} color="#ffffff" />
                 </button>
               </div>
             ))}
           </div>
+        </div>
 
+        {/* Navigation arrows */}
+        <div className="container">
+          <div className="spectra-challenge-nav">
+            <button className="challenge-nav-btn" onClick={() => scrollChallengeCards("left")} aria-label="Scroll left">
+              <ChevronRight size={20} strokeWidth={2} style={{ transform: "rotate(180deg)" }} />
+            </button>
+            <button className="challenge-nav-btn" onClick={() => scrollChallengeCards("right")} aria-label="Scroll right">
+              <ChevronRight size={20} strokeWidth={2} />
+            </button>
+          </div>
+        </div>
+
+        <motion.div className="container" {...sectionAnimation}>
           <div className="spectra-pro-challenge-quote">
             <h3>The challenge is no longer collecting marketing data.</h3>
             <h2>The challenge is transforming that data into timely, actionable decisions.</h2>

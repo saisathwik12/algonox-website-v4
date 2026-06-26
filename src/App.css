@@ -3731,10 +3731,11 @@ button {
 /* Challenge Layout */
 .spectra-pro-challenge-section {
   background: #f5f5f7;
+  overflow: hidden; /* let cards bleed to edge */
 }
 
 .spectra-pro-challenge-section .spectra-pro-section-kicker {
-  color: #ff3b30;
+  color: #86868b;
   margin-bottom: 12px;
 }
 
@@ -3761,33 +3762,39 @@ button {
   margin: 0;
 }
 
+/* Full-width track that overflows to the right edge of the viewport */
+.spectra-pro-challenge-track {
+  width: 100%;
+  overflow: visible;
+}
+
 .spectra-pro-challenge-list {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   overflow-x: auto;
-  padding: 20px 4px 40px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-  margin: 0 -24px;
-  padding-left: 24px;
-  padding-right: 24px;
+  scrollbar-width: none;
+  padding: 8px 0 8px;
+  /* Start cards aligned with the container, but let them bleed past the right edge */
+  padding-left: max(24px, calc((100vw - 1280px) / 2 + 24px));
+  padding-right: 80px; /* extra space so last card peeks but doesn't fully show */
 }
 
 .spectra-pro-challenge-list::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome/Safari/Opera */
+  display: none;
 }
 
 .spectra-pro-challenge-card {
   background: #ffffff;
-  border-radius: 28px;
-  padding: 40px 36px 80px 36px;
+  border-radius: 24px;
+  padding: 36px 32px 76px 32px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  flex: 0 0 310px;
-  min-height: 380px;
+  flex: 0 0 300px;
+  min-height: 360px;
   box-sizing: border-box;
   position: relative;
   scroll-snap-align: start;
@@ -3795,12 +3802,12 @@ button {
 }
 
 .spectra-pro-challenge-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  transform: scale(1.015);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
 }
 
 .challenge-icon-box {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   color: #1d1d1f;
   display: flex;
   align-items: center;
@@ -3812,10 +3819,10 @@ button {
 }
 
 .spectra-pro-challenge-card h3 {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 700;
   color: #1d1d1f;
-  line-height: 1.3;
+  line-height: 1.25;
   margin: 0 0 12px 0;
   letter-spacing: -0.015em;
 }
@@ -3823,14 +3830,14 @@ button {
 .spectra-pro-challenge-card p {
   font-size: 14px;
   line-height: 1.5;
-  color: #515154;
+  color: #86868b;
   margin: 0;
 }
 
 .challenge-card-plus {
   position: absolute;
-  bottom: 32px;
-  right: 32px;
+  bottom: 28px;
+  right: 28px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -3844,19 +3851,48 @@ button {
 }
 
 .challenge-card-plus:hover {
-  background: #333336;
-  transform: scale(1.05);
+  background: #424245;
+  transform: scale(1.08);
 }
 
+/* Navigation arrows */
+.spectra-challenge-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-bottom: 8px;
+}
+
+.challenge-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #d2d2d7;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #86868b;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.challenge-nav-btn:hover {
+  border-color: #1d1d1f;
+  color: #1d1d1f;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* Quote block */
 .spectra-pro-challenge-quote {
   margin-top: 64px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.04);
-  border-top: 4px solid #ff3b30;
   border-radius: 28px;
   padding: 64px 48px;
   text-align: center;
-  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
 }
 
 .spectra-pro-challenge-quote h3 {
@@ -3874,9 +3910,6 @@ button {
   line-height: 1.25;
   margin: 0;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #1d1d1f 30%, #515154 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 /* 3. APPROACH SECTION */
@@ -4648,10 +4681,20 @@ button {
   .spectra-pro-works-flow {
     grid-template-columns: 1fr;
   }
+  .spectra-pro-challenge-list {
+    padding-left: 24px;
+    gap: 16px;
+  }
   .spectra-pro-challenge-card {
-    flex: 0 0 280px;
+    flex: 0 0 270px;
     padding: 32px 28px 70px 28px;
-    min-height: 350px;
+    min-height: 340px;
+  }
+  .spectra-pro-challenge-quote {
+    padding: 40px 24px;
+  }
+  .spectra-pro-challenge-quote h2 {
+    font-size: 24px;
   }
   .spectra-pro-bento-grid {
     grid-template-columns: 1fr;
