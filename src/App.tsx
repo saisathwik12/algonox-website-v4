@@ -7,7 +7,7 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight, Lightbulb, CheckCircle, TrendingUp, Plus } from "lucide-react";
+import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight, Lightbulb, CheckCircle, TrendingUp, TrendingDown, Plus, Layers, EyeOff, FileText, Clock, Compass, BarChart2 } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { groups, corePages, testimonials } from "./data";
 import "./App.css";
@@ -2274,6 +2274,20 @@ function SpectraDetailPage() {
     }
   };
 
+  const renderChallengeIcon = (iconName: string) => {
+    switch (iconName) {
+      case "Layers": return <Layers size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+      case "EyeOff": return <EyeOff size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+      case "BarChart2": return <BarChart2 size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+      case "FileText": return <FileText size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+      case "Clock": return <Clock size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+      case "Compass": return <Compass size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+      case "Search": return <Search size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+      case "TrendingDown": return <TrendingDown size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+      default: return <Layers size={28} strokeWidth={1.5} className="challenge-icon-svg" />;
+    }
+  };
+
   return (
     <div className="spectra-pro-container">
       {/* 1. HERO SECTION */}
@@ -2340,42 +2354,41 @@ function SpectraDetailPage() {
         </motion.div>
       </section>
 
-      {/* 2. THE CHALLENGE SECTION (DARK) */}
+      {/* 2. THE CHALLENGE SECTION */}
       <section id="challenge" className="spectra-pro-section spectra-pro-challenge-section">
         <motion.div className="container" {...sectionAnimation}>
-          <div className="spectra-pro-split">
-            <div className="spectra-pro-split-left">
+          <div className="spectra-pro-challenge-header">
+            <div className="spectra-challenge-header-left">
               <p className="spectra-pro-section-kicker">THE ECOSYSTEM COMPLEXITY</p>
-              <h2 className="spectra-pro-section-title">Fragmented metrics.<br />Delayed decisions.</h2>
+              <h2 className="spectra-pro-section-title">Fragmented metrics. Delayed decisions.</h2>
               <p className="spectra-pro-section-desc">
                 Campaigns are distributed across Meta, Google, LinkedIn, TikTok, and more. Each platform provides its own reports, metrics, and dashboards, making it difficult for teams to maintain a unified understanding of campaign performance.
               </p>
             </div>
+          </div>
 
-            <div className="spectra-pro-split-right">
-              <div className="spectra-pro-challenge-list">
-                {[
-                  { title: "Fragmented campaign data", desc: "Data spread across multiple platforms with inconsistent reporting structures." },
-                  { title: "Unidentified creative fatigue", desc: "Creative decay that is often identified only after campaign performance declines." },
-                  { title: "Budget inefficiencies", desc: "Delayed campaign evaluation and budget reallocation causing spend leakage." },
-                  { title: "Manual campaign reviews", desc: "Operations requiring significant manual analyst effort and CSV spreadsheets." },
-                  { title: "Slow decision-making", desc: "Reactive adjustments due to disconnected and lagging reporting systems." },
-                  { title: "Limited cross-platform visibility", desc: "Inability to map true multi-touch attribution and blended channel CAC." },
-                  { title: "Hidden optimization gaps", desc: "Difficulty identifying hidden optimization opportunities manually in time." },
-                  { title: "Rising CAC & unstable ROAS", desc: "Inconsistent media returns and failure to scale pacing accurately." }
-                ].map((item, idx) => (
-                  <div key={idx} className="spectra-pro-challenge-card">
-                    <div className="challenge-icon-box">
-                      <X size={14} strokeWidth={2.5} />
-                    </div>
-                    <div className="challenge-text-box">
-                      <h4>{item.title}</h4>
-                      <p>{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
+          <div className="spectra-pro-challenge-list">
+            {[
+              { title: "Fragmented campaign data", desc: "Data spread across multiple platforms with inconsistent reporting structures.", iconName: "Layers" },
+              { title: "Unidentified creative fatigue", desc: "Creative decay that is often identified only after campaign performance declines.", iconName: "EyeOff" },
+              { title: "Budget inefficiencies", desc: "Delayed campaign evaluation and budget reallocation causing spend leakage.", iconName: "BarChart2" },
+              { title: "Manual campaign reviews", desc: "Operations requiring significant manual analyst effort and CSV spreadsheets.", iconName: "FileText" },
+              { title: "Slow decision-making", desc: "Reactive adjustments due to disconnected and lagging reporting systems.", iconName: "Clock" },
+              { title: "Limited cross-platform visibility", desc: "Inability to map true multi-touch attribution and blended channel CAC.", iconName: "Compass" },
+              { title: "Hidden optimization gaps", desc: "Difficulty identifying hidden optimization opportunities manually in time.", iconName: "Search" },
+              { title: "Rising CAC & unstable ROAS", desc: "Inconsistent media returns and failure to scale pacing accurately.", iconName: "TrendingDown" }
+            ].map((item, idx) => (
+              <div key={idx} className="spectra-pro-challenge-card">
+                <div className="challenge-icon-box">
+                  {renderChallengeIcon(item.iconName)}
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+                <button className="challenge-card-plus">
+                  <Plus size={18} strokeWidth={2.5} color="#ffffff" />
+                </button>
               </div>
-            </div>
+            ))}
           </div>
 
           <div className="spectra-pro-challenge-quote">
@@ -2482,9 +2495,8 @@ function SpectraDetailPage() {
 
           <div className="spectra-pro-works-flow">
             {spectraSteps.map((step, idx) => (
-              <Link 
+              <div 
                 key={idx}
-                to="/contact"
                 className="spectra-pro-works-card"
               >
                 <div className="works-card-icon-box">
@@ -2492,10 +2504,10 @@ function SpectraDetailPage() {
                 </div>
                 <h3>{step.title}</h3>
                 <p>{step.desc}</p>
-                <div className="works-card-plus-btn">
-                  <Plus size={16} strokeWidth={2.5} />
-                </div>
-              </Link>
+                <Link to="/contact" className="works-card-cta">
+                  {step.cta} <span className="arrow-sym">›</span>
+                </Link>
+              </div>
             ))}
           </div>
         </motion.div>
