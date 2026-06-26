@@ -2267,13 +2267,25 @@ function SpectraDetailPage() {
   const [activeStep, setActiveStep] = useState(0);
   const [approachActive, setApproachActive] = useState("spectra");
 
+  const sectionAnimation = {
+    initial: { opacity: 0, y: 60, scale: 0.97 },
+    whileInView: { opacity: 1, y: 0, scale: 1 },
+    viewport: { once: false, amount: 0.12 },
+    transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] as const }
+  };
 
   return (
     <div className="spectra-pro-container">
       {/* 1. HERO SECTION */}
       <section className="spectra-pro-hero">
         <div className="spectra-pro-hero-glow" />
-        <div className="container spectra-pro-hero-content">
+        <motion.div 
+          className="container spectra-pro-hero-content"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.1 }}
+          transition={{ duration: 1.0, ease: [0.25, 1, 0.5, 1] }}
+        >
           <motion.p 
             className="spectra-pro-kicker"
             initial={{ opacity: 0, y: 15 }}
@@ -2325,41 +2337,19 @@ function SpectraDetailPage() {
               ))}
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 2. THE CHALLENGE SECTION */}
-      <section id="challenge" className="spectra-pro-section spectra-pro-challenge-section">
-        <div className="container">
+      {/* 2. THE CHALLENGE SECTION (DARK) */}
+      <section id="challenge" className="spectra-pro-section spectra-pro-challenge-section theme-dark">
+        <motion.div className="container" {...sectionAnimation}>
           <div className="spectra-pro-split">
             <div className="spectra-pro-split-left">
-              <motion.p 
-                className="spectra-pro-section-kicker"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                THE ECOSYSTEM COMPLEXITY
-              </motion.p>
-              <motion.h2 
-                className="spectra-pro-section-title"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.1 }}
-              >
-                Fragmented metrics.<br />Delayed decisions.
-              </motion.h2>
-              <motion.p 
-                className="spectra-pro-section-desc"
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
+              <p className="spectra-pro-section-kicker">THE ECOSYSTEM COMPLEXITY</p>
+              <h2 className="spectra-pro-section-title">Fragmented metrics.<br />Delayed decisions.</h2>
+              <p className="spectra-pro-section-desc">
                 Campaigns are distributed across Meta, Google, LinkedIn, TikTok, and more. Each platform provides its own reports, metrics, and dashboards, making it difficult for teams to maintain a unified understanding of campaign performance.
-              </motion.p>
+              </p>
             </div>
 
             <div className="spectra-pro-split-right">
@@ -2374,44 +2364,31 @@ function SpectraDetailPage() {
                   { title: "Hidden optimization gaps", desc: "Difficulty identifying hidden optimization opportunities manually in time." },
                   { title: "Rising CAC & unstable ROAS", desc: "Inconsistent media returns and failure to scale pacing accurately." }
                 ].map((item, idx) => (
-                  <motion.div 
-                    key={idx}
-                    className="spectra-pro-challenge-card"
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7, delay: idx * 0.05 }}
-                  >
+                  <div key={idx} className="spectra-pro-challenge-card">
                     <div className="challenge-icon-box">✖</div>
                     <div className="challenge-text-box">
                       <h4>{item.title}</h4>
                       <p>{item.desc}</p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <motion.div 
-            className="spectra-pro-challenge-quote"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-          >
+          <div className="spectra-pro-challenge-quote">
             <h3>The challenge is no longer collecting marketing data.</h3>
             <h2>The challenge is transforming that data into timely, actionable decisions.</h2>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
-      {/* 3. THE SPECTRA APPROACH SECTION */}
-      <section className="spectra-pro-section spectra-pro-approach-section">
-        <div className="container">
+      {/* 3. THE SPECTRA APPROACH SECTION (LIGHT) */}
+      <section className="spectra-pro-section spectra-pro-approach-section theme-light">
+        <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "56px" }}>
-            <motion.p className="spectra-pro-section-kicker">A NEW METHODOLOGY</motion.p>
-            <motion.h2 className="spectra-pro-section-title">The Spectra Approach</motion.h2>
+            <p className="spectra-pro-section-kicker">A NEW METHODOLOGY</p>
+            <h2 className="spectra-pro-section-title">The Spectra Approach</h2>
           </div>
 
           <div className="spectra-pro-approach-container">
@@ -2487,30 +2464,26 @@ function SpectraDetailPage() {
               </AnimatePresence>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 4. HOW SPECTRA WORKS SECTION */}
-      <section className="spectra-pro-section spectra-pro-works-section">
-        <div className="container">
+      {/* 4. HOW SPECTRA WORKS SECTION (DARK) */}
+      <section className="spectra-pro-section spectra-pro-works-section theme-dark">
+        <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
-            <motion.p className="spectra-pro-section-kicker">ENGINEERING CYCLE</motion.p>
-            <motion.h2 className="spectra-pro-section-title">How Spectra Works</motion.h2>
-            <motion.p className="spectra-pro-section-desc centered">
+            <p className="spectra-pro-section-kicker">ENGINEERING CYCLE</p>
+            <h2 className="spectra-pro-section-title">How Spectra Works</h2>
+            <p className="spectra-pro-section-desc centered">
               Spectra follows a continuous, closed-loop intelligence and optimization cycle.
-            </motion.p>
+            </p>
           </div>
 
           <div className="spectra-pro-works-flow">
             {spectraSteps.map((step, idx) => (
-              <motion.div 
+              <div 
                 key={idx}
                 className={`spectra-pro-works-card ${activeStep === idx ? "active" : ""}`}
                 onClick={() => setActiveStep(idx)}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
               >
                 <div className="works-card-header">
                   <span className="works-num">{step.num}</span>
@@ -2525,32 +2498,26 @@ function SpectraDetailPage() {
                 </div>
                 
                 <div className="works-card-border-glow" />
-              </motion.div>
+              </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 5. CORE VALUE PROPOSITIONS BENTO GRID */}
-      <section className="spectra-pro-section spectra-pro-capabilities-section">
-        <div className="container">
+      {/* 5. CORE VALUE PROPOSITIONS BENTO GRID (LIGHT) */}
+      <section className="spectra-pro-section spectra-pro-capabilities-section theme-light">
+        <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
-            <motion.p className="spectra-pro-section-kicker">CORE CAPABILITIES</motion.p>
-            <motion.h2 className="spectra-pro-section-title">Core Value Proposition</motion.h2>
-            <motion.p className="spectra-pro-section-desc centered">
+            <p className="spectra-pro-section-kicker">CORE CAPABILITIES</p>
+            <h2 className="spectra-pro-section-title">Core Value Proposition</h2>
+            <p className="spectra-pro-section-desc centered">
               Spectra empowers marketing organizations to move beyond traditional reporting with an intelligent operational layer.
-            </motion.p>
+            </p>
           </div>
 
           <div className="spectra-pro-bento-grid">
             {/* Card 1: Continuous Monitoring */}
-            <motion.div 
-              className="bento-card bento-wide"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <div className="bento-card bento-wide">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">📊</span>
@@ -2564,16 +2531,10 @@ function SpectraDetailPage() {
                   <div className="chart-bar active" style={{ height: "95%" }} />
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 2: Inefficiency Detection */}
-            <motion.div 
-              className="bento-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-            >
+            <div className="bento-card">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">🚨</span>
@@ -2584,16 +2545,10 @@ function SpectraDetailPage() {
                   <span className="alert-metric">Meta CTR: -18%</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 3: Cross-Channel Opportunities */}
-            <motion.div 
-              className="bento-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <div className="bento-card">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">🌐</span>
@@ -2605,16 +2560,10 @@ function SpectraDetailPage() {
                   <span>TikTok</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 4: Simplified Workflows */}
-            <motion.div 
-              className="bento-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-            >
+            <div className="bento-card">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">⚙️</span>
@@ -2626,16 +2575,10 @@ function SpectraDetailPage() {
                   <span className="step-point active">Execute</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Card 5: Data-Driven Decisions */}
-            <motion.div 
-              className="bento-card bento-wide"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            <div className="bento-card bento-wide">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">🛡️</span>
@@ -2646,20 +2589,20 @@ function SpectraDetailPage() {
                   <div className="mock-widget">Estimated Uplift: +14%</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 6. WHO SPECTRA IS FOR SECTION (Interactive Workspaces) */}
-      <section className="spectra-pro-section spectra-pro-person-section">
-        <div className="container">
+      {/* 6. WHO SPECTRA IS FOR SECTION (DARK) */}
+      <section className="spectra-pro-section spectra-pro-person-section theme-dark">
+        <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "56px" }}>
-            <motion.p className="spectra-pro-section-kicker">BUILT FOR SCALE</motion.p>
-            <motion.h2 className="spectra-pro-section-title">Who Spectra Is For</motion.h2>
-            <motion.p className="spectra-pro-section-desc centered">
+            <p className="spectra-pro-section-kicker">BUILT FOR SCALE</p>
+            <h2 className="spectra-pro-section-title">Who Spectra Is For</h2>
+            <p className="spectra-pro-section-desc centered">
               Spectra is designed for organizations that manage digital advertising at scale.
-            </motion.p>
+            </p>
           </div>
 
           <div className="spectra-pro-persona-container">
@@ -2720,18 +2663,18 @@ function SpectraDetailPage() {
               </AnimatePresence>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 7. BUSINESS OUTCOMES SECTION */}
-      <section className="spectra-pro-section spectra-pro-outcomes-section">
-        <div className="container">
+      {/* 7. BUSINESS OUTCOMES SECTION (LIGHT) */}
+      <section className="spectra-pro-section spectra-pro-outcomes-section theme-light">
+        <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
-            <motion.p className="spectra-pro-section-kicker">MEASURABLE VALUE</motion.p>
-            <motion.h2 className="spectra-pro-section-title">Business Outcomes</motion.h2>
-            <motion.p className="spectra-pro-section-desc centered">
+            <p className="spectra-pro-section-kicker">MEASURABLE VALUE</p>
+            <h2 className="spectra-pro-section-title">Business Outcomes</h2>
+            <p className="spectra-pro-section-desc centered">
               Organizations using Spectra achieve measurable improvements across their marketing operations.
-            </motion.p>
+            </p>
           </div>
 
           <div className="spectra-pro-outcomes-grid">
@@ -2741,19 +2684,12 @@ function SpectraDetailPage() {
               { val: "10x", label: "Faster Pacing Cycles", desc: "Verify opportunities and execute optimizations inside hours, not days." },
               { val: "95%", label: "Analyst Time Reallocated", desc: "Unify platform connections and automate pipeline report compilations." }
             ].map((outcome, idx) => (
-              <motion.div 
-                key={idx}
-                className="spectra-pro-outcome-card"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-              >
+              <div key={idx} className="spectra-pro-outcome-card">
                 <div className="outcome-glow" />
                 <h3 className="outcome-val">{outcome.val}</h3>
                 <h4 className="outcome-label">{outcome.label}</h4>
                 <p className="outcome-desc">{outcome.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -2776,15 +2712,15 @@ function SpectraDetailPage() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 8. WHY SPECTRA COMPARISON SECTION */}
-      <section className="spectra-pro-section spectra-pro-why-section">
-        <div className="container">
+      {/* 8. WHY SPECTRA COMPARISON SECTION (DARK) */}
+      <section className="spectra-pro-section spectra-pro-why-section theme-dark">
+        <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
-            <motion.p className="spectra-pro-section-kicker">THE COMPETITIVE EDGE</motion.p>
-            <motion.h2 className="spectra-pro-section-title">Why Spectra</motion.h2>
+            <p className="spectra-pro-section-kicker">THE COMPETITIVE EDGE</p>
+            <h2 className="spectra-pro-section-title">Why Spectra</h2>
           </div>
 
           <div className="spectra-pro-comparison-table-wrapper">
@@ -2815,55 +2751,30 @@ function SpectraDetailPage() {
               </tbody>
             </table>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* 9. VISION & FINAL CTA */}
-      <section className="spectra-pro-section spectra-pro-vision-section">
+      {/* 9. VISION & FINAL CTA (LIGHT) */}
+      <section className="spectra-pro-section spectra-pro-vision-section theme-light">
         <div className="spectra-pro-vision-glow" />
-        <div className="container text-center">
-          <motion.p 
-            className="spectra-pro-section-kicker"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            THE FUTURE OF OPERATIONS
-          </motion.p>
-          <motion.h2 
-            className="spectra-pro-vision-heading"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-          >
+        <motion.div className="container text-center" {...sectionAnimation}>
+          <p className="spectra-pro-section-kicker">THE FUTURE OF OPERATIONS</p>
+          <h2 className="spectra-pro-vision-heading">
             The future of marketing is not about managing more dashboards or generating more reports.
-          </motion.h2>
-          <motion.p 
-            className="spectra-pro-vision-sub"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, delay: 0.1 }}
-          >
+          </h2>
+          <p className="spectra-pro-vision-sub">
             It is about enabling intelligent systems that continuously monitor performance, identify opportunities, recommend actions, and support faster business decisions.
-          </motion.p>
+          </p>
 
-          <motion.div 
-            className="spectra-pro-vision-tagline-box"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <div className="spectra-pro-vision-tagline-box">
             <h3>Spectra transforms marketing operations by turning data into decisions, and decisions into measurable business impact.</h3>
-          </motion.div>
+          </div>
 
           <div className="spectra-pro-hero-ctas" style={{ justifyContent: "center", marginTop: "48px" }}>
             <Link to="/contact" className="btn-pro-solid">Schedule a Demo</Link>
             <Link to="/contact" className="btn-pro-outline">Talk to Sales</Link>
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );

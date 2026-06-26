@@ -4641,3 +4641,196 @@ button {
     gap: 20px;
   }
 }
+
+/* ============================================================
+   SPECTRA PRO SECTION WIDTHS & ALTERNATING THEMES
+   ============================================================ */
+
+/* Increased container/section width for Spectra page */
+.spectra-pro-container .container {
+  max-width: 1280px;
+}
+
+.spectra-pro-approach-container {
+  max-width: 1200px;
+}
+
+.spectra-pro-works-flow {
+  max-width: 1280px;
+}
+
+.spectra-pro-bento-grid {
+  max-width: 1280px;
+}
+
+.spectra-pro-persona-container {
+  max-width: 1200px;
+}
+
+.spectra-pro-outcomes-grid {
+  max-width: 1200px;
+}
+
+.spectra-pro-outcomes-list {
+  max-width: 1000px;
+}
+
+.spectra-pro-comparison-table-wrapper {
+  max-width: 1200px;
+}
+
+.spectra-pro-vision-heading {
+  max-width: 1100px;
+}
+
+.spectra-pro-vision-tagline-box {
+  max-width: 1000px;
+}
+
+/* Alternating dark and light sections style definitions */
+.spectra-pro-section.theme-dark {
+  background: #000000;
+  color: #ffffff;
+}
+
+.spectra-pro-section.theme-light {
+  background: #ffffff;
+  color: #1d1d1f;
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-section-title {
+  color: #ffffff;
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-section-desc {
+  color: #a1a1a6;
+}
+
+/* Dark mode overrides for Challenge section */
+.spectra-pro-section.theme-dark .spectra-pro-challenge-card {
+  background: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-challenge-card:hover {
+  background: #252528;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(255,255,255,0.02);
+}
+
+.spectra-pro-section.theme-dark .challenge-text-box h4 {
+  color: #ffffff;
+}
+
+.spectra-pro-section.theme-dark .challenge-text-box p {
+  color: #a1a1a6;
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-challenge-quote {
+  background: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-challenge-quote h2 {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 30%, #a1a1a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Dark mode overrides for Works section */
+.spectra-pro-section.theme-dark .spectra-pro-works-card {
+  background: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-works-card:hover,
+.spectra-pro-section.theme-dark .spectra-pro-works-card.active {
+  background: #252528;
+  border-color: rgba(94, 92, 230, 0.4);
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-works-card h4 {
+  color: #ffffff;
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-works-card p {
+  color: #a1a1a6;
+}
+
+.spectra-pro-section.theme-dark .works-card-meta {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spectra-pro-section.theme-dark .meta-val {
+  color: #ffffff;
+}
+
+/* Dark mode overrides for Persona section */
+.spectra-pro-section.theme-dark .persona-tab-btn {
+  color: #a1a1a6;
+}
+
+.spectra-pro-section.theme-dark .persona-tab-btn:hover {
+  color: #ffffff;
+}
+
+.spectra-pro-section.theme-dark .persona-tab-btn.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.spectra-pro-section.theme-dark .persona-content-panel {
+  background: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.spectra-pro-section.theme-dark .persona-info-col h3 {
+  color: #ffffff;
+}
+
+.spectra-pro-section.theme-dark .persona-desc-text {
+  color: #a1a1a6;
+}
+
+.spectra-pro-section.theme-dark .persona-feature-item {
+  color: #e8e8ed;
+}
+
+.spectra-pro-section.theme-dark .persona-metric-card {
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spectra-pro-section.theme-dark .met-val {
+  color: #ffffff;
+}
+
+/* Dark mode overrides for Comparison table section */
+.spectra-pro-section.theme-dark .spectra-pro-comparison-table-wrapper {
+  background: #1c1c1e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-comparison-table th {
+  background: rgba(255, 255, 255, 0.04);
+  color: #a1a1a6;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-comparison-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-comparison-table td.new-tool {
+  color: #ffffff;
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-comparison-table td.old-tool {
+  color: #a1a1a6;
+}
+
+.spectra-pro-section.theme-dark .spectra-pro-comparison-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
