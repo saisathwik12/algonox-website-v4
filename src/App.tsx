@@ -1789,7 +1789,13 @@ function IrisDetailPage() {
               Each team only sees what's relevant to them — and can ask in their own language.
             </motion.p>
             
-            <div className="iris-queries-showcase">
+            <motion.div 
+              className="iris-queries-showcase"
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+            >
               {/* Tabs */}
               <div className="iris-queries-tabs">
                 {queryTabs.map((t) => (
@@ -1922,7 +1928,7 @@ function IrisDetailPage() {
                   </AnimatePresence>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
