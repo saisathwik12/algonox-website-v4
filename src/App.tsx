@@ -2265,7 +2265,7 @@ const getSpectraTabIcon = (id: string) => {
 function SpectraDetailPage() {
   const [activeTab, setActiveTab] = useState("budget");
   return (
-    <div className="iris-page-container">
+    <div className="iris-page-container spectra-page-container">
       {/* HERO SECTION */}
       <section className="iris-section-card iris-hero">
         <div className="iris-hero-content">
@@ -2283,7 +2283,7 @@ function SpectraDetailPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
           >
-            SPECTRA<span className="iris-dot">.</span>
+            SPECTRA<span className="iris-dot spectra-dot">.</span>
           </motion.h1>
           <motion.p 
             className="iris-hero-subtitle"
@@ -2372,11 +2372,11 @@ function SpectraDetailPage() {
           
           <div className="iris-process-flow">
             {[
-              { num: "01", title: "Connect & Ingest", desc: "Connects securely with advertising platforms to ingest campaign, audience, creative, and performance data.", color: "#5e5ce6", icon: "🔌" },
+              { num: "01", title: "Connect & Ingest", desc: "Connects securely with advertising platforms to ingest campaign, audience, creative, and performance data.", color: "#bf5af2", icon: "🔌" },
               { num: "02", title: "Analyze & Detect", desc: "AI models continuously analyze campaign performance, identify trends, detect anomalies, and uncover opportunities.", color: "#0a84ff", icon: "🔍" },
               { num: "03", title: "Recommend", desc: "Generates recommendations that help marketers improve budget allocation, campaign performance, and creative effectiveness.", color: "#30d158", icon: "💡" },
               { num: "04", title: "Approve & Execute", desc: "Marketers review recommendations, approve actions, or automate execution with complete transparency.", color: "#ff9f0a", icon: "⚡" },
-              { num: "05", title: "Learn & Optimize", desc: "Learns from campaign outcomes, enabling continuous optimization and increasingly accurate recommendations.", color: "#bf5af2", icon: "📈" }
+              { num: "05", title: "Learn & Optimize", desc: "Learns from campaign outcomes, enabling continuous optimization and increasingly accurate recommendations.", color: "#ff2d55", icon: "📈" }
             ].map((step, idx) => (
               <Fragment key={idx}>
                 <motion.div
@@ -2445,7 +2445,7 @@ function SpectraDetailPage() {
           {/* Workspaces Grid */}
           <div className="iris-colleagues-grid">
             {[
-              { code: "CM", name: "CMOs & Leaders", role: "MARKETING LEADERS", desc: "Strategic alignment, blended cross-channel ROAS, and overall media productivity.", bg: "#5856d6" },
+              { code: "CM", name: "CMOs & Leaders", role: "MARKETING LEADERS", desc: "Strategic alignment, blended cross-channel ROAS, and overall media productivity.", bg: "#bf5af2" },
               { code: "PM", name: "Performance Teams", role: "PERFORMANCE MARKETING", desc: "Real-time campaign tracking, budget optimization, and creative fatigue alerts.", bg: "#34c759" },
               { code: "DA", name: "Digital Agencies", role: "MARKETING AGENCIES", desc: "Consolidate reporting, manage client accounts, and automate routine performance reviews.", bg: "#ff2d55" },
               { code: "MB", name: "Media Buyers", role: "MEDIA BUYING TEAMS", desc: "Audience targeting, programmatic bid optimization, and multi-platform media spend.", bg: "#007aff" },
@@ -2861,7 +2861,7 @@ function SpectraDetailPage() {
           
           <div className="iris-stack-grid">
             {[
-              { name: "Meta Ads", icon: "👥", desc: "Facebook & Instagram campaigns, creatives, and lead tracking.", accent: "#5e5ce6" },
+              { name: "Meta Ads", icon: "👥", desc: "Facebook & Instagram campaigns, creatives, and lead tracking.", accent: "#bf5af2" },
               { name: "Google Ads", icon: "🔍", desc: "Search, Display, YouTube, and Performance Max channels.", accent: "#0a84ff" },
               { name: "TikTok Ads", icon: "🎵", desc: "Short-form video ads, custom audiences, and conversions.", accent: "#ff375f" },
               { name: "LinkedIn Ads", icon: "💼", desc: "B2B campaigns, lead gen forms, and account-based marketing.", accent: "#30d158" },

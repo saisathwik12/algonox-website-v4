@@ -3525,3 +3525,88 @@ button {
     gap: 32px;
   }
 }
+
+/* ============================================================
+   SPECTRA PRODUCT PAGE OVERRIDES (Apple-Style Purple/Magenta Theme)
+   ============================================================ */
+.spectra-page-container {
+  background: linear-gradient(180deg, #fbfafd 0%, #f5f3f7 100%) !important;
+}
+
+.spectra-page-container .spectra-dot {
+  color: #bf5af2 !important;
+}
+
+.spectra-page-container .spectra-label-dark {
+  color: #bf5af2 !important;
+}
+
+/* Hero Section Pills dot indicator */
+.spectra-page-container .iris-hero-pills span::before {
+  background-color: #bf5af2 !important;
+}
+
+/* Hero background glow - make it purple/magenta */
+.spectra-page-container .iris-hero {
+  background-image: radial-gradient(circle at 50% -20%, rgba(191, 90, 242, 0.06) 0%, transparent 60%);
+}
+
+/* Studio Section background glow - make it purple/magenta */
+.spectra-page-container .iris-studio-section {
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(191, 90, 242, 0.08) 0%, transparent 60%) !important;
+}
+
+/* CTA buttons override for Spectra purple */
+.spectra-page-container .btn-solid-blue {
+  background: #bf5af2 !important;
+}
+.spectra-page-container .btn-solid-blue:hover {
+  background: #c96bf5 !important;
+  transform: scale(1.02);
+}
+.spectra-page-container .btn-outline-blue {
+  border-color: #bf5af2 !important;
+  color: #bf5af2 !important;
+}
+.spectra-page-container .btn-outline-blue:hover {
+  background: rgba(191, 90, 242, 0.04) !important;
+  transform: scale(1.02);
+}
+
+/* User query bubble styling override (purple instead of blue) */
+.spectra-page-container .user-query-bubble {
+  background: #bf5af2 !important;
+  box-shadow: 0 4px 12px rgba(191, 90, 242, 0.2) !important;
+}
+
+/* Bento Card theme blue override to purple-magenta gradient */
+.spectra-page-container .iris-bento-card.theme-blue {
+  background: linear-gradient(145deg, #bf5af2, #ff2d55) !important;
+}
+.spectra-page-container .iris-bento-card.theme-blue .iris-bento-icon {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Business Outcomes Title Gradient */
+.spectra-page-container .iris-impact-title {
+  background: linear-gradient(180deg, #1d1d1f 30%, #bf5af2 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Final CTA Title Highlight */
+.spectra-page-container .iris-cta-gradient {
+  background: linear-gradient(90deg, #bf5af2 0%, #ff2d55 50%, #ff9500 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Stack Section background glow - make it purple/magenta */
+.spectra-page-container .iris-stack-section {
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(191, 90, 242, 0.06) 0%, transparent 60%) !important;
+}
