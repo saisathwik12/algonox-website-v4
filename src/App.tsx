@@ -7,7 +7,7 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight } from "lucide-react";
+import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight, Lightbulb, CheckCircle, TrendingUp } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import { groups, corePages, testimonials } from "./data";
 import "./App.css";
@@ -2178,44 +2178,34 @@ function IrisDetailPage() {
 // ============================================================
 const spectraSteps = [
   {
-    num: "01",
-    title: "Connect & Ingest",
-    desc: "Spectra securely connects to Meta, Google, TikTok, LinkedIn, and more, automatically ingesting raw campaign data, ad creatives, audience structures, and historical performance metrics.",
-    metric: "12+ DSP Integrations",
-    badge: "Real-time ingestion",
-    icon: "🔌"
+    title: "Connect & Ingest with ease.",
+    desc: "Spectra securely connects to Meta, Google, TikTok, LinkedIn, and more, automatically ingesting raw campaign data, ad creatives, and historical metrics.",
+    cta: "Learn more about connections",
+    iconName: "Globe"
   },
   {
-    num: "02",
-    title: "Analyze & Detect",
-    desc: "Proprietary AI models continuously evaluate active ad fatigue, detect budget leaks, and map cross-channel pacing to identify inefficiencies before they impact ROAS.",
-    metric: "15ms Detection latency",
-    badge: "Continuous anomalies check",
-    icon: "🔍"
+    title: "Analyze & Detect leaks.",
+    desc: "Proprietary AI models continuously evaluate active ad fatigue, detect budget leaks, and map cross-channel pacing to identify inefficiencies early.",
+    cta: "Explore anomaly detection",
+    iconName: "Search"
   },
   {
-    num: "03",
-    title: "Recommend",
-    desc: "Generate targeted, data-backed optimization recommendations from budget shifts to bid updates and creative swapping—complete with predicted performance uplift.",
-    metric: "94% Accuracy rate",
-    badge: "Intelligent actions",
-    icon: "💡"
+    title: "Recommend next steps.",
+    desc: "Generate targeted, data-backed optimization recommendations from budget shifts to bid updates and creative swapping—complete with predicted uplift.",
+    cta: "Read about recommendations",
+    iconName: "Lightbulb"
   },
   {
-    num: "04",
-    title: "Approve & Execute",
-    desc: "Review suggestions inside a unified control panel. Approve recommendations with a single click, or activate automated pacing rule policies for hands-free scaling.",
-    metric: "1-Click Execution",
-    badge: "Granular control",
-    icon: "⚡"
+    title: "Approve & Execute instantly.",
+    desc: "Review suggestions inside a unified control panel. Approve recommendations with a single click, or activate automated pacing rule policies.",
+    cta: "See workflow execution",
+    iconName: "CheckCircle"
   },
   {
-    num: "05",
-    title: "Learn & Optimize",
-    desc: "Spectra tracks the post-execution outcomes of every action, reinforcing its predictive modeling and improving recommendation precision over time.",
-    metric: "Closed-loop feedback",
-    badge: "Continuous learning",
-    icon: "📈"
+    title: "Learn & Optimize over time.",
+    desc: "Spectra tracks the post-execution outcomes of every action, reinforcing its predictive modeling and improving recommendation precision.",
+    cta: "Understand closed-loop learning",
+    iconName: "TrendingUp"
   }
 ];
 
@@ -2264,7 +2254,6 @@ const spectraPersonas = [
 
 function SpectraDetailPage() {
   const [activePersona, setActivePersona] = useState("cmo");
-  const [activeStep, setActiveStep] = useState(0);
   const [approachActive, setApproachActive] = useState("spectra");
 
   const sectionAnimation = {
@@ -2272,6 +2261,17 @@ function SpectraDetailPage() {
     whileInView: { opacity: 1, y: 0, scale: 1 },
     viewport: { once: false, amount: 0.12 },
     transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] as const }
+  };
+
+  const renderStepIcon = (iconName: string) => {
+    switch (iconName) {
+      case "Globe": return <Globe size={28} strokeWidth={1.5} className="step-icon-svg" />;
+      case "Search": return <Search size={28} strokeWidth={1.5} className="step-icon-svg" />;
+      case "Lightbulb": return <Lightbulb size={28} strokeWidth={1.5} className="step-icon-svg" />;
+      case "CheckCircle": return <CheckCircle size={28} strokeWidth={1.5} className="step-icon-svg" />;
+      case "TrendingUp": return <TrendingUp size={28} strokeWidth={1.5} className="step-icon-svg" />;
+      default: return <Globe size={28} strokeWidth={1.5} className="step-icon-svg" />;
+    }
   };
 
   return (
@@ -2365,7 +2365,9 @@ function SpectraDetailPage() {
                   { title: "Rising CAC & unstable ROAS", desc: "Inconsistent media returns and failure to scale pacing accurately." }
                 ].map((item, idx) => (
                   <div key={idx} className="spectra-pro-challenge-card">
-                    <div className="challenge-icon-box">✖</div>
+                    <div className="challenge-icon-box">
+                      <X size={14} strokeWidth={2.5} />
+                    </div>
                     <div className="challenge-text-box">
                       <h4>{item.title}</h4>
                       <p>{item.desc}</p>
@@ -2467,14 +2469,14 @@ function SpectraDetailPage() {
         </motion.div>
       </section>
 
-      {/* 4. HOW SPECTRA WORKS SECTION (DARK) */}
+      {/* 4. HOW SPECTRA WORKS SECTION */}
       <section className="spectra-pro-section spectra-pro-works-section">
         <motion.div className="container" {...sectionAnimation}>
-          <div className="text-center" style={{ marginBottom: "64px" }}>
+          <div style={{ marginBottom: "64px", textAlign: "left" }}>
             <p className="spectra-pro-section-kicker">ENGINEERING CYCLE</p>
-            <h2 className="spectra-pro-section-title">How Spectra Works</h2>
-            <p className="spectra-pro-section-desc centered">
-              Spectra follows a continuous, closed-loop intelligence and optimization cycle.
+            <h2 className="spectra-pro-section-title" style={{ fontSize: "40px", fontWeight: "700" }}>Our platform operations lead the way.</h2>
+            <p className="spectra-pro-section-desc" style={{ maxWidth: "700px" }}>
+              Spectra follows a continuous, closed-loop intelligence and optimization cycle to automate campaign management.
             </p>
           </div>
 
@@ -2482,22 +2484,16 @@ function SpectraDetailPage() {
             {spectraSteps.map((step, idx) => (
               <div 
                 key={idx}
-                className={`spectra-pro-works-card ${activeStep === idx ? "active" : ""}`}
-                onClick={() => setActiveStep(idx)}
+                className="spectra-pro-works-card"
               >
-                <div className="works-card-header">
-                  <span className="works-num">{step.num}</span>
-                  <span className="works-emoji">{step.icon}</span>
+                <div className="works-card-icon-box">
+                  {renderStepIcon(step.iconName)}
                 </div>
-                <h4>{step.title}</h4>
+                <h3>{step.title}</h3>
                 <p>{step.desc}</p>
-                
-                <div className="works-card-meta">
-                  <div className="meta-tag">{step.badge}</div>
-                  <div className="meta-val">{step.metric}</div>
-                </div>
-                
-                <div className="works-card-border-glow" />
+                <Link to="/contact" className="works-card-cta">
+                  {step.cta} <span className="arrow-sym">›</span>
+                </Link>
               </div>
             ))}
           </div>

@@ -3733,9 +3733,13 @@ button {
   background: #ffffff;
 }
 
+.spectra-pro-challenge-section .spectra-pro-section-kicker {
+  color: #ff3b30;
+}
+
 .spectra-pro-split {
   display: grid;
-  grid-template-columns: 1.1fr 1.3fr;
+  grid-template-columns: 1fr 1.6fr;
   gap: 64px;
   align-items: start;
 }
@@ -3746,78 +3750,82 @@ button {
 }
 
 .spectra-pro-challenge-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
 .spectra-pro-challenge-card {
   background: #f5f5f7;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 20px;
   padding: 24px;
   display: flex;
-  gap: 20px;
-  transition: all 0.3s ease;
+  gap: 16px;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .spectra-pro-challenge-card:hover {
   background: #ffffff;
-  border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
   transform: translateY(-2px);
 }
 
 .challenge-icon-box {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(255, 45, 85, 0.1);
-  color: #ff2d55;
+  background: rgba(255, 59, 48, 0.1);
+  color: #ff3b30;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
   flex-shrink: 0;
 }
 
 .challenge-text-box h4 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #1d1d1f;
   margin: 0 0 6px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .challenge-text-box p {
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.45;
-  color: #86868b;
+  color: #515154;
   margin: 0;
 }
 
 .spectra-pro-challenge-quote {
   margin-top: 100px;
   background: #f5f5f7;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 4px solid #ff3b30;
   border-radius: 28px;
-  padding: 60px 40px;
+  padding: 64px 48px;
   text-align: center;
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.01);
 }
 
 .spectra-pro-challenge-quote h3 {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 500;
   color: #86868b;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
 }
 
 .spectra-pro-challenge-quote h2 {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
   color: #1d1d1f;
-  line-height: 1.3;
+  line-height: 1.25;
   margin: 0;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   background: linear-gradient(135deg, #1d1d1f 30%, #515154 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -3899,107 +3907,89 @@ button {
 
 /* 4. HOW SPECTRA WORKS - STEPS FLOW */
 .spectra-pro-works-section {
-  background: #ffffff;
+  background: #f5f5f7;
 }
 
 .spectra-pro-works-flow {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  max-width: 1250px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1280px;
   margin: 0 auto;
 }
 
 .spectra-pro-works-card {
-  background: #f5f5f7;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 24px;
-  padding: 32px 20px;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 48px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  min-height: 360px;
+  align-items: flex-start;
+  text-align: left;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  min-height: 380px;
+  box-sizing: border-box;
 }
 
-.spectra-pro-works-card:hover,
-.spectra-pro-works-card.active {
-  background: #ffffff;
-  transform: translateY(-8px);
-  border-color: rgba(94, 92, 230, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+.spectra-pro-works-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
 }
 
-.works-card-header {
+.works-card-icon-box {
+  margin-bottom: 28px;
+  color: #1d1d1f;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
 }
 
-.works-num {
-  font-size: 14px;
-  font-weight: 700;
-  color: #0071e3;
-  font-family: monospace;
+.step-icon-svg {
+  color: #1d1d1f;
 }
 
-.works-emoji {
+.spectra-pro-works-card h3 {
   font-size: 24px;
-}
-
-.spectra-pro-works-card h4 {
-  font-size: 18px;
   font-weight: 700;
   color: #1d1d1f;
-  margin: 0;
+  line-height: 1.25;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.015em;
 }
 
 .spectra-pro-works-card p {
-  font-size: 13px;
-  line-height: 1.45;
-  color: #86868b;
-  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #515154;
+  margin: 0 0 32px 0;
   flex: 1;
 }
 
-.works-card-meta {
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
-  padding-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.meta-tag {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #bf5af2;
-}
-
-.meta-val {
-  font-size: 13px;
+.works-card-cta {
+  font-size: 15px;
   font-weight: 600;
-  color: #1d1d1f;
+  color: #0071e3;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+  margin-top: auto;
 }
 
-.works-card-border-glow {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  border-radius: 0 0 24px 24px;
-  background: linear-gradient(90deg, #0071e3, #5e5ce6);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+.works-card-cta:hover {
+  color: #0077ed;
 }
 
-.spectra-pro-works-card:hover .works-card-border-glow,
-.spectra-pro-works-card.active .works-card-border-glow {
-  opacity: 1;
+.works-card-cta .arrow-sym {
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.works-card-cta:hover .arrow-sym {
+  transform: translateX(3px);
 }
 
 /* 5. CAPABILITIES BENTO GRID */
@@ -4574,7 +4564,7 @@ button {
     top: 0;
   }
   .spectra-pro-works-flow {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   .spectra-pro-bento-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -4608,6 +4598,9 @@ button {
     width: 100%;
   }
   .spectra-pro-works-flow {
+    grid-template-columns: 1fr;
+  }
+  .spectra-pro-challenge-list {
     grid-template-columns: 1fr;
   }
   .spectra-pro-bento-grid {
