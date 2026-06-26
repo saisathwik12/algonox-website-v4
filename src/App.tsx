@@ -2861,14 +2861,14 @@ function SpectraDetailPage() {
           
           <div className="spectra-stack-grid">
             {[
-              { name: "Meta Ads", icon: "👥", desc: "Facebook & Instagram campaigns, creatives, and lead tracking.", accent: "#5e5ce6" },
-              { name: "Google Ads", icon: "🔍", desc: "Search, Display, YouTube, and Performance Max channels.", accent: "#0a84ff" },
-              { name: "TikTok Ads", icon: "🎵", desc: "Short-form video ads, custom audiences, and conversions.", accent: "#ff375f" },
-              { name: "LinkedIn Ads", icon: "💼", desc: "B2B campaigns, lead gen forms, and account-based marketing.", accent: "#30d158" },
-              { name: "Programmatic DSPs", icon: "📡", desc: "Display, native, and video programmatic ad exchanges.", accent: "#ff9f0a" },
-              { name: "GA4 Analytics", icon: "📈", desc: "On-site conversions, traffic attribution, and events.", accent: "#64d2ff" },
-              { name: "CRM Platforms", icon: "🏛️", desc: "Salesforce, HubSpot, and Microsoft Dynamics integrations.", accent: "#5e5ce6" },
-              { name: "Workflow Tools", icon: "⚙️", desc: "Slack, Jira, and email notifications for recommendations.", accent: "#ff6482" }
+              { name: "Meta Ads", icon: "👥", desc: "Facebook, Instagram, and custom audience lead tracking.", accent: "#5e5ce6" },
+              { name: "Google Ads", icon: "🔍", desc: "Search, Display, YouTube, and Performance Max ads.", accent: "#0a84ff" },
+              { name: "TikTok Ads", icon: "🎵", desc: "Short-form video campaign ads and custom conversions.", accent: "#ff375f" },
+              { name: "LinkedIn Ads", icon: "💼", desc: "B2B target campaigns and account-based marketing.", accent: "#30d158" },
+              { name: "Programmatic DSPs", icon: "📡", desc: "Multi-platform display and native ad exchanges.", accent: "#ff9f0a" },
+              { name: "GA4 Analytics", icon: "📈", desc: "On-site event conversions and traffic attribution.", accent: "#64d2ff" },
+              { name: "CRM Platforms", icon: "🏛️", desc: "Salesforce, HubSpot, and Dynamics CRM systems.", accent: "#5e5ce6" },
+              { name: "Workflow Tools", icon: "⚙️", desc: "Slack, Jira, and automated team notifications.", accent: "#ff6482" }
             ].map((stack, idx) => (
               <motion.div 
                 key={idx} 
