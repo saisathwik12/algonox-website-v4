@@ -2793,8 +2793,8 @@ button {
   background: #ffffff;
 }
 
-.iris-impact-title-grad {
-  background: linear-gradient(90deg, #1d1d1f 30%, #86868b 80%);
+.iris-impact-title {
+  background: linear-gradient(180deg, #1d1d1f 30%, #86868b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
