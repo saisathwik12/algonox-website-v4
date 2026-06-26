@@ -2143,20 +2143,20 @@ function IrisDetailPage() {
         <div className="container" style={{ textAlign: "center" }}>
           <motion.h2 
             className="iris-cta-title"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.1 }}
           >
             Ready to meet your<br />
             <span className="iris-cta-gradient">AI colleague?</span>
           </motion.h2>
           <motion.p 
             className="iris-cta-subtitle"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1], delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
           >
             Deploy IRIS across your enterprise and give every team the intelligence they need to move faster.
           </motion.p>
