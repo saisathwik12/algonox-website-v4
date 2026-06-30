@@ -616,7 +616,7 @@ const getProductImage = (title: string): string => {
     "GEARS (Rules Engine)": "/ACE_products/Gear.png",
     "Smartflows": "/ACE_products/Smartflows.png",
     "COSMOS Master Data Management": "/ACE_products/COSMOS.png",
-    "Medsense AI": "/ACE_products/Medsense ai.png",
+    "Medsense AI": "/ACE_products/MedsenseAI.png",
     "PV Automate": "/ACE_products/PV Automate.png"
   };
   return mapping[title] || "";
@@ -631,7 +631,7 @@ const getProductTheme = (title: string) => {
     "GEARS (Rules Engine)": { bg: "#fbf1e7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Smartflows": { bg: "#e2eef7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "COSMOS Master Data Management": { bg: "#e1f0f7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
-    "Medsense AI": { bg: "#0d383b", text: "#ffffff", btnBg: "#ffffff", btnText: "#0d383b" },
+    "Medsense AI": { bg: "#A9CDEB", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "PV Automate": { bg: "#e9f2fd", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" }
   };
   return mapping[title] || { bg: "#eef2f7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" };
@@ -640,6 +640,7 @@ const getProductTheme = (title: string) => {
 function AceProductsCarousel({ products }: { products: any[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0); // fractional scroll position for smooth interpolation
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<number | null>(null);
 
@@ -721,6 +722,11 @@ function AceProductsCarousel({ products }: { products: any[] }) {
         const scrollLeft = scrollRef.current.scrollLeft;
         const totalWidth = products.length * cardWidth;
 
+        // Compute fractional progress within the middle copy for smooth interpolation
+        const fractionalIdx = (scrollLeft - totalWidth) / cardWidth;
+        const normalizedFractional = ((fractionalIdx % products.length) + products.length) % products.length;
+        setScrollProgress(normalizedFractional);
+
         // Calculate current active index relative to the middle section during swipe
         const currentIdx = Math.round((scrollLeft - totalWidth) / cardWidth);
         const normalizedIdx = (currentIdx + products.length) % products.length;
@@ -770,6 +776,59 @@ function AceProductsCarousel({ products }: { products: any[] }) {
     setIsPlaying(!isPlaying);
   };
 
+  // Apple-style indicator: compute continuous distance from scroll progress for each dot
+  const getIndicatorProps = (dotIndex: number) => {
+    const n = products.length;
+    // Wrap-aware continuous distance (handles looping)
+    const rawDist = Math.abs(dotIndex - scrollProgress);
+    const distance = Math.min(rawDist, n - rawDist);
+
+    // Interpolation breakpoints: 0 = active, 1 = near, 2 = approaching, 3+ = far
+    const clampedDist = Math.min(distance, 3);
+
+    // Width: 34px (active) → 22px (near) → 14px (approaching) → 8px (far)
+    let width: number;
+    if (clampedDist <= 1) {
+      width = 34 - (34 - 22) * clampedDist; // 34 → 22
+    } else if (clampedDist <= 2) {
+      width = 22 - (22 - 14) * (clampedDist - 1); // 22 → 14
+    } else {
+      width = 14 - (14 - 8) * (clampedDist - 2); // 14 → 8
+    }
+
+    // Height: 10px when pill-like (distance < 2.5), shrink to 8px when far
+    const height = clampedDist < 2.5 ? 10 : 10 - (10 - 8) * Math.min((clampedDist - 2.5) * 2, 1);
+
+    // Scale: 1.05 at center → 1.0 near → 0.85 far
+    let scale: number;
+    if (clampedDist <= 1) {
+      scale = 1.05 - 0.05 * clampedDist;
+    } else {
+      scale = 1.0 - 0.15 * Math.min((clampedDist - 1) / 2, 1);
+    }
+
+    // Opacity: 1 at center → 0.35 far
+    const opacity = Math.max(1 - clampedDist * 0.22, 0.35);
+
+    // Background: dark near center, lighter far away
+    const bgAlpha = clampedDist <= 1
+      ? 0.95 - (0.95 - 0.7) * clampedDist
+      : clampedDist <= 2
+        ? 0.7 - (0.7 - 0.5) * (clampedDist - 1)
+        : 0.5 - (0.5 - 0.25) * Math.min(clampedDist - 2, 1);
+
+    return {
+      width,
+      height,
+      scale,
+      opacity,
+      backgroundColor: `rgba(0, 0, 0, ${bgAlpha})`,
+      borderRadius: width > 12 ? 5 : 999,
+    };
+  };
+
+  const appleEase = [0.22, 1, 0.36, 1] as const;
+
   return (
     <section className="products-carousel-section">
       <div className="products-carousel-wrapper" ref={scrollRef} onScroll={handleScroll}>
@@ -810,14 +869,29 @@ function AceProductsCarousel({ products }: { products: any[] }) {
 
       <div className="carousel-indicators-container">
         <div className="carousel-dots">
-          {products.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => handleDotClick(i)}
-              className={`carousel-dot ${i === activeIndex ? "active" : ""}`}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
+          {products.map((_, i) => {
+            const props = getIndicatorProps(i);
+            return (
+              <motion.button
+                key={i}
+                onClick={() => handleDotClick(i)}
+                className="carousel-dot"
+                aria-label={`Go to slide ${i + 1}`}
+                animate={{
+                  width: props.width,
+                  height: props.height,
+                  scale: props.scale,
+                  opacity: props.opacity,
+                  backgroundColor: props.backgroundColor,
+                  borderRadius: props.borderRadius,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: appleEase as any,
+                }}
+              />
+            );
+          })}
         </div>
         <button className="carousel-play-pause" onClick={togglePlay} aria-label={isPlaying ? "Pause autoplay" : "Play autoplay"}>
           {isPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}

@@ -1486,20 +1486,11 @@ button {
 }
 
 .carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  transition: all 0.3s var(--ease-out);
   cursor: pointer;
   border: none;
   padding: 0;
-}
-
-.carousel-dot.active {
-  width: 28px;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.8);
+  /* All visual properties (width, height, border-radius, background, opacity, scale) 
+     are driven by Framer Motion's animate prop for smooth scroll-based interpolation */
 }
 
 .carousel-play-pause {
@@ -1589,10 +1580,6 @@ button {
   
   .carousel-dots {
     gap: 6px;
-  }
-  
-  .carousel-dot.active {
-    width: 20px;
   }
 }
 
