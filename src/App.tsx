@@ -425,11 +425,12 @@ function Tile({ kicker, title, subtitle, ctaText = "Book a Demo", ctaLink = "#",
 // BENTO GRID TILES (Grid Layout - Solid Light Backgrounds)
 // ============================================================
 function GridTile({ tile, index }: { tile: any; index: number }) {
+  const hasBg = !!tile.backgroundImage;
   return (
     <motion.div
-      className="mini-tile grid-tile"
+      className={`mini-tile grid-tile ${hasBg ? 'has-bg' : ''}`}
       style={{
-        background: tile.bgGradient || tile.bgColor || '#f5f5f7',
+        background: hasBg ? undefined : (tile.bgGradient || tile.bgColor || '#f5f5f7'),
         transformOrigin: "center center"
       }}
       initial={{ opacity: 0, y: 50, scale: 0.96 }}
@@ -437,34 +438,29 @@ function GridTile({ tile, index }: { tile: any; index: number }) {
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: (index % 2) * 0.08 }}
     >
+      {hasBg && (
+        <div className="mini-tile-bg-wrapper">
+          <img
+            src={tile.backgroundImage}
+            alt={tile.title}
+            className="mini-tile-bg-image"
+          />
+          <div className="mini-tile-bg-overlay" />
+        </div>
+      )}
       <div className="mini-tile-inner">
-        <p className="label">{tile.kicker}</p>
-        <h2 className="mini-title text-slate-900">{tile.title}</h2>
-        <p className="mini-subtitle">{tile.subtitle}</p>
+        <p className={`label ${hasBg ? 'text-white/80' : 'text-blue-600'}`}>{tile.kicker}</p>
+        <h2 className={`mini-title ${hasBg ? 'text-white font-semibold' : 'text-slate-900'}`}>{tile.title}</h2>
+        <p className={`mini-subtitle ${hasBg ? 'text-white/90' : 'text-slate-600'}`}>{tile.subtitle}</p>
         <div className="cta-row-links">
           <Link to={tile.link} className="btn-solid-blue" style={{ fontSize: '13px', padding: '6px 16px' }}>
             Learn More
           </Link>
-          <Link to="/contact" className="btn-outline-blue" style={{ fontSize: '13px', padding: '5px 16px' }}>
+          <Link to="/contact" className={hasBg ? "btn-outline-white" : "btn-outline-blue"} style={{ fontSize: '13px', padding: '5px 16px' }}>
             Book Demo
           </Link>
         </div>
       </div>
-      {tile.backgroundImage && (
-        <motion.div 
-          className="mini-tile-image-wrapper"
-          initial={{ y: 80, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-20% 0px" }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <img
-            src={tile.backgroundImage}
-            alt={tile.title}
-            className="mini-tile-image"
-          />
-        </motion.div>
-      )}
     </motion.div>
   );
 }
@@ -1255,7 +1251,7 @@ function HomePage() {
     { kicker: "Voice Agents", title: "Sweet Hello", subtitle: "Conversational engagement automation for always-on customer and employee journeys.", link: "/sweet-hello", backgroundImage: "/AI_products/SweetHello.png", bgGradient: "linear-gradient(135deg, #fdfaff 0%, #f9f2ff 50%, #f0ebff 100%)", bgColor: "#fcf8fa" },
     { kicker: "Process Auditing", title: "Codara", subtitle: "Intelligent code generation and automated process auditing.", link: "/codara", backgroundImage: "/AI_products/Codara.png", bgGradient: "linear-gradient(135deg, #f5fcf8 0%, #e8f7ee 50%, #d2ebd9 100%)", bgColor: "#f4fcf7" },
     { kicker: "Enterprise AI", title: "IRIS", subtitle: "Recognition and insight layer for documents, operational data, and process intelligence.", link: "/iris", backgroundImage: "/AI_products/Iris.png", bgGradient: "linear-gradient(135deg, #fafafb 0%, #f1f3f7 50%, #e4e7f0 100%)", bgColor: "#f4f8fc" },
-    { kicker: "Visualization", title: "Splash", subtitle: "Real-time dashboarding, analytics, and operational visibility.", link: "/splash", backgroundImage: "https://placehold.co/800x600/e2e8f0/64748b?text=Splash+Image", bgGradient: "linear-gradient(135deg, #f4fdfd 0%, #effaf7 50%, #f0f5fe 100%)", bgColor: "#f5f5f7" },
+    { kicker: "Visualization", title: "Splash", subtitle: "Real-time dashboarding, analytics, and operational visibility.", link: "/splash", backgroundImage: "/AI_products/Splash.png", bgGradient: "linear-gradient(135deg, #f4fdfd 0%, #effaf7 50%, #f0f5fe 100%)", bgColor: "#f5f5f7" },
     { kicker: "Chat Bot", title: "Glide", subtitle: "Conversational AI connected to enterprise workflows, services, and case journeys.", link: "/glide", backgroundImage: "/AI_products/Glide.png", bgGradient: "linear-gradient(135deg, #f9f9fd 0%, #f0fdfd 50%, #fdfdf5 100%)", bgColor: "#fafafa" },
   ];
 
