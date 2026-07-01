@@ -626,12 +626,12 @@ const getProductTheme = (title: string) => {
   const mapping: Record<string, { bg: string; text: string; btnBg: string; btnText: string }> = {
     "Hertz Email Automation": { bg: "#e2e2f7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Instabolt Reports": { bg: "#dce3d6", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
-    "Ionic Extraction": { bg: "#e9e5f9", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
+    "Ionic Extraction": { bg: "transparent", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Lucid Reconciliations": { bg: "#d8e7f8", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "GEARS (Rules Engine)": { bg: "#fbf1e7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Smartflows": { bg: "#e2eef7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "COSMOS Master Data Management": { bg: "#e1f0f7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
-    "Medsense AI": { bg: "#A9CDEB", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
+    "Medsense AI": { bg: "transparent", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "PV Automate": { bg: "#e9f2fd", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" }
   };
   return mapping[title] || { bg: "#eef2f7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" };
@@ -844,6 +844,7 @@ function AceProductsCarousel({ products }: { products: any[] }) {
                  className={`product-card ${isActive ? "active" : ""} ${bgImage ? "has-bg" : ""}`}
                  style={{ 
                    background: bgImage ? undefined : gradients[originalIndex % gradients.length],
+                   backgroundSize: "cover",
                    ['--bg-image' as any]: bgImage ? `url("${bgImage}")` : undefined,
                    ['--theme-color' as any]: theme.bg,
                    ['--card-text-color' as any]: theme.text,
