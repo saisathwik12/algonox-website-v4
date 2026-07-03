@@ -60,7 +60,7 @@ export default function SweetHello() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] as any }}
           >
-            SWEETHELLO • ENTERPRISE AI VOICE PLATFORM
+            SWEET HELLO • ENTERPRISE AI VOICE PLATFORM
           </motion.p>
           <motion.h1
             className="sweet-pro-hero-title"
@@ -68,7 +68,7 @@ export default function SweetHello() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1] as any, delay: 0.1 }}
           >
-            SweetHello
+            Sweet Hello
           </motion.h1>
           <motion.p
             className="sweet-pro-hero-subtitle"
@@ -146,9 +146,9 @@ export default function SweetHello() {
         <motion.div className="container" {...sectionAnimation}>
           <div className="sweet-pro-showcase-header">
             <p className="sweet-pro-section-kicker">ONE PLATFORM. MULTIPLE AI AGENTS.</p>
-            <h2 className="sweet-pro-section-title">AI Voice Agents Powered by SweetHello</h2>
+            <h2 className="sweet-pro-section-title">AI Voice Agents Powered by Sweet Hello</h2>
             <p className="sweet-pro-section-desc">
-              From healthcare claims to agricultural advising, SweetHello powers robust, domain-specific voice
+              From healthcare claims to agricultural advising, Sweet Hello powers robust, domain-specific voice
               assistants that run on secure, scalable cloud architectures.
             </p>
           </div>
@@ -214,9 +214,9 @@ export default function SweetHello() {
 
         <motion.div className="container" {...sectionAnimation}>
           <div className="sweet-pro-quote">
-            <h3>What is SweetHello?</h3>
+            <h3>What is Sweet Hello?</h3>
             <h2>
-              SweetHello is an enterprise AI Voice Agent Platform that enables organizations to build, deploy,
+              Sweet Hello is an enterprise AI Voice Agent Platform that enables organizations to build, deploy,
               and manage intelligent voice agents for customer engagement and business operations.
             </h2>
           </div>
@@ -507,7 +507,7 @@ export default function SweetHello() {
             <p className="sweet-pro-section-kicker">ENTERPRISE COMPATIBILITY</p>
             <h2 className="sweet-pro-section-title">Works with Your Existing Ecosystem</h2>
             <p className="sweet-pro-section-desc centered">
-              SweetHello integrates seamlessly with your tech stack to read, write, and execute database operations.
+              Sweet Hello integrates seamlessly with your tech stack to read, write, and execute database operations.
             </p>
           </div>
 
@@ -565,7 +565,7 @@ export default function SweetHello() {
         <motion.div className="container" {...sectionAnimation}>
           <div className="text-center" style={{ marginBottom: "64px" }}>
             <p className="sweet-pro-section-kicker">THE COMPETITIVE EDGE</p>
-            <h2 className="sweet-pro-section-title">Why SweetHello</h2>
+            <h2 className="sweet-pro-section-title">Why Sweet Hello</h2>
           </div>
 
           <div className="why-grid">

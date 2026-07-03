@@ -328,7 +328,7 @@ export default function Spectra() {
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
                 <button className="challenge-card-plus" aria-label="Learn more">
-                  <Plus size={18} strokeWidth={2} color="#ffffff" />
+                  <ChevronRight size={18} strokeWidth={2} color="#ffffff" />
                 </button>
               </div>
             ))}
