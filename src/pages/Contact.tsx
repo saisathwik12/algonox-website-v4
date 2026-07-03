@@ -46,7 +46,7 @@ export default function Contact() {
 
       <section className="contact-form">
         <div className="container">
-          <div className="form-card">
+          <div className="form-card magic-border-card">
             <h2>Get in Touch</h2>
             <p>Fill out the form below and our team will reach out within 24 hours.</p>
             <form

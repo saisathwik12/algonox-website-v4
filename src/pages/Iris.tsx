@@ -337,7 +337,7 @@ export default function Iris() {
             ].map((step, idx) => (
               <Fragment key={idx}>
                 <motion.div
-                  className="iris-process-card"
+                  className="iris-process-card magic-border-card"
                   initial={{ opacity: 0, y: 40, scale: 0.95 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: "-80px" }}
@@ -421,7 +421,7 @@ export default function Iris() {
             ].map((colleague, idx) => (
               <motion.div
                 key={idx}
-                className="iris-colleague-card"
+                className="iris-colleague-card magic-border-card"
                 initial={{ opacity: 0, y: 35, scale: 0.96 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -571,7 +571,7 @@ export default function Iris() {
                             <p className="colleague-response-text">{t.response}</p>
 
                             {/* Visual Data Representation */}
-                            <div className="colleague-visual-card">
+                            <div className="colleague-visual-card magic-border-card">
                               {t.visual.type === "metric" ? (
                                 <div className="metric-visual">
                                   <span className="metric-label">{t.visual.label}</span>
@@ -719,7 +719,7 @@ export default function Iris() {
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                className={`iris-bento-card theme-${item.theme} ${item.span === "wide" ? "bento-wide" : ""}`}
+                className={`iris-bento-card theme-${item.theme} ${item.span === "wide" ? "bento-wide" : ""} magic-border-card`}
                 initial={{ opacity: 0, y: 40, scale: 0.96 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -805,7 +805,7 @@ export default function Iris() {
               ].map((item, idx) => (
                 <motion.div
                   key={idx}
-                  className="iris-automation-card"
+                  className="iris-automation-card magic-border-card"
                   initial={{ opacity: 0, y: 40, scale: 0.96 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
@@ -940,7 +940,7 @@ export default function Iris() {
             ].map((stack, idx) => (
               <motion.div
                 key={idx}
-                className="iris-stack-card"
+                className="iris-stack-card magic-border-card"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

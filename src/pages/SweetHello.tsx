@@ -188,7 +188,7 @@ export default function SweetHello() {
                 icon: <Cpu size={28} strokeWidth={1.5} />,
               },
             ].map((agent, idx) => (
-              <div key={idx} className="sweet-pro-showcase-card">
+              <div key={idx} className="sweet-pro-showcase-card magic-border-card">
                 <div className="showcase-icon-box">{agent.icon}</div>
                 <h3>{agent.title}</h3>
                 <h4>{agent.industry}</h4>
@@ -268,7 +268,7 @@ export default function SweetHello() {
                 icon: <Workflow size={28} strokeWidth={1.5} />,
               },
             ].map((cap, idx) => (
-              <div key={idx} className="capabilities-card">
+              <div key={idx} className="capabilities-card magic-border-card">
                 <div className="capabilities-icon">{cap.icon}</div>
                 <h3>{cap.title}</h3>
                 <p>{cap.desc}</p>
@@ -313,7 +313,7 @@ export default function SweetHello() {
                 desc: "Analyze live transcripts, track interaction history, evaluate sentiment, and continuously improve models.",
               },
             ].map((item, idx) => (
-              <div key={idx} className="sweet-pro-works-card">
+              <div key={idx} className="sweet-pro-works-card magic-border-card">
                 <div className="works-step-num">
                   {item.step} • {item.title}
                 </div>
@@ -335,7 +335,7 @@ export default function SweetHello() {
 
           <div className="sweet-pro-bento-grid">
             {/* 1. Human-like Conversations */}
-            <div className="sweet-bento-card bento-wide">
+            <div className="sweet-bento-card bento-wide magic-border-card">
               <div className="sweet-bento-glow-spot" />
               <div className="sweet-bento-content">
                 <span className="sweet-bento-icon">
@@ -359,7 +359,7 @@ export default function SweetHello() {
             </div>
 
             {/* 2. Multi-language Support */}
-            <div className="sweet-bento-card">
+            <div className="sweet-bento-card magic-border-card">
               <div className="sweet-bento-glow-spot" />
               <div className="sweet-bento-content">
                 <span className="sweet-bento-icon">
@@ -374,7 +374,7 @@ export default function SweetHello() {
             </div>
 
             {/* 3. Intelligent Call Routing */}
-            <div className="sweet-bento-card">
+            <div className="sweet-bento-card magic-border-card">
               <div className="sweet-bento-glow-spot" />
               <div className="sweet-bento-content">
                 <span className="sweet-bento-icon">
@@ -389,7 +389,7 @@ export default function SweetHello() {
             </div>
 
             {/* 4. Knowledge-driven Responses */}
-            <div className="sweet-bento-card bento-wide">
+            <div className="sweet-bento-card bento-wide magic-border-card">
               <div className="sweet-bento-glow-spot" />
               <div className="sweet-bento-content">
                 <span className="sweet-bento-icon">
@@ -409,7 +409,7 @@ export default function SweetHello() {
             </div>
 
             {/* 5. Conversation Analytics */}
-            <div className="sweet-bento-card">
+            <div className="sweet-bento-card magic-border-card">
               <div className="sweet-bento-glow-spot" />
               <div className="sweet-bento-content">
                 <span className="sweet-bento-icon">
@@ -424,7 +424,7 @@ export default function SweetHello() {
             </div>
 
             {/* 6. Enterprise Integrations */}
-            <div className="sweet-bento-card">
+            <div className="sweet-bento-card magic-border-card">
               <div className="sweet-bento-glow-spot" />
               <div className="sweet-bento-content">
                 <span className="sweet-bento-icon">
@@ -436,7 +436,7 @@ export default function SweetHello() {
             </div>
 
             {/* 7. Secure Operations */}
-            <div className="sweet-bento-card">
+            <div className="sweet-bento-card magic-border-card">
               <div className="sweet-bento-glow-spot" />
               <div className="sweet-bento-content">
                 <span className="sweet-bento-icon">
@@ -451,7 +451,7 @@ export default function SweetHello() {
             </div>
 
             {/* 8. 24×7 Availability */}
-            <div className="sweet-bento-card">
+            <div className="sweet-bento-card magic-border-card">
               <div className="sweet-bento-glow-spot" />
               <div className="sweet-bento-content">
                 <span className="sweet-bento-icon">
@@ -489,7 +489,7 @@ export default function SweetHello() {
               { name: "Insurance", icon: <Calculator size={28} /> },
               { name: "HR Assistant", icon: <Users size={28} /> },
             ].map((useCase, idx) => (
-              <div key={idx} className="industry-card" style={{ padding: "24px 16px", minHeight: "140px" }}>
+              <div key={idx} className="industry-card magic-border-card" style={{ padding: "24px 16px", minHeight: "140px" }}>
                 <div className="showcase-icon-box" style={{ marginBottom: "12px" }}>
                   {useCase.icon}
                 </div>
@@ -522,7 +522,7 @@ export default function SweetHello() {
               { type: "Analytics", desc: "PowerBI, Tableau, Looker Studio, Snowflake", icon: <BarChart3 size={16} /> },
               { type: "Identity", desc: "Okta, Microsoft Entra ID, PingIdentity, SAML/OIDC", icon: <ShieldCheck size={16} /> },
             ].map((eco, idx) => (
-              <div key={idx} className="ecosystem-card">
+              <div key={idx} className="ecosystem-card magic-border-card">
                 <div className="ecosystem-icon">{eco.icon}</div>
                 <h3>{eco.type}</h3>
                 <p>{eco.desc}</p>
@@ -551,7 +551,7 @@ export default function SweetHello() {
               { name: "Logistics", icon: "🚚" },
               { name: "Insurance", icon: "🛡" },
             ].map((ind, idx) => (
-              <div key={idx} className="industry-card">
+              <div key={idx} className="industry-card magic-border-card">
                 <div className="industry-icon">{ind.icon}</div>
                 <h3>{ind.name}</h3>
               </div>
@@ -591,7 +591,7 @@ export default function SweetHello() {
                 icon: "🌍",
               },
             ].map((why, idx) => (
-              <div key={idx} className="why-card">
+              <div key={idx} className="why-card magic-border-card">
                 <div className="why-glow" />
                 <span className="why-icon">{why.icon}</span>
                 <h3>{why.title}</h3>

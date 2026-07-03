@@ -14,7 +14,6 @@ import {
   Clock,
   Compass,
   TrendingDown,
-  Plus,
   ChevronRight,
 } from "lucide-react";
 import "./Spectra.css";
@@ -323,7 +322,8 @@ export default function Spectra() {
                 iconName: "TrendingDown",
               },
             ].map((item, idx) => (
-              <div key={idx} className="spectra-pro-challenge-card">
+              // ✨ MAGIC BORDER CLASS ADDED HERE
+              <div key={idx} className="spectra-pro-challenge-card magic-border-card">
                 <div className="challenge-icon-box">{renderChallengeIcon(item.iconName)}</div>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
@@ -384,7 +384,8 @@ export default function Spectra() {
                 {approachActive === "legacy" ? (
                   <motion.div
                     key="legacy"
-                    className="spectra-pro-approach-card legacy-card"
+                    // ✨ MAGIC BORDER CLASS ADDED HERE
+                    className="spectra-pro-approach-card legacy-card magic-border-card"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
@@ -417,7 +418,8 @@ export default function Spectra() {
                 ) : (
                   <motion.div
                     key="spectra"
-                    className="spectra-pro-approach-card spectra-card"
+                    // ✨ MAGIC BORDER CLASS ADDED HERE
+                    className="spectra-pro-approach-card spectra-card magic-border-card"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
@@ -473,7 +475,8 @@ export default function Spectra() {
 
           <div className="spectra-pro-works-flow">
             {spectraSteps.map((step, idx) => (
-              <div key={idx} className="spectra-pro-works-card">
+              // ✨ MAGIC BORDER CLASS ADDED HERE
+              <div key={idx} className="spectra-pro-works-card magic-border-card">
                 <div className="works-card-icon-box">{renderStepIcon(step.iconName)}</div>
                 <h3>{step.title}</h3>
                 <p>{step.desc}</p>
@@ -500,7 +503,8 @@ export default function Spectra() {
 
           <div className="spectra-pro-bento-grid">
             {/* Card 1: Continuous Monitoring */}
-            <div className="bento-card bento-wide">
+            {/* ✨ MAGIC BORDER CLASS ADDED HERE */}
+            <div className="bento-card bento-wide magic-border-card">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">📊</span>
@@ -520,7 +524,8 @@ export default function Spectra() {
             </div>
 
             {/* Card 2: Inefficiency Detection */}
-            <div className="bento-card">
+            {/* ✨ MAGIC BORDER CLASS ADDED HERE */}
+            <div className="bento-card magic-border-card">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">🚨</span>
@@ -537,7 +542,8 @@ export default function Spectra() {
             </div>
 
             {/* Card 3: Cross-Channel Opportunities */}
-            <div className="bento-card">
+            {/* ✨ MAGIC BORDER CLASS ADDED HERE */}
+            <div className="bento-card magic-border-card">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">🌐</span>
@@ -552,7 +558,8 @@ export default function Spectra() {
             </div>
 
             {/* Card 4: Simplified Workflows */}
-            <div className="bento-card">
+            {/* ✨ MAGIC BORDER CLASS ADDED HERE */}
+            <div className="bento-card magic-border-card">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">⚙️</span>
@@ -570,7 +577,8 @@ export default function Spectra() {
             </div>
 
             {/* Card 5: Data-Driven Decisions */}
-            <div className="bento-card bento-wide">
+            {/* ✨ MAGIC BORDER CLASS ADDED HERE */}
+            <div className="bento-card bento-wide magic-border-card">
               <div className="bento-glow-spot" />
               <div className="bento-content">
                 <span className="bento-icon">🛡️</span>
@@ -630,7 +638,6 @@ export default function Spectra() {
                       <div className="persona-info-col">
                         <h3>{persona.role}</h3>
                         <p className="persona-desc-text">{persona.desc}</p>
-
                         <div className="persona-features-list">
                           {persona.features.map((feat, i) => (
                             <div key={i} className="persona-feature-item">
@@ -640,11 +647,11 @@ export default function Spectra() {
                           ))}
                         </div>
                       </div>
-
                       <div className="persona-visual-col">
                         <div className="persona-metric-display">
                           {persona.metrics.map((met, i) => (
-                            <div key={i} className="persona-metric-card">
+                            // ✨ MAGIC BORDER CLASS ADDED HERE
+                            <div key={i} className="persona-metric-card magic-border-card">
                               <span className="met-label">{met.label}</span>
                               <span className="met-val">{met.val}</span>
                               <span className="met-diff">{met.diff}</span>
@@ -695,7 +702,8 @@ export default function Spectra() {
                 desc: "Unify platform connections and automate pipeline report compilations.",
               },
             ].map((outcome, idx) => (
-              <div key={idx} className="spectra-pro-outcome-card">
+              // ✨ MAGIC BORDER CLASS ADDED HERE
+              <div key={idx} className="spectra-pro-outcome-card magic-border-card">
                 <div className="outcome-glow" />
                 <h3 className="outcome-val">{outcome.val}</h3>
                 <h4 className="outcome-label">{outcome.label}</h4>

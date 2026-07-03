@@ -436,7 +436,7 @@ function GridTile({ tile, index }: { tile: any; index: number }) {
   const hasBg = !!tile.backgroundImage;
   return (
     <motion.div
-      className={`mini-tile grid-tile ${hasBg ? 'has-bg' : ''}`}
+      className={`mini-tile grid-tile ${hasBg ? 'has-bg' : ''} magic-border-card`}
       style={{
         background: hasBg ? undefined : (tile.bgGradient || tile.bgColor || '#f5f5f7'),
         transformOrigin: "center center"
@@ -635,7 +635,7 @@ const getProductTheme = (title: string) => {
     "Hertz Email Automation": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Instabolt Reports": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Ionic Extraction": { bg: "transparent", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
-    "Lucid Reconciliations": { bg: "#d8e7f8", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
+    "Lucid Reconciliations": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "GEARS (Rules Engine)": { bg: "#fbf1e7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Smartflows": { bg: "#e2eef7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "COSMOS Master Data Management": { bg: "#e1f0f7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },

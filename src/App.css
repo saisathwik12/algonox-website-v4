@@ -2272,3 +2272,57 @@ button {
 /* Moved to Spectra.css */
 
 /* Moved to SweetHello.css */
+
+/* ============================================================
+   MAGIC BORDER CARD EFFECT (No Background Bleed Mask Composite)
+   ============================================================ */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spinBorder {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+.magic-border-card {
+  position: relative;
+  overflow: visible !important;
+}
+
+.magic-border-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--border-angle, 0deg),
+    transparent 0%,
+    transparent 80%,
+    #0071e3 85%,
+    #5e5ce6 92%,
+    #bf5af2 97%,
+    transparent 100%
+  );
+  
+  /* Mask out the content-box to keep the effect strictly on the border */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease, padding 0.3s ease;
+}
+
+.magic-border-card:hover::before {
+  opacity: 1;
+  padding: 2.5px;
+  animation: spinBorder 3s linear infinite;
+}
