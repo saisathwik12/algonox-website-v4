@@ -2323,6 +2323,6 @@ button {
 
 .magic-border-card:hover::before {
   opacity: 1;
-  padding: 2.5px;
+  padding: 1.2px;
   animation: spinBorder 3s linear infinite;
 }
