@@ -432,10 +432,38 @@ export function Tile({ kicker, title, subtitle, ctaText = "Book a Demo", ctaLink
 // ============================================================
 // BENTO GRID TILES (Grid Layout - Solid Light Backgrounds)
 // ============================================================
+export function ThreeDText({ text }: { text: string }) {
+  return (
+    <span className="threed-title-text">
+      {text}
+    </span>
+  );
+}
+
 function GridTile({ tile, index }: { tile: any; index: number }) {
   const hasBg = !!tile.backgroundImage;
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  function handleMouseMove(e: React.MouseEvent) {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    cardRef.current.style.setProperty('--rx', `${-y * 15}deg`);
+    cardRef.current.style.setProperty('--ry', `${x * 15}deg`);
+  }
+
+  function handleMouseLeave() {
+    if (!cardRef.current) return;
+    cardRef.current.style.setProperty('--rx', '0deg');
+    cardRef.current.style.setProperty('--ry', '0deg');
+  }
+
   return (
     <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       className={`mini-tile grid-tile ${hasBg ? 'has-bg' : ''} magic-border-card`}
       style={{
         background: hasBg ? undefined : (tile.bgGradient || tile.bgColor || '#f5f5f7'),
@@ -458,7 +486,9 @@ function GridTile({ tile, index }: { tile: any; index: number }) {
       )}
       <div className="mini-tile-inner">
         <p className={`label ${hasBg ? 'text-white/80' : 'text-blue-600'}`}>{tile.kicker}</p>
-        <h2 className={`mini-title ${hasBg ? 'text-white font-semibold' : 'text-slate-900'}`}>{tile.title}</h2>
+        <h2 className={`mini-title ${hasBg ? 'text-white font-semibold' : 'text-slate-900'}`}>
+          <ThreeDText text={tile.title} />
+        </h2>
         <p className={`mini-subtitle ${hasBg ? 'text-white/90' : 'text-slate-600'}`}>{tile.subtitle}</p>
         <div className="cta-row-links">
           <Link to={tile.link} className="btn-solid-blue" style={{ fontSize: '13px', padding: '6px 16px' }}>
