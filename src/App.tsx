@@ -6,6 +6,7 @@ import {
   useTransform,
   useSpring,
   useInView,
+  useMotionValue,
 } from "framer-motion";
 import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight } from "lucide-react";
 import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
@@ -432,11 +433,85 @@ export function Tile({ kicker, title, subtitle, ctaText = "Book a Demo", ctaLink
 // ============================================================
 // BENTO GRID TILES (Grid Layout - Solid Light Backgrounds)
 // ============================================================
+
+const titleColors: Record<string, string> = {
+  "Spectra": "#ff2a5f",
+  "Sweet Hello": "#b721ff",
+  "Codara": "#21d4fd",
+  "IRIS": "#00f2fe",
+  "Splash": "#f9d423",
+  "Glide": "#f83600"
+};
+
 export function ThreeDText({ text }: { text: string }) {
+  const color = titleColors[text] || "#007aff";
+  
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 150, mass: 0.5 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [25, -25]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-25, 25]), springConfig);
+
+  const layers = 6;
+  const layerSpans = [];
+
+  for (let i = 0; i < layers; i++) {
+    const isTop = i === layers - 1;
+    layerSpans.push(
+      <span
+        key={i}
+        style={{
+          position: isTop ? "relative" : "absolute",
+          top: 0,
+          left: 0,
+          color: isTop ? color : "transparent",
+          WebkitTextStroke: isTop ? "none" : `1px ${color}`,
+          transform: `translateZ(${i * 3}px)`,
+          opacity: isTop ? 1 : 0.4 + (i * 0.1),
+          textShadow: i === 0 ? "0px 10px 20px rgba(0,0,0,0.15)" : "none",
+        }}
+      >
+        {text}
+      </span>
+    );
+  }
+
   return (
-    <span className="threed-title-text">
-      {text}
-    </span>
+    <motion.div 
+      style={{ 
+        perspective: 1200, 
+        display: "inline-block", 
+        width: "100%", 
+        padding: "10px 0" 
+      }}
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        mouseX.set(x);
+        mouseY.set(y);
+      }}
+      onMouseLeave={() => {
+        mouseX.set(0);
+        mouseY.set(0);
+      }}
+    >
+      <motion.div
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+          fontSize: "44px",
+          fontWeight: 800,
+          lineHeight: 1.1,
+          cursor: "default",
+          position: "relative"
+        }}
+      >
+        {layerSpans}
+      </motion.div>
+    </motion.div>
   );
 }
 
