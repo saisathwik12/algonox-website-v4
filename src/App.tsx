@@ -434,138 +434,30 @@ export function Tile({ kicker, title, subtitle, ctaText = "Book a Demo", ctaLink
 // BENTO GRID TILES (Grid Layout - Solid Light Backgrounds)
 // ============================================================
 
-type StyleConfig = {
-  color: string;
-  layers: number;
-  spacing: number;
-  stroke: boolean;
-  damping: number;
-  stiffness: number;
-  rotateRange: number[];
-  fillMode: "stroke" | "solid" | "fade";
-  shadow?: string;
-  fontSize?: string;
-};
-
-const titleStyles: Record<string, StyleConfig> = {
-  "Spectra": {
-    color: "#ff2a5f",
-    layers: 12,
-    spacing: 2,
-    stroke: false,
-    damping: 15,
-    stiffness: 250,
-    rotateRange: [-35, 35],
-    fillMode: "solid",
-    shadow: "0px 15px 30px rgba(255, 42, 95, 0.4)",
-    fontSize: "46px"
-  },
-  "Sweet Hello": {
-    color: "#b721ff",
-    layers: 6,
-    spacing: 4,
-    stroke: true,
-    damping: 8, // Bouncy spring
-    stiffness: 120,
-    rotateRange: [-20, 20],
-    fillMode: "stroke",
-    shadow: "0px 0px 25px rgba(183, 33, 255, 0.6)",
-  },
-  "Codara": {
-    color: "#21d4fd",
-    layers: 18, // Matrix tech style, deep layers
-    spacing: 1.5,
-    stroke: true,
-    damping: 30, // Sluggish/Heavy
-    stiffness: 300,
-    rotateRange: [-15, 15],
-    fillMode: "fade",
-    shadow: "0px 10px 15px rgba(33, 212, 253, 0.2)",
-    fontSize: "42px"
-  },
-  "IRIS": {
-    color: "#00f2fe",
-    layers: 4,
-    spacing: 12, // Floating apart
-    stroke: false,
-    damping: 20,
-    stiffness: 150,
-    rotateRange: [-45, 45],
-    fillMode: "stroke",
-    shadow: "0px 20px 40px rgba(0, 242, 254, 0.3)",
-    fontSize: "48px"
-  },
-  "Splash": {
-    color: "#f9d423",
-    layers: 10,
-    spacing: 2.5,
-    stroke: false,
-    damping: 25,
-    stiffness: 180,
-    rotateRange: [-25, 25],
-    fillMode: "solid",
-    shadow: "0px 10px 20px rgba(249, 212, 35, 0.5)",
-    fontSize: "50px"
-  },
-  "Glide": {
-    color: "#f83600",
-    layers: 8,
-    spacing: 3,
-    stroke: true,
-    damping: 12,
-    stiffness: 100,
-    rotateRange: [-55, 55], // Extreme rotation
-    fillMode: "stroke",
-    shadow: "0px 15px 25px rgba(248, 54, 0, 0.4)",
-    fontSize: "44px"
-  }
+const titleColors: Record<string, string> = {
+  "Spectra": "#ff2a5f",
+  "Sweet Hello": "#b721ff",
+  "Codara": "#21d4fd",
+  "IRIS": "#00f2fe",
+  "Splash": "#f9d423",
+  "Glide": "#f83600"
 };
 
 export function ThreeDText({ text }: { text: string }) {
-  // Default fallback style
-  const styleConf = titleStyles[text] || {
-    color: "#007aff",
-    layers: 6,
-    spacing: 3,
-    stroke: true,
-    damping: 20,
-    stiffness: 150,
-    rotateRange: [-25, 25],
-    fillMode: "stroke" as const
-  };
+  const color = titleColors[text] || "#007aff";
   
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: styleConf.damping, stiffness: styleConf.stiffness, mass: 0.5 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [styleConf.rotateRange[1], styleConf.rotateRange[0]]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [styleConf.rotateRange[0], styleConf.rotateRange[1]]), springConfig);
+  const springConfig = { damping: 20, stiffness: 150, mass: 0.5 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [25, -25]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-25, 25]), springConfig);
 
+  const layers = 6;
   const layerSpans = [];
-  for (let i = 0; i < styleConf.layers; i++) {
-    const isTop = i === styleConf.layers - 1;
-    
-    let layerColor = "transparent";
-    let layerStroke = "none";
-    let layerOpacity = 1;
 
-    if (isTop) {
-      layerColor = styleConf.color;
-    } else {
-      if (styleConf.fillMode === "stroke") {
-        layerStroke = `1px ${styleConf.color}`;
-        layerOpacity = 0.2 + (i * (0.8 / styleConf.layers));
-      } else if (styleConf.fillMode === "solid") {
-        layerColor = styleConf.color;
-        // Darken the underlying solid layers to give shading depth
-        layerOpacity = 0.4 + (i * (0.5 / styleConf.layers)); 
-      } else if (styleConf.fillMode === "fade") {
-        layerColor = styleConf.color;
-        layerOpacity = (i / styleConf.layers) * 0.5;
-        layerStroke = `0.5px ${styleConf.color}`;
-      }
-    }
-
+  for (let i = 0; i < layers; i++) {
+    const isTop = i === layers - 1;
     layerSpans.push(
       <span
         key={i}
@@ -573,11 +465,11 @@ export function ThreeDText({ text }: { text: string }) {
           position: isTop ? "relative" : "absolute",
           top: 0,
           left: 0,
-          color: layerColor,
-          WebkitTextStroke: layerStroke,
-          transform: `translateZ(${i * styleConf.spacing}px)`,
-          opacity: layerOpacity,
-          textShadow: i === 0 && styleConf.shadow ? styleConf.shadow : "none",
+          color: isTop ? color : "transparent",
+          WebkitTextStroke: isTop ? "none" : `1px ${color}`,
+          transform: `translateZ(${i * 3}px)`,
+          opacity: isTop ? 1 : 0.4 + (i * 0.1),
+          textShadow: i === 0 ? "0px 10px 20px rgba(0,0,0,0.15)" : "none",
         }}
       >
         {text}
@@ -610,7 +502,7 @@ export function ThreeDText({ text }: { text: string }) {
           rotateX,
           rotateY,
           transformStyle: "preserve-3d",
-          fontSize: styleConf.fontSize || "44px",
+          fontSize: "44px",
           fontWeight: 800,
           lineHeight: 1.1,
           cursor: "default",
