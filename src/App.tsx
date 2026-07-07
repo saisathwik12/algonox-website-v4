@@ -651,7 +651,7 @@ const getProductImage = (title: string): string => {
     "Instabolt Reports": "/ACE_products/Instabolt.png",
     "Ionic Extraction": "/ACE_products/ionic extraction.png",
     "Lucid Reconciliations": "/ACE_products/lucid.png",
-    "GEARS (Rules Engine)": "/ACE_products/Gear.png",
+    "GEARS (Rules Engine)": "/ACE_products/Gears.png",
     "Smartflows": "/ACE_products/Smartflows.png",
     "COSMOS Master Data Management": "/ACE_products/COSMOS.png",
     "Medsense AI": "/ACE_products/MedsenseAI.png",
@@ -664,11 +664,11 @@ const getProductTheme = (title: string) => {
   const mapping: Record<string, { bg: string; text: string; btnBg: string; btnText: string }> = {
     "Hertz Email Automation": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Instabolt Reports": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
-    "Ionic Extraction": { bg: "transparent", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
+    "Ionic Extraction": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Lucid Reconciliations": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
-    "GEARS (Rules Engine)": { bg: "#fbf1e7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
-    "Smartflows": { bg: "#e2eef7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
-    "COSMOS Master Data Management": { bg: "#e1f0f7", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
+    "GEARS (Rules Engine)": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
+    "Smartflows": { bg: "#0000004D", text: "#ffffff", btnBg: "#ffffff", btnText: "#ffffff" },
+    "COSMOS Master Data Management": { bg: "#0000004D", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "Medsense AI": { bg: "transparent", text: "#1d1d1f", btnBg: "#1d1d1f", btnText: "#ffffff" },
     "PV Automate": { bg: "#00000080", text: "#ffffff", btnBg: "#1d1d1f", btnText: "#ffffff" }
   };
