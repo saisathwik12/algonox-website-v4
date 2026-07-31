@@ -6,6 +6,7 @@ import { Tile, GridTiles } from "../App";
 import Iris from "./Iris";
 import Spectra from "./Spectra";
 import SweetHello from "./SweetHello";
+import Ace from "./Ace";
 import "./DetailPage.css";
 
 export default function DetailPage({ slug }: { slug: string }) {
@@ -20,6 +21,10 @@ export default function DetailPage({ slug }: { slug: string }) {
       foundGroup = { key, ...group };
       break;
     }
+  }
+
+  if (slug === "ace" || slug.endsWith("ace")) {
+    return <Ace />;
   }
 
   if (!foundItem) {
@@ -75,7 +80,7 @@ export default function DetailPage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      {slug === "ace" && (
+      {slug.endsWith("ace") && (
         <section className="ace-architecture-section">
           <div className="container" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <p className="label text-center" style={{ color: "#007aff" }}>

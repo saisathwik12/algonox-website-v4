@@ -21,16 +21,19 @@ import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import ListingPage from "./pages/ListingPage";
 import DetailPage from "./pages/DetailPage";
+import Ace from "./pages/Ace";
 
 const navItems = [
   { key: "products", label: "Products" },
-  { key: "ace", label: "ACE", href: "/ace" },
-  { key: "spectra", label: "Spectra", href: "/spectra" },
-  { key: "sweet-hello", label: "Sweet Hello", href: "/sweet-hello" },
-  { key: "codara", label: "Codara", href: "/codara" },
-  { key: "iris", label: "Iris", href: "/iris" },
-  { key: "splash", label: "Splash", href: "/splash" },
-  { key: "glide", label: "Glide", href: "/glide" },
+  { key: "banking", label: "Banking" },
+  { key: "healthcare", label: "Healthcare" },
+  { key: "pharmaceuticals", label: "Pharmaceuticals" },
+  { key: "rcm", label: "RCM" },
+  { key: "media", label: "Media" },
+  { key: "finance-accounting", label: "Finance & Accounting" },
+  { key: "insurance", label: "Insurance" },
+  { key: "manufacturing", label: "Manufacturing" },
+  { key: "others", label: "Others" },
   { key: "industries", label: "Industries" },
   { key: "solutions", label: "Solutions" },
   { key: "about", label: "About", href: "/about" },
@@ -78,13 +81,19 @@ export function Nav() {
   else if (location.pathname === "/industries") pageTitle = "Industries";
   else if (location.pathname === "/use-cases") pageTitle = "Use Cases";
   else {
-    // Check if it's a detail page
-    const matchedGroup = Object.values(groups).find(g => 
-      g.items.some(item => item[1] === location.pathname)
-    );
-    if (matchedGroup) {
-      const item = matchedGroup.items.find(i => i[1] === location.pathname);
-      if (item) pageTitle = item[0];
+    // Check if it's a group index page (e.g., /banking, /healthcare)
+    const matchedGroupIndex = Object.values(groups).find(g => g.href === location.pathname);
+    if (matchedGroupIndex) {
+      pageTitle = matchedGroupIndex.label;
+    } else {
+      // Check if it's a detail page
+      const matchedGroup = Object.values(groups).find(g => 
+        g.items.some(item => item[1] === location.pathname)
+      );
+      if (matchedGroup) {
+        const item = matchedGroup.items.find(i => i[1] === location.pathname);
+        if (item) pageTitle = item[0];
+      }
     }
   }
 
@@ -1390,13 +1399,18 @@ export default function App() {
             <Route path="/solutions" element={<ListingPage groupKey="solutions" />} />
             <Route path="/industries" element={<ListingPage groupKey="industries" />} />
             <Route path="/use-cases" element={<ListingPage groupKey="usecases" />} />
+            {Object.entries(groups).map(([key, group]) => {
+              if (["products", "ai", "automation", "solutions", "industries", "usecases"].includes(key)) return null;
+              return <Route key={key} path={group.href} element={<ListingPage groupKey={key} />} />;
+            })}
             <Route path="/iris" element={<Iris />} />
             <Route path="/spectra" element={<Spectra />} />
             <Route path="/sweet-hello" element={<SweetHello />} />
+            <Route path="/ace" element={<Ace />} />
             {Object.values(groups).flatMap((group) =>
               group.items.map(([_, href]) => {
                 const slug = href.replace("/", "");
-                if (slug === "iris" || slug === "spectra" || slug === "sweet-hello") return null;
+                if (slug === "iris" || slug === "spectra" || slug === "sweet-hello" || slug === "ace") return null;
                 return <Route key={href} path={href} element={<DetailPage slug={slug} />} />;
               })
             )}

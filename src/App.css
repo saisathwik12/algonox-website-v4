@@ -101,14 +101,14 @@ button {
 }
 
 .nav-inner {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   height: 100%;
   padding: 0 24px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .nav-left {
@@ -151,7 +151,7 @@ button {
 
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 18px;
   align-items: center;
   height: 100%;
 }
@@ -164,17 +164,16 @@ button {
 }
 
 .nav-item a {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 400;
   color: rgba(0, 0, 0, 0.8);
-  opacity: 0.8;
-  transition: opacity 0.2s;
+  transition: color 0.2s ease, opacity 0.2s ease;
   letter-spacing: -0.01em;
 }
 
 .nav-item:hover a {
-  opacity: 1;
-  color: #000;
+  color: var(--link);
 }
 
 .nav-right-actions {
@@ -311,7 +310,8 @@ button {
   right: 0;
   background: #ffffff;
   z-index: 998;
-  overflow: hidden;
+  overflow-y: auto;
+  max-height: calc(100vh - var(--nav-height));
   padding: 20px 24px;
   border-bottom: 1px solid var(--border);
 }
@@ -1110,7 +1110,14 @@ button {
 /* ============================================================
    RESPONSIVE DESIGN
 ============================================================ */
-@media (max-width: 833px) {
+@media (max-width: 1350px) {
+  .nav-title-divider,
+  .nav-page-title {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
   :root {
     --nav-height: 48px;
   }
@@ -1132,7 +1139,9 @@ button {
     justify-content: space-between;
     padding: 0 16px;
   }
-  
+}
+
+@media (max-width: 833px) {
   .title-large {
     font-size: 48px;
   }
