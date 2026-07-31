@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   Mail,
   FileText,
@@ -10,125 +11,104 @@ import {
   BarChart3,
   Zap,
   Cpu,
-  ChevronDown,
-  Plus,
-  X
+  ChevronRight,
+  ArrowRight,
+  ShieldCheck,
+  Database,
+  Layers,
+  Globe,
+  Server,
+  Cloud,
+  Lock,
+  RefreshCw,
+  X,
+  Building2,
+  Pill,
+  Factory,
+  Tv,
+  Activity,
+  Check
 } from "lucide-react";
 import "./Ace.css";
 
-const closerLookFeatures = [
-  {
-    id: "modularity",
-    label: "Modularity",
-    desc: "Select only the microservices your business processes require. Our Pick-and-Choose microservices architecture lets you scale dynamically.",
-    visual: (
-      <div className="visual-modularity">
-        <div className="connector-lines">
-          <div className="line line-1"></div>
-          <div className="line line-2"></div>
-        </div>
-        <div className="modularity-grid">
-          <div className="mod-node active">HERTZ</div>
-          <div className="mod-node active">IONIC</div>
-          <div className="mod-node active">GEARS</div>
-          <div className="mod-node">LUCID</div>
-        </div>
-      </div>
-    )
+// Workflow Modal Data mapping
+const workflowDetails: Record<string, { title: string; subtitle: string; steps: { num: string; label: string; desc: string }[] }> = {
+  ionic: {
+    title: "IONIC Workflow Architecture",
+    subtitle: "Intelligent Document Processing (IDP) from unstructured file intake to ERP payload.",
+    steps: [
+      { num: "01", label: "Document Ingestion", desc: "PDFs, Scans, Invoices, or Images received via Email, API, or Directory Watcher." },
+      { num: "02", label: "Hybrid OCR & Layout Analysis", desc: "Routes document to optimal OCR engine based on resolution, layout, and document type." },
+      { num: "03", label: "ML Entity Extraction", desc: "Extracts key fields (Dates, Amounts, Line Items, GST, Vendor IDs) with confidence scoring." },
+      { num: "04", label: "GEARS Validation Check", desc: "Cross-checks extracted values against Master DB and natural language business rules." },
+      { num: "05", label: "ERP Export", desc: "Posts validated structured payload directly into SAP, Oracle, or custom ERP systems." }
+    ]
   },
-  {
-    id: "ocr",
-    label: "Hybrid OCR",
-    desc: "Intelligently route documents to optimal OCR engines (proprietary or cloud-based) depending on file quality, format, and layout style for maximum extraction accuracy.",
-    visual: (
-      <div className="visual-ocr">
-        <div className="ocr-doc-box">
-          <div className="ocr-scan-line"></div>
-          <div className="ocr-field field-1 highlight-green">Invoice Date: 2026-07-31</div>
-          <div className="ocr-field field-2 highlight-blue">Total Amount: $48,000.00</div>
-        </div>
-      </div>
-    )
+  hertz: {
+    title: "HERTZ Workflow Architecture",
+    subtitle: "Cognitive Email Ingestion to Automated Downstream Action.",
+    steps: [
+      { num: "01", label: "Inbox Listening", desc: "Monitors high-volume enterprise mailboxes (AP, Support, Claims) in real time." },
+      { num: "02", label: "Intent & Sentiment Classification", desc: "Analyzes email body and subject line to determine request type and urgency." },
+      { num: "03", label: "Attachment Parsing", desc: "Extracts attached PDFs, Excel spreadsheets, or images and passes them to IONIC." },
+      { num: "04", label: "Contextual Auto-Reply & Trigger", desc: "Sends immediate confirmation and initiates downstream approval or processing flows." }
+    ]
   },
-  {
-    id: "rules",
-    label: "Natural Language Rules",
-    desc: "Define validation rules and compliance guidelines in plain business language. GEARS validates input data instantly against your master databases.",
-    visual: (
-      <div className="visual-rules">
-        <div className="rules-console">
-          <div className="console-line text-blue">IF: Invoice.Amount &gt; PO.Limit</div>
-          <div className="console-line text-purple">THEN: Route to DeptManager</div>
-          <div className="console-status success">✓ Validation Rule Loaded</div>
-        </div>
-      </div>
-    )
+  gears: {
+    title: "GEARS Workflow Architecture",
+    subtitle: "Natural Language Business Rules Validation Engine.",
+    steps: [
+      { num: "01", label: "Data Schema Ingestion", desc: "Receives raw extracted data payload from IONIC or external enterprise systems." },
+      { num: "02", label: "Master Data Cross-Referencing", desc: "Queries ERP vendor lists, PO thresholds, and client master records." },
+      { num: "03", label: "Rule Evaluation", desc: "Evaluates rules (e.g. 'Invoice Amount < PO Limit' and 'Valid Tax ID')." },
+      { num: "04", label: "Decision & Exception Flagging", desc: "Approve for auto-posting or flag specific rule failures for Human Review." }
+    ]
   },
-  {
-    id: "agentic",
-    label: "Agentic AI",
-    desc: "COSMOS enables task-aware AI agents to plan, reason, and execute goal-driven workflows autonomously, making smart decisions on data exceptions.",
-    visual: (
-      <div className="visual-agentic">
-        <div className="agentic-flow">
-          <div className="agentic-agent">
-            <span className="agent-avatar">🤖</span>
-            <span>COSMOS Agent</span>
-          </div>
-          <div className="agentic-bubble">"Checking database for missing customer IDs..."</div>
-        </div>
-      </div>
-    )
+  smartflows: {
+    title: "SMARTFLOWS Workflow Architecture",
+    subtitle: "Visual AI Workflow Orchestration & Human-in-the-Loop Dispatch.",
+    steps: [
+      { num: "01", label: "Process Trigger", desc: "Initiates workflow upon data validation or external system event." },
+      { num: "02", label: "Dynamic Task Routing", desc: "Routes task to automated bots, AI models, or specific team queues based on SLA." },
+      { num: "03", label: "Human Review Interface", desc: "Provides intuitive side-by-side review panel for audit approvals or exception handling." },
+      { num: "04", label: "State Synchronization", desc: "Updates enterprise databases, audit logs, and triggers final status notifications." }
+    ]
   },
-  {
-    id: "human",
-    label: "Human-in-the-Loop",
-    desc: "Bring people into the workflow dynamically for exceptions, validation audits, and approvals through a simple unified review interface.",
-    visual: (
-      <div className="visual-human">
-        <div className="human-ui">
-          <p className="ui-title">Pending Human Review</p>
-          <div className="ui-issue">⚠️ Invoice Amount Mismatch</div>
-          <div className="ui-actions">
-            <button className="ui-btn approve">Approve</button>
-            <button className="ui-btn reject">Reject</button>
-          </div>
-        </div>
-      </div>
-    )
+  lucid: {
+    title: "LUCID Workflow Architecture",
+    subtitle: "Automated Multi-Source Transaction Reconciliation Engine.",
+    steps: [
+      { num: "01", label: "Dual Data Intake", desc: "Ingests Datasets A (e.g. Bank Statements / POs) and Dataset B (e.g. ERP Ledger / Invoices)." },
+      { num: "02", label: "Fuzzy & Exact Matching", desc: "Applies multi-pass matching algorithms on dates, reference IDs, and monetary values." },
+      { num: "03", label: "Variance & Mismatch Tagging", desc: "Automatically matches 90%+ records and pinpoints exact variance amounts." },
+      { num: "04", label: "Settlement Export", desc: "Generates reconciliation audit reports and queues adjustment journal entries." }
+    ]
   },
-  {
-    id: "deploy",
-    label: "Deploy Anywhere",
-    desc: "Deploy on-premises for strict data compliance, on your private/public cloud, or consume directly as a secure SaaS service.",
-    visual: (
-      <div className="visual-deploy">
-        <div className="deploy-nodes">
-          <div className="node-icon">🏢 On-Premises</div>
-          <div className="node-icon">☁️ Private Cloud</div>
-          <div className="node-icon">⚡ SaaS Service</div>
-        </div>
-      </div>
-    )
+  cosmos: {
+    title: "COSMOS Workflow Architecture",
+    subtitle: "Goal-Driven Agentic AI Orchestration.",
+    steps: [
+      { num: "01", label: "Goal Definition", desc: "Receives high-level enterprise objective (e.g., 'Resolve invoice discrepancy for Client X')." },
+      { num: "02", label: "Contextual Reasoning", desc: "Queries multiple enterprise systems (CRM, ERP, Knowledge Base) to gather facts." },
+      { num: "03", label: "Autonomous Execution", desc: "Agent plans sequence of API calls, executes lookups, and formulates resolution." },
+      { num: "04", label: "Verified Outcome", desc: "Applies fix, logs full audit trail, and notifies operational leads." }
+    ]
+  },
+  instabolt: {
+    title: "INSTABOLT Workflow Architecture",
+    subtitle: "Real-Time Operational Analytics & Dashboard Layer.",
+    steps: [
+      { num: "01", label: "Telemetry Aggregation", desc: "Streams real-time event logs from HERTZ, IONIC, GEARS, and SMARTFLOWS." },
+      { num: "02", label: "KPI Computation", desc: "Calculates automation rates, processing turnaround times, and exception ages." },
+      { num: "03", label: "Executive Dashboards", desc: "Renders responsive, live interactive charts and operational heatmaps." },
+      { num: "04", label: "SLA Alerts", desc: "Sends proactive notifications if processing queues breach threshold limits." }
+    ]
   }
-];
-
-const defaultPlatformVisual = (
-  <div className="visual-modularity">
-    <div className="modularity-grid">
-      <div className="mod-node active">HERTZ</div>
-      <div className="mod-node active">IONIC</div>
-      <div className="mod-node active">GEARS</div>
-      <div className="mod-node active">LUCID</div>
-      <div className="mod-node active">SMARTFLOWS</div>
-      <div className="mod-node active">COSMOS</div>
-    </div>
-  </div>
-);
+};
 
 export default function Ace() {
-  const [activeFeature, setActiveFeature] = useState<number | null>(null);
-
+  const [activeWorkflowModal, setActiveWorkflowModal] = useState<string | null>(null);
+  const [activeArchTab, setActiveArchTab] = useState<"ingest" | "process" | "export">("process");
 
   const fadeUp = {
     initial: { opacity: 0, y: 30 },
@@ -137,490 +117,702 @@ export default function Ace() {
     transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] as any }
   };
 
-  const modules = [
+  const challengeItems = [
+    "Invoices.", "Claims.", "Medical Records.", "Purchase Orders.",
+    "Contracts.", "Emails.", "Approvals.", "Compliance."
+  ];
+
+  const intelligentServices = [
+    { id: "hertz", name: "HERTZ", title: "Email Automation", desc: "Automates email intake, attachment extraction, and inbox workflow triggers.", icon: <Mail size={24} />, color: "#0071e3" },
+    { id: "ionic", name: "IONIC", title: "Intelligent Data Extraction", desc: "Extracts structured data from unstructured PDFs, forms, scans, and documents.", icon: <FileText size={24} />, color: "#34c759" },
+    { id: "gears", name: "GEARS", title: "Business Rules Engine", desc: "Validates compliance and data rules in plain natural business language.", icon: <Sliders size={24} />, color: "#ff9500" },
+    { id: "smartflows", name: "SMARTFLOWS", title: "AI Workflows", desc: "Orchestrates complex business workflows, approval flows, and task routing.", icon: <Workflow size={24} />, color: "#5856d6" },
+    { id: "lucid", name: "LUCID", title: "Reconciliations", desc: "Compares multi-source datasets to match accounts and flag mismatches automatically.", icon: <GitCompare size={24} />, color: "#ffcc00" },
+    { id: "cosmos", name: "COSMOS", title: "Agentic AI Enabler", desc: "Enables goal-driven task reasoning and autonomous multi-step execution.", icon: <Sparkles size={24} />, color: "#af52de" },
+    { id: "instabolt", name: "INSTABOLT", title: "Reports & Dashboards", desc: "Delivers real-time processing telemetry, SLA metrics, and operational visibility.", icon: <BarChart3 size={24} />, color: "#ff2d55" }
+  ];
+
+  const industries = [
     {
-      id: "hertz",
-      name: "HERTZ",
-      tagline: "Email Automation",
-      desc: "Automates business processes that start with or depend on emails by eliminating manual inbox handling.",
-      icon: <Mail size={22} />,
-      color: "#0071e3",
-      features: ["Receive & read business emails", "Download & process attachments", "Trigger downstream workflows"],
-      mockup: (
-        <div className="ace-mockup-inbox">
-          <div className="mockup-inbox-header">
-            <span className="dot red"></span>
-            <span className="dot yellow"></span>
-            <span className="dot green"></span>
-            <span className="mockup-title">HERTZ Active Email Queue</span>
-          </div>
-          <div className="mockup-inbox-list">
-            <div className="inbox-item active">
-              <span className="inbox-icon">📨</span>
-              <div className="inbox-meta">
-                <p className="inbox-sender">vendor@supply.com</p>
-                <p className="inbox-subject">Invoice_98124_AP.pdf</p>
-              </div>
-              <span className="inbox-status processing">Processing</span>
-            </div>
-            <div className="inbox-item">
-              <span className="inbox-icon">📨</span>
-              <div className="inbox-meta">
-                <p className="inbox-sender">client@finance.com</p>
-                <p className="inbox-subject">Q3_Statement_Reconciliation.xlsx</p>
-              </div>
-              <span className="inbox-status queued">Queued</span>
-            </div>
-          </div>
-        </div>
-      )
+      title: "Banking",
+      icon: <Building2 size={24} />,
+      href: "/banking",
+      items: ["KYC & AML Review", "Loan Processing", "Trade Finance Documents", "Account Reconciliation"]
     },
     {
-      id: "ionic",
-      name: "IONIC",
-      tagline: "Intelligent Data Extraction",
-      desc: "ACE's Intelligent Document Processing (IDP) module. Extracts structured information from documents such as invoices, forms, PDFs, scans, and Excel files.",
-      icon: <FileText size={22} />,
-      color: "#34c759",
-      features: ["Hybrid OCR engine routing", "ML-based entity tagging", "Document classification & GenAI search"],
-      mockup: (
-        <div className="ace-mockup-extraction">
-          <div className="mockup-inbox-header">
-            <span className="mockup-title">IONIC Extraction Panel</span>
-          </div>
-          <div className="mockup-extraction-grid">
-            <div className="extraction-doc-preview">
-              <div className="doc-line title">INVOICE</div>
-              <div className="doc-line highlight">INV-2026-98124</div>
-              <div className="doc-line amount">$48,000.00</div>
-            </div>
-            <div className="extraction-results">
-              <div className="result-field"><span className="label">Invoice No:</span> <span className="val">98124</span></div>
-              <div className="result-field"><span className="label">Amount:</span> <span className="val">$48,000.00</span></div>
-              <div className="result-field status"><span className="label">Confidence:</span> <span className="val green">99.4%</span></div>
-            </div>
-          </div>
-        </div>
-      )
+      title: "Revenue Cycle Management",
+      icon: <Activity size={24} />,
+      href: "/rcm",
+      items: ["Claims Intake & Adjudication", "Medical Coding Review", "Prior Authorization", "Payment Posting & Denial Ops"]
     },
     {
-      id: "lucid",
-      name: "LUCID",
-      tagline: "Reconciliations",
-      desc: "Compares transaction data sets from different enterprise systems or documents to automatically match accounts and identify anomalies.",
-      icon: <GitCompare size={22} />,
-      color: "#ffcc00",
-      features: ["Invoice vs Purchase Order", "Bank Statement vs ERP ledger", "Automated mismatch flag & alert"],
-      mockup: (
-        <div className="ace-mockup-reconcile">
-          <div className="mockup-inbox-header"><span className="mockup-title">LUCID Reconciliation Engine</span></div>
-          <div className="reconcile-comparison">
-            <div className="recon-col">
-              <span className="recon-label">Source A (PO)</span>
-              <p className="recon-val">₹50,000</p>
-            </div>
-            <div className="recon-vs">VS</div>
-            <div className="recon-col">
-              <span className="recon-label">Source B (Invoice)</span>
-              <p className="recon-val red-text">₹48,000</p>
-            </div>
-          </div>
-          <div className="reconcile-mismatch">⚠️ Mismatch Identified: Underpayment of ₹2,000</div>
-        </div>
-      )
+      title: "Pharmaceuticals",
+      icon: <Pill size={24} />,
+      href: "/pharmaceuticals",
+      items: ["Batch Production Records (BPR)", "Pharmacovigilance Signals", "SOP Compliance Audits", "Lab Data Intake"]
     },
     {
-      id: "gears",
-      name: "GEARS",
-      tagline: "Business Rules Engine",
-      desc: "The validation and decision-making hub of ACE. Automatically checks if extracted and processed data complies with custom organizational compliance guidelines.",
-      icon: <Sliders size={22} />,
-      color: "#ff9500",
-      features: ["Natural language rule definitions", "Master data validation", "Data dictionary field normalization"],
-      mockup: (
-        <div className="ace-mockup-gears">
-          <div className="mockup-inbox-header"><span className="mockup-title">GEARS Business Rule Validator</span></div>
-          <div className="gears-rules">
-            <div className="rule-item passed">
-              <span className="rule-bullet">✔</span>
-              <span>Rule: Inv Date {"<"} Current Date</span>
-            </div>
-            <div className="rule-item failed">
-              <span className="rule-bullet">✘</span>
-              <span>Rule: Amount {"<"} PO Limit (₹80,000)</span>
-            </div>
-          </div>
-        </div>
-      )
+      title: "Manufacturing",
+      icon: <Factory size={24} />,
+      href: "/manufacturing",
+      items: ["Purchase Orders (PO)", "Vendor Onboarding", "Inventory Reconciliation", "Quality Certificate Inspection"]
     },
     {
-      id: "smartflows",
-      name: "SMARTFLOWS",
-      tagline: "AI Workflows",
-      desc: "Orchestrates complex business workflows, routing tasks between AI models, databases, downstream enterprise apps, and human reviewers.",
-      icon: <Workflow size={22} />,
-      color: "#5856d6",
-      features: ["Visual business flow orchestration", "Automated approvals routing", "Integrations with ERP & databases"],
-      mockup: (
-        <div className="ace-mockup-workflow">
-          <div className="mockup-inbox-header"><span className="mockup-title">SMARTFLOWS Designer</span></div>
-          <div className="workflow-graph">
-            <div className="node active">Extract</div>
-            <div className="connector">→</div>
-            <div className="node highlight">Validate</div>
-            <div className="connector">→</div>
-            <div className="node">Approve</div>
-          </div>
-        </div>
-      )
+      title: "Insurance",
+      icon: <ShieldCheck size={24} />,
+      href: "/insurance",
+      items: ["FNOL Claims Intake", "Policy Document Processing", "Underwriting Support", "Renewal Validation"]
     },
     {
-      id: "cosmos",
-      name: "COSMOS",
-      tagline: "Agentic AI Enabler",
-      desc: "Unlocks next-generation Agentic AI capabilities in the ACE platform, enabling goal-driven task planning, context awareness, and autonomous execution.",
-      icon: <Sparkles size={22} />,
-      color: "#af52de",
-      features: ["Goal-oriented task routing", "Context-aware processing", "Agentic automation enablement"],
-      mockup: (
-        <div className="ace-mockup-cosmos">
-          <div className="mockup-inbox-header"><span className="mockup-title">COSMOS Agentic Workspace</span></div>
-          <div className="cosmos-prompt">
-            <p className="prompt-label">Current Goal:</p>
-            <p className="prompt-text">"Resolve invoice exceptions by querying CRM data."</p>
-            <div className="prompt-progress">
-              <div className="progress-bar"></div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    {
-      id: "instabolt",
-      name: "INSTABOLT",
-      tagline: "Reports & Dashboards",
-      desc: "The analytics engine of ACE. Displays end-to-end processing volumes, success rates, bottleneck locations, and critical operational metrics.",
-      icon: <BarChart3 size={22} />,
-      color: "#ff2d55",
-      features: ["Real-time dashboard reporting", "Key business performance indicators", "Pending action bottlenecks list"],
-      mockup: (
-        <div className="ace-mockup-reports">
-          <div className="mockup-inbox-header"><span className="mockup-title">INSTABOLT Operational Metrics</span></div>
-          <div className="reports-stats">
-            <div className="stat-card">
-              <span className="stat-num">98.2%</span>
-              <span className="stat-label">Automation Rate</span>
-            </div>
-            <div className="stat-card">
-              <span className="stat-num">14,240</span>
-              <span className="stat-label">Processed Docs</span>
-            </div>
-          </div>
-        </div>
-      )
+      title: "Media & Entertainment",
+      icon: <Tv size={24} />,
+      href: "/media",
+      items: ["Campaign Approvals", "Creative Rights Review", "Insertion Order Processing", "Budget Reconciliation"]
     }
   ];
 
+  const ecosystemTools = [
+    "SAP", "Oracle ERP", "Salesforce", "Microsoft Dynamics", "Workday",
+    "ServiceNow", "REST APIs", "SQL Databases", "AWS / Azure", "SharePoint", "Snowflake"
+  ];
+
   return (
-    <div className="ace-page">
-
-
-      {/* Hero Section */}
-      <section id="overview" className="ace-hero">
-        <div className="ace-container text-center">
-          <motion.p 
-            className="hero-eyebrow"
-            initial={{ opacity: 0, y: 15 }}
+    <div className="ace-cinematic-page">
+      {/* SECTION 1: HERO */}
+      <section className="ace-hero-cinematic">
+        <div className="hero-grid-bg"></div>
+        <div className="hero-particles"></div>
+        <div className="ace-container text-center relative z-10">
+          <motion.div 
+            className="hero-badge"
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Algonox Cognitive Engine (ACE)
-          </motion.p>
+            <Sparkles size={14} className="badge-icon" />
+            <span>Algonox Flagship Platform</span>
+          </motion.div>
+
           <motion.h1 
-            className="hero-title"
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            className="hero-main-title"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.1 }}
           >
             ACE
           </motion.h1>
+
           <motion.p 
-            className="hero-subtitle"
-            initial={{ opacity: 0, y: 25 }}
+            className="hero-main-subtitle"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Modular Enterprise Hyper-Automation.
+            The Enterprise Hyper Automation Platform
           </motion.p>
-          <motion.div 
-            className="hero-description-box"
+
+          <motion.h2 
+            className="hero-statement"
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <p>
-              An end-to-end framework designed to digitize, process, validate, orchestrate, reconcile, analyze, and integrate business data through unified microservices.
-            </p>
-          </motion.div>
-
-          <motion.div 
-            className="hero-canvas"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            {/* Sample Image Box Placeholder */}
-            <div className="canvas-placeholder">
-              <div className="canvas-header-bar">
-                <span className="canvas-dot red"></span>
-                <span className="canvas-dot yellow"></span>
-                <span className="canvas-dot green"></span>
-                <span className="canvas-path">workspace / algonox-cognitive-engine</span>
-              </div>
-              <div className="canvas-content-box">
-                <img src="/ace_dashboard_sample.png" alt="ACE Workspace Dashboard" className="canvas-img-placeholder" style={{ display: "none" }} />
-                <div className="canvas-sample-space">
-                  <div className="sample-icon-ring">
-                    <Cpu size={48} className="cpu-glow" />
-                  </div>
-                  <h3>ACE Modular Hyper-Automation</h3>
-                  <p>Pick and choose microservices for Banking, Healthcare, Media, and Manufacturing workflows.</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Take a Closer Look Section */}
-      <section className="ace-closer-look-section">
-        <div className="ace-container">
-          <motion.h2
-            className="closer-look-title"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            Explore every capability.
+            Transform Documents. Automate Decisions. <br />
+            Accelerate Business. Power Enterprise Intelligence.
           </motion.h2>
 
-          <div className="closer-look-card">
-            {/* ✕ top-right close button: closes open box when active */}
-            <AnimatePresence>
-              {activeFeature !== null && (
-                <motion.button
-                  className="closer-look-close"
-                  onClick={() => setActiveFeature(null)}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  aria-label="Close feature details"
-                >
-                  <X size={14} />
-                </motion.button>
-              )}
-            </AnimatePresence>
+          <motion.p 
+            className="hero-tagline-gradient"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            One Platform. Infinite Automation.
+          </motion.p>
 
-            <div className="closer-look-grid">
+          <motion.div 
+            className="hero-cta-group"
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <Link to="/contact" className="btn-cinematic-primary">
+              <span>Request Demo</span>
+              <ArrowRight size={16} />
+            </Link>
+            <a href="#how-it-works" className="btn-cinematic-secondary">
+              <span>Watch Platform Overview</span>
+            </a>
+          </motion.div>
 
-              {/* ──── LEFT: pill list ──── */}
-              <div className="closer-look-left">
-                {/* pill list — each item uses layout so the list reflows smoothly */}
-                <div className="cl-pill-list">
-                  {closerLookFeatures.map((feat, idx) => {
-                    const isActive = idx === activeFeature;
-                    return (
-                      <motion.div
-                        key={feat.id}
-                        layout
-                        transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
-                        className="cl-pill-row"
-                      >
-                        {/* inactive pill */}
-                        {!isActive && (
-                          <motion.button
-                            layout
-                            className="cl-pill"
-                            onClick={() => setActiveFeature(idx)}
-                            initial={false}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.25 }}
-                          >
-                            <span className="cl-pill-icon"><Plus size={13} /></span>
-                            <span className="cl-pill-label">{feat.label}</span>
-                          </motion.button>
-                        )}
-
-                        {/* active: pill label stays, description expands below */}
-                        {isActive && (
-                          <motion.div
-                            layout
-                            className="cl-active-item"
-                          >
-                            <div className="cl-active-label" onClick={() => setActiveFeature(null)} style={{ cursor: "pointer" }}>
-                              <span className="cl-pill-icon active-icon">
-                                <ChevronDown size={13} />
-                              </span>
-                              <span className="cl-pill-label">{feat.label}</span>
-                            </div>
-                            <AnimatePresence>
-                              <motion.p
-                                key={feat.id + "-desc"}
-                                className="cl-active-desc"
-                                initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                                animate={{ opacity: 1, height: "auto", marginTop: 12 }}
-                                exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
-                              >
-                                {feat.desc}
-                              </motion.p>
-                            </AnimatePresence>
-                          </motion.div>
-                        )}
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* ──── RIGHT: visual panel ──── */}
-              <div className="closer-look-right">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeFeature !== null ? activeFeature : "default"}
-                    className="cl-visual-panel"
-                    initial={{ opacity: 0, y: 12, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -12, scale: 0.97 }}
-                    transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
-                  >
-                    {activeFeature !== null ? closerLookFeatures[activeFeature].visual : defaultPlatformVisual}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-
+          {/* Animated Hero Canvas Diagram */}
+          <motion.div 
+            className="hero-flow-diagram"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+          >
+            <div className="flow-card">
+              <span className="flow-step-label">INTAKE</span>
+              <p>Enterprise Documents</p>
             </div>
-          </div>
+            <div className="flow-arrow">→</div>
+            <div className="flow-card highlight-ai">
+              <span className="flow-step-label">INTELLIGENCE</span>
+              <p>ACE AI & Rules</p>
+            </div>
+            <div className="flow-arrow">→</div>
+            <div className="flow-card highlight-auto">
+              <span className="flow-step-label">ORCHESTRATION</span>
+              <p>Workflow Automation</p>
+            </div>
+            <div className="flow-arrow">→</div>
+            <div className="flow-card highlight-outcome">
+              <span className="flow-step-label">IMPACT</span>
+              <p>Business Outcomes</p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Vision & Purpose Section */}
-      <section id="vision" className="ace-vision-section">
+      {/* SECTION 2: THE CHALLENGE */}
+      <section className="ace-challenge-section">
         <div className="ace-container">
-          <motion.div 
-            className="section-header"
-            {...fadeUp}
-          >
-            <p className="section-label">Core Philosophy</p>
-            <h2 className="section-title">Modular. Scalable. Intelligent.</h2>
+          <motion.div className="challenge-header" {...fadeUp}>
+            <span className="challenge-eyebrow">The Enterprise Reality</span>
+            <h2 className="challenge-title">Disconnected Data. Manual Workarounds.</h2>
           </motion.div>
 
-          <div className="vision-grid">
-            <motion.div 
-              className="vision-card"
-              {...fadeUp}
-            >
-              <span className="card-kicker">The Vision</span>
-              <h3>Transform operations into intelligent digital workflows.</h3>
-              <p>
-                ACE combines Artificial Intelligence, Machine Learning, Robotic Process Automation, Business Rules, and Agentic AI within a single platform. Instead of automating isolated activities, it orchestrates the complete lifecycle from ingestion to delivery.
-              </p>
-            </motion.div>
-
-            <motion.div 
-              className="vision-card"
-              {...fadeUp}
-            >
-              <span className="card-kicker">The Purpose</span>
-              <h3>Simplify automation by consolidating enterprise tools.</h3>
-              <p>
-                Rather than deploying separate tools for document extraction, workflows, reporting, and rules, ACE consolidates these capabilities. This reduces operational complexity while increasing ROI across the enterprise.
-              </p>
-            </motion.div>
+          <div className="challenge-chips-grid">
+            {challengeItems.map((item, idx) => (
+              <motion.div 
+                key={idx}
+                className="challenge-chip"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+              >
+                {item}
+              </motion.div>
+            ))}
           </div>
-        </div>
-      </section>
 
-      {/* End-to-End Lifecycle */}
-      <section className="ace-lifecycle-section">
-        <div className="ace-container">
-          <motion.div 
-            className="section-header text-center"
-            {...fadeUp}
-          >
-            <p className="section-label">Operational Flow</p>
-            <h2 className="section-title">End-to-End Automation Lifecycle</h2>
+          <motion.div className="challenge-story-box" {...fadeUp}>
+            <p className="story-lead">
+              Every enterprise depends on thousands of critical business processes every single day.
+            </p>
+            <p className="story-sub">
+              Yet most organizations still rely on disconnected systems, manual data entry, and fragmented tools—slowing down operations and increasing risk.
+            </p>
           </motion.div>
-
-          <div className="lifecycle-grid">
-            <motion.div className="lifecycle-step" {...fadeUp}>
-              <div className="step-num">01</div>
-              <h4>Ingest</h4>
-              <p>Capture unstructured business data directly from incoming emails, scanned documents, files, and enterprise databases.</p>
-            </motion.div>
-            <motion.div className="lifecycle-step" {...fadeUp}>
-              <div className="step-num">02</div>
-              <h4>Process</h4>
-              <p>Classify documents, extract text, validate data schemas, apply natural language rules, reconcile accounts, and orchestrate approvals.</p>
-            </motion.div>
-            <motion.div className="lifecycle-step" {...fadeUp}>
-              <div className="step-num">03</div>
-              <h4>Export</h4>
-              <p>Deliver processed, verified outcomes to downstream ERPs, databases, APIs, custom file formats, and interactive dashboards.</p>
-            </motion.div>
-          </div>
         </div>
       </section>
 
-      {/* Modules Section */}
-      <section id="modules" className="ace-modules-section">
+      {/* SECTION 3: MEET ACE */}
+      <section className="ace-meet-section">
+        <div className="ace-container text-center">
+          <motion.div className="section-label-glow" {...fadeUp}>
+            <span>Introducing the Platform</span>
+          </motion.div>
+          <motion.h2 className="meet-heading" {...fadeUp}>
+            Meet ACE.
+          </motion.h2>
+          <motion.p className="meet-lead-text" {...fadeUp}>
+            ACE is Algonox's Enterprise Hyper Automation Platform. It unifies AI, Intelligent Document Processing, Business Rules, Workflow Automation, Reconciliation, Reporting, and Enterprise Integrations into one scalable platform.
+          </motion.p>
+
+          {/* Interactive Connected Architecture Graphic */}
+          <motion.div className="ace-core-graphic" {...fadeUp}>
+            <div className="core-node-center">
+              <Cpu size={40} className="core-cpu-icon" />
+              <h3>ACE PLATFORM</h3>
+            </div>
+            <div className="core-service-satellites">
+              {intelligentServices.map((svc) => (
+                <div key={svc.id} className="satellite-node" style={{ borderColor: `${svc.color}40` }}>
+                  <span className="sat-icon" style={{ color: svc.color }}>{svc.icon}</span>
+                  <span className="sat-name">{svc.name}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION 4: HOW ACE WORKS (SIGNATURE ARCHITECTURE) */}
+      <section id="how-it-works" className="ace-how-it-works-section">
         <div className="ace-container">
-          <motion.div 
-            className="section-header"
-            {...fadeUp}
-          >
-            <p className="section-label">Microservices Suite</p>
-            <h2 className="section-title">ACE Modules</h2>
+          <motion.div className="section-header text-center" {...fadeUp}>
+            <span className="section-eyebrow">Signature Architecture</span>
+            <h2 className="section-title">How ACE Works</h2>
             <p className="section-subtitle">
-              A pick-and-choose microservices architecture that allows you to deploy only the services your business workflows require.
+              From raw unstructured intake to verified enterprise payload in seconds.
             </p>
           </motion.div>
 
-          <div className="modules-list">
-            {modules.map((mod, idx) => (
-              <motion.div 
-                key={mod.id} 
-                className={`module-showcase-row ${idx % 2 === 1 ? "reverse" : ""}`}
-                {...fadeUp}
-              >
-                <div className="module-info-col">
-                  <div className="module-icon-badge" style={{ backgroundColor: `${mod.color}15`, color: mod.color }}>
-                    {mod.icon}
+          <div className="arch-nav-tabs">
+            <button 
+              className={`arch-tab-btn ${activeArchTab === "ingest" ? "active" : ""}`}
+              onClick={() => setActiveArchTab("ingest")}
+            >
+              1. INGEST
+            </button>
+            <button 
+              className={`arch-tab-btn ${activeArchTab === "process" ? "active" : ""}`}
+              onClick={() => setActiveArchTab("process")}
+            >
+              2. PROCESS
+            </button>
+            <button 
+              className={`arch-tab-btn ${activeArchTab === "export" ? "active" : ""}`}
+              onClick={() => setActiveArchTab("export")}
+            >
+              3. EXPORT
+            </button>
+          </div>
+
+          <div className="arch-layers-display">
+            <AnimatePresence mode="wait">
+              {activeArchTab === "ingest" && (
+                <motion.div 
+                  key="ingest"
+                  className="arch-layer-card ingest-card"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="layer-badge">STAGE 01 — INGEST</div>
+                  <h3>Collect Enterprise Information</h3>
+                  <p>Capture unstructured and semi-structured business data directly from any channel.</p>
+                  <div className="node-chips-grid">
+                    <span className="node-chip">Emails & Attachments</span>
+                    <span className="node-chip">Scanned PDFs & Forms</span>
+                    <span className="node-chip">Images & Scans</span>
+                    <span className="node-chip">ERP & CRM Events</span>
+                    <span className="node-chip">REST APIs & Webhooks</span>
                   </div>
-                  <span className="module-pill-name" style={{ color: mod.color }}>{mod.name}</span>
-                  <h3 className="module-tagline">{mod.tagline}</h3>
-                  <p className="module-desc">{mod.desc}</p>
-                  <ul className="module-feature-list">
-                    {mod.features.map((feat, fidx) => (
-                      <li key={fidx}>
-                        <Zap size={14} style={{ color: mod.color, marginRight: "8px", flexShrink: 0 }} />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
+                </motion.div>
+              )}
+
+              {activeArchTab === "process" && (
+                <motion.div 
+                  key="process"
+                  className="arch-layer-card process-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="layer-badge">STAGE 02 — PROCESS</div>
+                  <h3>Extract. Understand. Validate. Automate. Decide.</h3>
+                  <p>Apply intelligent AI services, natural language rules, and workflow orchestration.</p>
+                  <div className="process-pipeline-nodes">
+                    <div className="pipe-node"><span>Extract</span><small>IONIC IDP</small></div>
+                    <div className="pipe-arrow">→</div>
+                    <div className="pipe-node"><span>Validate</span><small>GEARS Engine</small></div>
+                    <div className="pipe-arrow">→</div>
+                    <div className="pipe-node"><span>Reconcile</span><small>LUCID</small></div>
+                    <div className="pipe-arrow">→</div>
+                    <div className="pipe-node"><span>Orchestrate</span><small>SMARTFLOWS</small></div>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeArchTab === "export" && (
+                <motion.div 
+                  key="export"
+                  className="arch-layer-card export-card"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <div className="layer-badge">STAGE 03 — EXPORT</div>
+                  <h3>Integrate. Trigger. Report.</h3>
+                  <p>Deliver verified, structured outcomes directly to downstream enterprise systems and dashboards.</p>
+                  <div className="node-chips-grid">
+                    <span className="node-chip">SAP / Oracle Sync</span>
+                    <span className="node-chip">Live INSTABOLT Dashboards</span>
+                    <span className="node-chip">Database Audit Logging</span>
+                    <span className="node-chip">Automated Email Notifications</span>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: MEET THE INTELLIGENT SERVICES */}
+      <section className="ace-services-section">
+        <div className="ace-container">
+          <motion.div className="section-header text-center" {...fadeUp}>
+            <span className="section-eyebrow">Modular Microservices</span>
+            <h2 className="section-title">Meet the Intelligent Services</h2>
+            <p className="section-subtitle">
+              Deploy individually or combine seamlessly to automate complete end-to-end workflows.
+            </p>
+          </motion.div>
+
+          <div className="services-cards-grid">
+            {intelligentServices.map((svc) => (
+              <motion.div 
+                key={svc.id} 
+                className="service-interactive-card"
+                {...fadeUp}
+                whileHover={{ y: -6, boxShadow: `0 12px 30px ${svc.color}20` }}
+              >
+                <div className="svc-header">
+                  <div className="svc-icon-box" style={{ backgroundColor: `${svc.color}15`, color: svc.color }}>
+                    {svc.icon}
+                  </div>
+                  <span className="svc-name" style={{ color: svc.color }}>{svc.name}</span>
                 </div>
-                <div className="module-mockup-col">
-                  {mod.mockup}
-                </div>
+                <h4>{svc.title}</h4>
+                <p>{svc.desc}</p>
+                <button 
+                  className="svc-workflow-btn" 
+                  onClick={() => setActiveWorkflowModal(svc.id)}
+                >
+                  <span>Explore Service Story</span>
+                  <ChevronRight size={14} />
+                </button>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA section removed to maintain technical product focus */}
+      {/* SECTION 6: MODULE STORYTELLING (APPLE-STYLE SPOTLIGHTS) */}
+      <section className="ace-spotlights-section">
+        <div className="ace-container">
+          <motion.div className="section-header text-center" {...fadeUp}>
+            <span className="section-eyebrow">In-Depth Microservice Stories</span>
+            <h2 className="section-title">Platform Capabilities in Action</h2>
+          </motion.div>
+
+          {/* IONIC SPOTLIGHT */}
+          <motion.div className="spotlight-block" {...fadeUp}>
+            <div className="spotlight-badge" style={{ color: "#34c759", borderColor: "#34c75930" }}>IONIC IDP</div>
+            <h3 className="spotlight-headline">Documents become Intelligence.</h3>
+            <p className="spotlight-body">
+              IONIC transforms unstructured enterprise documents into structured, business-ready information using AI-powered Intelligent Document Processing.
+            </p>
+
+            <div className="spotlight-visual-flow">
+              <div className="vis-step">Invoice / Scan</div>
+              <div className="vis-arrow">→</div>
+              <div className="vis-step highlight">Hybrid OCR</div>
+              <div className="vis-arrow">→</div>
+              <div className="vis-step highlight">ML Extraction</div>
+              <div className="vis-arrow">→</div>
+              <div className="vis-step">Structured ERP Data</div>
+            </div>
+
+            <div className="spotlight-meta-grid">
+              <div className="meta-col">
+                <h5>Used In Industries</h5>
+                <p>Healthcare, Banking, Manufacturing, Insurance, Finance, Pharma</p>
+              </div>
+              <div className="meta-col">
+                <h5>Popular Workflows</h5>
+                <p>Invoice Processing, Claims, KYC, Medical Records, Contracts, Purchase Orders</p>
+              </div>
+            </div>
+
+            <button className="btn-spotlight-workflow" onClick={() => setActiveWorkflowModal("ionic")}>
+              <span>View Workflow</span>
+              <ArrowRight size={14} />
+            </button>
+          </motion.div>
+
+          {/* HERTZ SPOTLIGHT */}
+          <motion.div className="spotlight-block" {...fadeUp}>
+            <div className="spotlight-badge" style={{ color: "#0071e3", borderColor: "#0071e330" }}>HERTZ EMAIL</div>
+            <h3 className="spotlight-headline">Inboxes become Automated Action.</h3>
+            <p className="spotlight-body">
+              HERTZ eliminates manual inbox monitoring by reading business emails, extracting attachments, and initiating downstream operational workflows.
+            </p>
+
+            <div className="spotlight-visual-flow">
+              <div className="vis-step">Business Email</div>
+              <div className="vis-arrow">→</div>
+              <div className="vis-step highlight">Intent Classify</div>
+              <div className="vis-arrow">→</div>
+              <div className="vis-step highlight">Attachment Parse</div>
+              <div className="vis-arrow">→</div>
+              <div className="vis-step">Workflow Trigger</div>
+            </div>
+
+            <button className="btn-spotlight-workflow" onClick={() => setActiveWorkflowModal("hertz")}>
+              <span>View Workflow</span>
+              <ArrowRight size={14} />
+            </button>
+          </motion.div>
+
+          {/* GEARS SPOTLIGHT */}
+          <motion.div className="spotlight-block" {...fadeUp}>
+            <div className="spotlight-badge" style={{ color: "#ff9500", borderColor: "#ff950030" }}>GEARS RULES</div>
+            <h3 className="spotlight-headline">Complex Rules, Zero Code.</h3>
+            <p className="spotlight-body">
+              GEARS evaluates data against custom organizational guidelines, master databases, and compliance rules written in plain business language.
+            </p>
+
+            <button className="btn-spotlight-workflow" onClick={() => setActiveWorkflowModal("gears")}>
+              <span>View Workflow</span>
+              <ArrowRight size={14} />
+            </button>
+          </motion.div>
+
+          {/* SMARTFLOWS SPOTLIGHT */}
+          <motion.div className="spotlight-block" {...fadeUp}>
+            <div className="spotlight-badge" style={{ color: "#5856d6", borderColor: "#5856d630" }}>SMARTFLOWS</div>
+            <h3 className="spotlight-headline">Orchestration at Enterprise Scale.</h3>
+            <p className="spotlight-body">
+              SMARTFLOWS manages visual workflow orchestration, dynamically routing tasks between AI models, human reviewers, and enterprise software.
+            </p>
+
+            <button className="btn-spotlight-workflow" onClick={() => setActiveWorkflowModal("smartflows")}>
+              <span>View Workflow</span>
+              <ArrowRight size={14} />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION 7: BUILT FOR EVERY INDUSTRY */}
+      <section className="ace-industries-gateway-section">
+        <div className="ace-container">
+          <motion.div className="section-header text-center" {...fadeUp}>
+            <span className="section-eyebrow">Industry Gateway</span>
+            <h2 className="section-title">One Platform. Every Industry.</h2>
+            <p className="section-subtitle">
+              ACE powers critical compliance-driven operations across key enterprise sectors.
+            </p>
+          </motion.div>
+
+          <div className="industry-gateway-grid">
+            {industries.map((ind, idx) => (
+              <motion.div 
+                key={idx} 
+                className="industry-gateway-card"
+                {...fadeUp}
+              >
+                <div className="ind-header">
+                  <span className="ind-icon">{ind.icon}</span>
+                  <h4>{ind.title}</h4>
+                </div>
+                <ul className="ind-item-list">
+                  {ind.items.map((item, iidx) => (
+                    <li key={iidx}>
+                      <Check size={14} className="check-bullet" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link to={ind.href} className="ind-explore-link">
+                  <span>Explore {ind.title}</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: ENTERPRISE ECOSYSTEM */}
+      <section className="ace-ecosystem-section">
+        <div className="ace-container text-center">
+          <motion.div className="section-header" {...fadeUp}>
+            <span className="section-eyebrow">Seamless Integrations</span>
+            <h2 className="section-title">Works with the tools you already use.</h2>
+          </motion.div>
+
+          <div className="ecosystem-chips">
+            {ecosystemTools.map((tool, idx) => (
+              <motion.div 
+                key={idx} 
+                className="eco-chip"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+              >
+                {tool}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9: DEPLOY ANYWHERE */}
+      <section className="ace-deploy-section">
+        <div className="ace-container">
+          <motion.div className="section-header text-center" {...fadeUp}>
+            <span className="section-eyebrow">Deployment Flexibility</span>
+            <h2 className="section-title">Deploy Anywhere</h2>
+          </motion.div>
+
+          <div className="deploy-cards-grid">
+            <motion.div className="deploy-card" {...fadeUp}>
+              <Cloud size={32} className="deploy-icon" />
+              <h3>Cloud Service</h3>
+              <p>Elastic SaaS or private cloud deployment with continuous updates and multi-region redundancy.</p>
+            </motion.div>
+
+            <motion.div className="deploy-card highlight" {...fadeUp}>
+              <Server size={32} className="deploy-icon" />
+              <h3>On-Premises</h3>
+              <p>Air-gapped deployment within your data centers for total data sovereignty and strict compliance.</p>
+            </motion.div>
+
+            <motion.div className="deploy-card" {...fadeUp}>
+              <Globe size={32} className="deploy-icon" />
+              <h3>Hybrid Architecture</h3>
+              <p>Execute extraction locally on-premise while leveraging cloud models for dynamic peak workloads.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10: ENTERPRISE READY */}
+      <section className="ace-enterprise-ready-section">
+        <div className="ace-container text-center">
+          <motion.div className="section-header" {...fadeUp}>
+            <span className="section-eyebrow">Platform Architecture</span>
+            <h2 className="section-title">Enterprise Ready</h2>
+          </motion.div>
+
+          <div className="ready-badges-grid">
+            <div className="ready-pill"><Cloud size={16} /> Cloud Native</div>
+            <div className="ready-pill"><Layers size={16} /> Microservices Architecture</div>
+            <div className="ready-pill"><Zap size={16} /> Low-Code / No-Code</div>
+            <div className="ready-pill"><ShieldCheck size={16} /> Human-in-the-Loop</div>
+            <div className="ready-pill"><Cpu size={16} /> AI-Powered Core</div>
+            <div className="ready-pill"><RefreshCw size={16} /> Infinitely Scalable</div>
+            <div className="ready-pill"><Lock size={16} /> Enterprise Security & SOC2</div>
+            <div className="ready-pill"><Database size={16} /> API-First Integration</div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 11: BUSINESS OUTCOMES */}
+      <section className="ace-outcomes-section">
+        <div className="ace-container">
+          <motion.div className="section-header text-center" {...fadeUp}>
+            <span className="section-eyebrow">Proven ROI</span>
+            <h2 className="section-title">Business Outcomes</h2>
+          </motion.div>
+
+          <div className="outcomes-grid">
+            <motion.div className="outcome-card" {...fadeUp}>
+              <span className="outcome-number">85%+</span>
+              <p className="outcome-label">Reduction in Manual Processing Effort</p>
+            </motion.div>
+
+            <motion.div className="outcome-card" {...fadeUp}>
+              <span className="outcome-number">99.4%</span>
+              <p className="outcome-label">Data Extraction & Validation Accuracy</p>
+            </motion.div>
+
+            <motion.div className="outcome-card" {...fadeUp}>
+              <span className="outcome-number">10x</span>
+              <p className="outcome-label">Faster Operational Turnaround Speed</p>
+            </motion.div>
+
+            <motion.div className="outcome-card" {...fadeUp}>
+              <span className="outcome-number">100%</span>
+              <p className="outcome-label">Audit Visibility & Rule Governance</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 12: CUSTOMER SUCCESS */}
+      <section className="ace-testimonials-section">
+        <div className="ace-container text-center">
+          <motion.div className="section-header" {...fadeUp}>
+            <span className="section-eyebrow">Enterprise Trust</span>
+            <h2 className="section-title">Trusted by Global Operations</h2>
+          </motion.div>
+
+          <motion.div className="testimonial-quote-box" {...fadeUp}>
+            <p className="quote-text">
+              "ACE transformed our high-volume invoice and reconciliation workflows. We reduced turnaround time from 3 days to under 4 minutes while maintaining 100% audit compliance."
+            </p>
+            <span className="quote-author">— Head of Shared Services, Global Enterprise</span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION 13: FINAL CTA */}
+      <section className="ace-final-cta-section">
+        <div className="ace-container text-center">
+          <motion.h2 className="final-cta-title" {...fadeUp}>
+            Ready to transform enterprise automation?
+          </motion.h2>
+          <motion.p className="final-cta-desc" {...fadeUp}>
+            Schedule an architecture session with our enterprise AI team.
+          </motion.p>
+          <motion.div className="final-cta-buttons" {...fadeUp}>
+            <Link to="/contact" className="btn-cinematic-primary">
+              <span>Request Demo</span>
+              <ArrowRight size={16} />
+            </Link>
+            <Link to="/contact" className="btn-cinematic-secondary">
+              <span>Talk to an Expert</span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* INTERACTIVE WORKFLOW POPUP MODAL */}
+      <AnimatePresence>
+        {activeWorkflowModal && workflowDetails[activeWorkflowModal] && (
+          <motion.div 
+            className="workflow-modal-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveWorkflowModal(null)}
+          >
+            <motion.div 
+              className="workflow-modal-content"
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                className="modal-close-btn" 
+                onClick={() => setActiveWorkflowModal(null)}
+                aria-label="Close modal"
+              >
+                <X size={18} />
+              </button>
+
+              <div className="modal-header">
+                <h3>{workflowDetails[activeWorkflowModal].title}</h3>
+                <p>{workflowDetails[activeWorkflowModal].subtitle}</p>
+              </div>
+
+              <div className="modal-steps-timeline">
+                {workflowDetails[activeWorkflowModal].steps.map((st, idx) => (
+                  <div key={idx} className="timeline-step">
+                    <div className="step-badge">{st.num}</div>
+                    <div className="step-body">
+                      <h4>{st.label}</h4>
+                      <p>{st.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
