@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Link } from "react-router-dom";
 import {
   Mail,
@@ -31,10 +32,25 @@ import {
   Activity,
   Check,
   Play,
-  Pause,
-  Image as ImageIcon
+  Pause
 } from "lucide-react";
 import "./Ace.css";
+
+const highlightLottieConfigs = [
+  { fileName: "Ai-powered marketing tools abstract.lottie", width: "100%", height: "100%", offsetY: 0, padding: 18 },
+  { fileName: "scan document.lottie", width: "88%", height: "88%", offsetY: -8, padding: 12 },
+  { fileName: "AI Automation.lottie", width: "100%", height: "100%", offsetY: 4, padding: 14 },
+  { fileName: "Man and robot with computers sitting together in workplace.lottie", width: "92%", height: "92%", offsetY: -2, padding: 16 },
+  { fileName: "Artificial Intelligence.lottie", width: "94%", height: "94%", offsetY: 0, padding: 16 },
+  { fileName: "Secure Transaction.lottie", width: "90%", height: "90%", offsetY: -4, padding: 12 },
+  { fileName: "Workflow.lottie", width: "92%", height: "92%", offsetY: 2, padding: 14 },
+  { fileName: "Soft.lottie", width: "95%", height: "95%", offsetY: -2, padding: 14 },
+  { fileName: "Trade.lottie", width: "96%", height: "96%", offsetY: 0, padding: 16 },
+  { fileName: "Testing Correcting.lottie", width: "95%", height: "95%", offsetY: 2, padding: 14 }
+] as const;
+
+const getHighlightLottieSrc = (fileName: string) =>
+  `${import.meta.env.BASE_URL}ACE/lottie/${encodeURIComponent(fileName)}`;
 
 // Workflow Modal Data mapping
 const workflowDetails: Record<string, { title: string; subtitle: string; steps: { num: string; label: string; desc: string }[] }> = {
@@ -793,7 +809,10 @@ export default function Ace() {
             ref={highlightTrackRef}
             onScroll={handleHighlightScroll}
           >
-            {highlightsSlides.map((slide, idx) => (
+            {highlightsSlides.map((slide, idx) => {
+              const lottieConfig = highlightLottieConfigs[idx] ?? highlightLottieConfigs[0];
+              const lottieSrc = getHighlightLottieSrc(lottieConfig.fileName);
+              return (
               <div 
                 key={slide.id} 
                 className={`highlight-card ${idx === activeHighlightIndex ? "active" : ""}`}
@@ -810,21 +829,23 @@ export default function Ace() {
                 </div>
 
                 <div className="highlight-visual-container">
-                  <div className="highlight-image-placeholder">
-                    <div className="placeholder-icon-wrap">
-                      <ImageIcon size={32} className="placeholder-img-icon" />
-                    </div>
-                    <div className="placeholder-visual-info">
-                      <span className="placeholder-tag">Visual Placeholder</span>
-                      <p className="placeholder-visual-desc">{slide.visual}</p>
-                    </div>
-                    <div className="empty-image-label">
-                      <span>Empty Image Frame</span>
-                    </div>
+                  <div className="highlight-lottie-shell" style={{ padding: `${lottieConfig.padding}px` }}>
+                    <DotLottieReact
+                      src={lottieSrc}
+                      loop
+                      autoplay
+                      className="highlight-lottie"
+                      style={{
+                        width: lottieConfig.width,
+                        height: lottieConfig.height,
+                        marginTop: `${lottieConfig.offsetY}px`
+                      }}
+                    />
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Floating Pill Controls (Apple Style) */}
