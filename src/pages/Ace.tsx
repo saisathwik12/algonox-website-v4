@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -12,6 +12,8 @@ import {
   Zap,
   Cpu,
   ChevronRight,
+  ChevronUp,
+  ChevronDown,
   ArrowRight,
   ShieldCheck,
   Database,
@@ -27,7 +29,10 @@ import {
   Factory,
   Tv,
   Activity,
-  Check
+  Check,
+  Play,
+  Pause,
+  Image as ImageIcon
 } from "lucide-react";
 import "./Ace.css";
 
@@ -106,9 +111,502 @@ const workflowDetails: Record<string, { title: string; subtitle: string; steps: 
   }
 };
 
+// Capabilities Data (Apple "Take a closer look" Style)
+const capabilities = [
+  {
+    label: "Platform Overview",
+    heading: "One platform. Every enterprise workflow.",
+    description: "ACE unifies intelligent document processing, AI, workflow automation, business rules, reconciliation, analytics, and enterprise integrations into one enterprise platform. Built on a modular architecture, it enables organizations to automate complex business processes while adapting to different industries, systems, and operational needs."
+  },
+  {
+    label: "Intelligent Document Processing",
+    heading: "Documents become intelligence.",
+    description: "Extract, classify, validate, and understand business information from invoices, claims, purchase orders, contracts, medical records, and more using AI-powered document intelligence."
+  },
+  {
+    label: "Workflow Automation",
+    heading: "Work that moves itself.",
+    description: "Design and automate business workflows with intelligent routing, approvals, notifications, escalations, and human-in-the-loop collaboration across enterprise operations."
+  },
+  {
+    label: "Business Rules Engine",
+    heading: "Every decision follows your rules.",
+    description: "Configure business rules to validate data, enforce compliance, standardize decisions, and automate enterprise logic without changing core business systems."
+  },
+  {
+    label: "Reconciliation",
+    heading: "Every transaction. Perfectly aligned.",
+    description: "Automatically reconcile financial and operational data across systems, identify mismatches, and improve operational accuracy with intelligent reconciliation."
+  },
+  {
+    label: "Enterprise AI",
+    heading: "Intelligence built into every process.",
+    description: "Leverage enterprise AI to understand business context, assist users, surface insights, and enable intelligent automation across every workflow."
+  },
+  {
+    label: "Analytics & Reporting",
+    heading: "Every workflow tells a story.",
+    description: "Transform operational data into real-time dashboards, performance metrics, business insights, and actionable reports that support faster decision-making."
+  },
+  {
+    label: "Enterprise Integrations",
+    heading: "Connected by design.",
+    description: "Integrate seamlessly with ERP, CRM, databases, cloud platforms, APIs, email systems, and enterprise applications without disrupting existing operations."
+  },
+  {
+    label: "Deployment",
+    heading: "Built for your enterprise.",
+    description: "Deploy ACE on-premises, in the cloud, or as a SaaS solution, providing the flexibility to align with your infrastructure, compliance, and business requirements."
+  }
+];
+
+// Highlights Slides Data (Apple Style Carousel Content)
+const highlightsSlides = [
+  {
+    id: 1,
+    slideNum: "Slide 1",
+    category: "The Platform",
+    title: "One Platform. Infinite Automation.",
+    description: "Bring AI, document intelligence, workflow automation, business rules, reconciliation, analytics, and enterprise integrations together in one intelligent platform.",
+    visual: "ACE Core connected to all intelligent services."
+  },
+  {
+    id: 2,
+    slideNum: "Slide 2",
+    category: "Intelligent Document Processing",
+    highlight: "AI-Powered Document Intelligence",
+    title: "Documents become decisions.",
+    description: "Extract, classify, and understand business information from invoices, claims, contracts, purchase orders, medical records, and more—automatically.",
+    visual: "Invoice → AI Extraction → ERP"
+  },
+  {
+    id: 3,
+    slideNum: "Slide 3",
+    category: "Workflow Automation",
+    highlight: "Low-Code Workflow Automation",
+    title: "Work that moves itself.",
+    description: "Design, orchestrate, and automate approvals, routing, notifications, and human-in-the-loop workflows across your enterprise.",
+    visual: "Workflow moving automatically."
+  },
+  {
+    id: 4,
+    slideNum: "Slide 4",
+    category: "Business Rules",
+    highlight: "Intelligent Decision Engine",
+    title: "Every decision follows your rules.",
+    description: "Apply configurable business rules to validate information, enforce compliance, and automate enterprise decisions with consistency.",
+    visual: "Incoming Data → Rules → Validated Output"
+  },
+  {
+    id: 5,
+    slideNum: "Slide 5",
+    category: "Enterprise AI",
+    highlight: "Enterprise AI & Knowledge Intelligence",
+    title: "Intelligence built into every workflow.",
+    description: "Leverage AI to understand enterprise context, search knowledge, generate insights, and assist users with smarter decisions.",
+    visual: "AI brain connected to every module."
+  },
+  {
+    id: 6,
+    slideNum: "Slide 6",
+    category: "Reconciliation",
+    highlight: "Automated Reconciliation",
+    title: "Confidence in every transaction.",
+    description: "Automatically match and reconcile financial and operational data across multiple systems with speed and accuracy.",
+    visual: "Invoice ↔ Purchase Order ↔ ERP"
+  },
+  {
+    id: 7,
+    slideNum: "Slide 7",
+    category: "Analytics & Insights",
+    highlight: "Operational Intelligence",
+    title: "Every workflow tells a story.",
+    description: "Turn operational data into real-time dashboards, business insights, and actionable reports for faster decision-making.",
+    visual: "Interactive dashboard."
+  },
+  {
+    id: 8,
+    slideNum: "Slide 8",
+    category: "Enterprise Integrations",
+    highlight: "API-First Integration",
+    title: "Works with what you already use.",
+    description: "Connect seamlessly with ERP, CRM, cloud platforms, databases, APIs, and enterprise applications without disrupting existing systems.",
+    visual: "SAP • Salesforce • Oracle • Microsoft • REST APIs"
+  },
+  {
+    id: 9,
+    slideNum: "Slide 9",
+    category: "Built for Every Industry",
+    highlight: "Industry-Agnostic Platform",
+    title: "One platform. Every industry.",
+    description: "From Banking and Healthcare to Manufacturing, Insurance, Media, and Pharmaceuticals, ACE adapts to your business—not the other way around.",
+    visual: "Industry cards connected to ACE."
+  },
+  {
+    id: 10,
+    slideNum: "Slide 10",
+    category: "Business Impact",
+    highlight: "Enterprise Transformation",
+    title: "Built to deliver measurable outcomes.",
+    description: "Reduce manual effort, improve accuracy, accelerate decisions, strengthen compliance, and scale operations with confidence.",
+    visual: "Animated metrics and KPI counters."
+  }
+];
+
 export default function Ace() {
   const [activeWorkflowModal, setActiveWorkflowModal] = useState<string | null>(null);
   const [activeArchTab, setActiveArchTab] = useState<"ingest" | "process" | "export">("process");
+
+  // Highlights Carousel State
+  const [activeHighlightIndex, setActiveHighlightIndex] = useState(0);
+  const [isHighlightPlaying, setIsHighlightPlaying] = useState(true);
+  const highlightTrackRef = useRef<HTMLDivElement>(null);
+  const isProgrammaticScroll = useRef(false);
+
+  // Take a Closer Look State
+  const [activeCapIndex, setActiveCapIndex] = useState(0);
+
+  // Autoplay interval
+  useEffect(() => {
+    if (!isHighlightPlaying) return;
+    const interval = setInterval(() => {
+      setActiveHighlightIndex((prev) => (prev + 1) % highlightsSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isHighlightPlaying]);
+
+  // Scroll active slide into view smoothly
+  useEffect(() => {
+    if (highlightTrackRef.current) {
+      const track = highlightTrackRef.current;
+      const cards = track.querySelectorAll(".highlight-card");
+      if (cards[activeHighlightIndex]) {
+        isProgrammaticScroll.current = true;
+        const card = cards[activeHighlightIndex] as HTMLElement;
+        // Center the card in the viewport
+        const targetScrollLeft = card.offsetLeft - (track.offsetWidth / 2) + (card.offsetWidth / 2);
+        track.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+
+        const timer = setTimeout(() => {
+          isProgrammaticScroll.current = false;
+        }, 500);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [activeHighlightIndex]);
+
+  // Update active slide on user manual scroll
+  const handleHighlightScroll = () => {
+    if (isProgrammaticScroll.current) return;
+    if (highlightTrackRef.current) {
+      const track = highlightTrackRef.current;
+      const cards = track.querySelectorAll(".highlight-card");
+      const trackScrollLeft = track.scrollLeft;
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      cards.forEach((cardNode, index) => {
+        const card = cardNode as HTMLElement;
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const viewportCenter = trackScrollLeft + track.offsetWidth / 2;
+        const distance = Math.abs(viewportCenter - cardCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      if (closestIndex !== activeHighlightIndex) {
+        setActiveHighlightIndex(closestIndex);
+      }
+    }
+  };
+
+  const renderCloserLookVisual = () => {
+    switch (activeCapIndex) {
+      case 0: // Platform Overview
+        return (
+          <div className="closer-look-visual-box overview">
+            <div className="overview-3d-diagram">
+              <div className="diagram-top-row">
+                <div className="node cosmos-node">
+                  <span className="node-badge">AI Agent</span>
+                  <strong>COSMOS</strong>
+                </div>
+              </div>
+              <div className="diagram-mid-row">
+                <div className="node hertz-node">
+                  <span className="node-badge">Email</span>
+                  <strong>HERTZ</strong>
+                </div>
+                <div className="node ionic-node">
+                  <span className="node-badge">Extraction</span>
+                  <strong>IONIC</strong>
+                </div>
+                <div className="node gears-node">
+                  <span className="node-badge">Rules</span>
+                  <strong>GEARS</strong>
+                </div>
+              </div>
+              <div className="diagram-center-row">
+                <div className="node core-node">
+                  <span className="core-glow" />
+                  <strong>○ ACE CORE</strong>
+                  <span className="core-sub">Orchestrator</span>
+                </div>
+              </div>
+              <div className="diagram-bottom-row">
+                <div className="node smartflows-node">
+                  <span className="node-badge">Workflows</span>
+                  <strong>SMARTFLOWS</strong>
+                </div>
+                <div className="node lucid-node">
+                  <span className="node-badge">Reconciliation</span>
+                  <strong>LUCID</strong>
+                </div>
+              </div>
+              <div className="diagram-bottom-row secondary">
+                <div className="node instabolt-node">
+                  <span className="node-badge">Analytics</span>
+                  <strong>INSTABOLT</strong>
+                </div>
+                <div className="node sweethello-node">
+                  <span className="node-badge">Portal</span>
+                  <strong>SWEET HELLO</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case 1: // Intelligent Document Processing
+        return (
+          <div className="closer-look-visual-box idp">
+            <div className="idp-flow-diagram">
+              <div className="flow-step">
+                <div className="step-icon-wrap"><FileText size={20} /></div>
+                <span>Invoice</span>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step">
+                <div className="step-icon-wrap"><Cpu size={20} /></div>
+                <span>OCR</span>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step highlight">
+                <div className="step-icon-wrap"><Sparkles size={20} /></div>
+                <span>AI Extraction</span>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step">
+                <div className="step-icon-wrap"><ShieldCheck size={20} /></div>
+                <span>Validation</span>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step final">
+                <div className="step-icon-wrap"><Database size={20} /></div>
+                <span>ERP</span>
+              </div>
+            </div>
+          </div>
+        );
+      case 2: // Workflow Automation
+        return (
+          <div className="closer-look-visual-box workflow">
+            <div className="workflow-flow-diagram">
+              <div className="flow-step">
+                <div className="step-icon-wrap"><Mail size={20} /></div>
+                <span>Request</span>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step">
+                <div className="step-icon-wrap"><Check size={20} /></div>
+                <span>Approval</span>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step">
+                <div className="step-icon-wrap"><Sliders size={20} /></div>
+                <span>Business Rules</span>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step">
+                <div className="step-icon-wrap"><Database size={20} /></div>
+                <span>ERP</span>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step final">
+                <div className="step-icon-wrap"><ShieldCheck size={20} /></div>
+                <span>Completed</span>
+              </div>
+            </div>
+          </div>
+        );
+      case 3: // Business Rules Engine
+        return (
+          <div className="closer-look-visual-box rules">
+            <div className="rules-flow-diagram">
+              <div className="flow-side">
+                <div className="flow-step">
+                  <div className="step-icon-wrap"><Database size={20} /></div>
+                  <span>Incoming Data</span>
+                </div>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-center">
+                <div className="rules-eval-box">
+                  <div className="rules-gear-icon"><Sliders size={28} /></div>
+                  <strong>Business Rules Evaluation</strong>
+                  <div className="rule-badge-list">
+                    <span className="rule-badge pass">Rule 1: Pass</span>
+                    <span className="rule-badge pass">Rule 2: Pass</span>
+                    <span className="rule-badge flag">Rule 3: Warning</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-side">
+                <div className="flow-step final">
+                  <div className="step-icon-wrap"><ShieldCheck size={20} /></div>
+                  <span>Validated Output</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case 4: // Reconciliation
+        return (
+          <div className="closer-look-visual-box recon">
+            <div className="recon-flow-diagram">
+              <div className="flow-sources">
+                <div className="flow-step source-a">
+                  <div className="step-icon-wrap"><FileText size={18} /></div>
+                  <span>Invoice</span>
+                </div>
+                <div className="source-plus">+</div>
+                <div className="flow-step source-b">
+                  <div className="step-icon-wrap"><FileText size={18} /></div>
+                  <span>Purchase Order</span>
+                </div>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-middle">
+                <div className="recon-engine-box">
+                  <div className="recon-icon"><GitCompare size={24} /></div>
+                  <span>LUCID Matcher</span>
+                </div>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-targets">
+                <div className="flow-step erp-step">
+                  <div className="step-icon-wrap"><Database size={18} /></div>
+                  <span>ERP Payload</span>
+                </div>
+                <div className="flow-step final-step">
+                  <div className="step-icon-wrap"><ShieldCheck size={18} /></div>
+                  <span>Matched</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case 5: // Enterprise AI
+        return (
+          <div className="closer-look-visual-box ai">
+            <div className="ai-brain-diagram">
+              <div className="brain-core">
+                <div className="brain-glow" />
+                <Sparkles size={40} className="brain-icon" />
+                <strong>Enterprise AI Brain</strong>
+              </div>
+              <div className="brain-connections">
+                <div className="connect-node">IDP</div>
+                <div className="connect-node">Workflows</div>
+                <div className="connect-node">Recon</div>
+                <div className="connect-node">Rules</div>
+                <div className="connect-node">Analytics</div>
+              </div>
+            </div>
+          </div>
+        );
+      case 6: // Analytics & Reporting
+        return (
+          <div className="closer-look-visual-box analytics">
+            <div className="analytics-flow-diagram">
+              <div className="analytics-chart-preview">
+                <div className="bar-chart">
+                  <div className="bar" style={{ height: "40%" }} />
+                  <div className="bar" style={{ height: "70%" }} />
+                  <div className="bar" style={{ height: "55%" }} />
+                  <div className="bar highlight" style={{ height: "90%" }} />
+                  <div className="bar" style={{ height: "65%" }} />
+                </div>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="analytics-metrics-box">
+                <div className="metric-item">
+                  <span className="metric-val">99.2%</span>
+                  <span className="metric-lbl">Accuracy</span>
+                </div>
+                <div className="metric-item">
+                  <span className="metric-val">10x</span>
+                  <span className="metric-lbl">SLA Speedup</span>
+                </div>
+              </div>
+              <div className="flow-arrow-next">→</div>
+              <div className="flow-step final">
+                <div className="step-icon-wrap"><BarChart3 size={20} /></div>
+                <span>Insights</span>
+              </div>
+            </div>
+          </div>
+        );
+      case 7: // Enterprise Integrations
+        return (
+          <div className="closer-look-visual-box integrations">
+            <div className="integrations-diagram">
+              <div className="system-icons-grid">
+                <div className="sys-icon">SAP</div>
+                <div className="sys-icon">Oracle</div>
+                <div className="sys-icon">Salesforce</div>
+                <div className="sys-icon">Microsoft</div>
+              </div>
+              <div className="integ-arrow-down">↓</div>
+              <div className="central-hub">
+                <Zap size={24} className="hub-zap" />
+                <span>ACE Hub</span>
+              </div>
+              <div className="integ-arrow-down">↓</div>
+              <div className="connected-enterprise-badge">
+                <Globe size={18} />
+                <span>Connected Enterprise</span>
+              </div>
+            </div>
+          </div>
+        );
+      case 8: // Deployment
+        return (
+          <div className="closer-look-visual-box deployment">
+            <div className="deployment-diagram">
+              <div className="deploy-step">
+                <div className="deploy-icon-wrap"><Server size={24} /></div>
+                <span>On-Premises</span>
+              </div>
+              <div className="flow-arrow-next">↔</div>
+              <div className="deploy-step highlight">
+                <div className="deploy-icon-wrap"><Layers size={24} /></div>
+                <span>Hybrid</span>
+              </div>
+              <div className="flow-arrow-next">↔</div>
+              <div className="deploy-step">
+                <div className="deploy-icon-wrap"><Cloud size={24} /></div>
+                <span>Cloud</span>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
   const fadeUp = {
     initial: { opacity: 0, y: 30 },
@@ -272,6 +770,363 @@ export default function Ace() {
               <p>Business Outcomes</p>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION: GET THE HIGHLIGHTS (Apple Highlights Carousel) */}
+      <section className="ace-highlights-section">
+        <div className="highlights-header-container">
+          <motion.h2 
+            className="highlights-main-title"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            Get the Highlights.
+          </motion.h2>
+        </div>
+
+        <div className="highlights-carousel-wrapper">
+          <div 
+            className="highlights-carousel-track" 
+            ref={highlightTrackRef}
+            onScroll={handleHighlightScroll}
+          >
+            {highlightsSlides.map((slide, idx) => (
+              <div 
+                key={slide.id} 
+                className={`highlight-card ${idx === activeHighlightIndex ? "active" : ""}`}
+                onClick={() => setActiveHighlightIndex(idx)}
+              >
+                <div className="highlight-card-header">
+                  {slide.highlight ? (
+                    <span className="highlight-pill-badge">{slide.highlight}</span>
+                  ) : (
+                    <span className="highlight-pill-badge">{slide.category}</span>
+                  )}
+                  <h3 className="highlight-card-title">{slide.title}</h3>
+                  <p className="highlight-card-desc">{slide.description}</p>
+                </div>
+
+                <div className="highlight-visual-container">
+                  <div className="highlight-image-placeholder">
+                    <div className="placeholder-icon-wrap">
+                      <ImageIcon size={32} className="placeholder-img-icon" />
+                    </div>
+                    <div className="placeholder-visual-info">
+                      <span className="placeholder-tag">Visual Placeholder</span>
+                      <p className="placeholder-visual-desc">{slide.visual}</p>
+                    </div>
+                    <div className="empty-image-label">
+                      <span>Empty Image Frame</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Floating Pill Controls (Apple Style) */}
+          <div className="highlights-controls-pill-wrapper">
+            <div className="highlights-controls-pill">
+              <div className="ctrl-dots-group">
+                {highlightsSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    className={`ctrl-dot ${idx === activeHighlightIndex ? "active" : ""}`}
+                    onClick={() => setActiveHighlightIndex(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  >
+                    {idx === activeHighlightIndex && isHighlightPlaying && (
+                      <span className="dot-progress-bar" />
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              <div className="ctrl-divider" />
+
+              <button 
+                className="ctrl-play-btn"
+                onClick={() => setIsHighlightPlaying(!isHighlightPlaying)}
+                aria-label={isHighlightPlaying ? "Pause carousel" : "Play carousel"}
+              >
+                {isHighlightPlaying ? <Pause size={14} fill="currentColor" /> : <Play size={14} fill="currentColor" />}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION: ONE PLATFORM, EVERY INDUSTRY, ENDLESS POSSIBILITIES */}
+      <section className="ace-family-grid-section">
+        
+        <div className="family-single-card-container">
+            
+            {/* Process Card 1 (Top Left) */}
+            <div className="inner-process-card top-left">
+              <div className="family-card-visual-wrapper">
+                <div className="visual-invoice-proc">
+                  <div className="invoice-paper">
+                    <div className="invoice-header">
+                      <div className="invoice-logo" />
+                      <div className="invoice-amount">$14,250.00</div>
+                    </div>
+                    <div className="invoice-lines">
+                      <div className="line" />
+                      <div className="line" />
+                      <div className="line" />
+                    </div>
+                  </div>
+                  <div className="scan-line" />
+                  <div className="json-output">
+                    <code>{"{"}</code>
+                    <code>  "vendor": "Algonox Inc",</code>
+                    <code>  "total": 14250.00,</code>
+                    <code>  "status": "extracted"</code>
+                    <code>{"}"}</code>
+                  </div>
+                </div>
+              </div>
+              <div className="family-card-info">
+                <h4>Invoice Processing</h4>
+                <p>From manual data entry to intelligent automation.</p>
+              </div>
+            </div>
+
+            {/* Process Card 2 (Top Right) */}
+            <div className="inner-process-card top-right">
+              <div className="family-card-visual-wrapper">
+                <div className="visual-claims-proc">
+                  <div className="claim-doc">
+                    <span className="doc-tag">CLAIM #981</span>
+                    <div className="doc-content">
+                      <span className="doc-bar" />
+                      <span className="doc-bar short" />
+                    </div>
+                  </div>
+                  <div className="claim-arrow">→</div>
+                  <div className="claim-status-node">
+                    <span className="node-icon">✓</span>
+                    <span className="node-label">Validated</span>
+                  </div>
+                  <div className="claim-arrow">→</div>
+                  <div className="claim-status-node approve">
+                    <span className="node-icon">★</span>
+                    <span className="node-label">Approved</span>
+                  </div>
+                </div>
+              </div>
+              <div className="family-card-info">
+                <h4>Claims Processing</h4>
+                <p>Accelerating decisions with intelligent workflows.</p>
+              </div>
+            </div>
+
+            {/* Header Area inside the card (Center) */}
+            <div className="family-center-text-block">
+              <motion.h2 
+                className="family-main-title"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                One platform. <br />
+                Every industry. <br />
+                Endless possibilities.
+              </motion.h2>
+              
+              <motion.p 
+                className="family-supporting-text"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+              >
+                ACE is Algonox's Enterprise Hyper Automation Platform, bringing together AI, intelligent document processing, workflow orchestration, business rules, reconciliation, analytics, and enterprise integrations into one unified platform. Designed to adapt across industries and business functions, ACE empowers organizations to automate complex processes, accelerate decisions, and drive enterprise-wide transformation.
+              </motion.p>
+
+              <motion.div 
+                className="family-cta-wrapper"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <Link to="/contact" className="btn-family-cta">
+                  <span>Explore ACE</span>
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Process Card 3 (Bottom Left) */}
+            <div className="inner-process-card bottom-left">
+              <div className="family-card-visual-wrapper">
+                <div className="visual-customer-onboarding">
+                  <div className="onboard-profile">
+                    <div className="profile-avatar" />
+                    <div className="profile-lines">
+                      <div className="profile-line" />
+                      <div className="profile-line short" />
+                    </div>
+                  </div>
+                  <div className="identity-badge">
+                    <span className="badge-dot" />
+                    <span>ID Verified</span>
+                  </div>
+                  <div className="onboard-status">
+                    <span className="onboard-check">✓</span>
+                    <span>Onboarded</span>
+                  </div>
+                </div>
+              </div>
+              <div className="family-card-info">
+                <h4>Customer Onboarding</h4>
+                <p>Creating seamless onboarding experiences.</p>
+              </div>
+            </div>
+
+            {/* Process Card 4 (Bottom Right) */}
+            <div className="inner-process-card bottom-right">
+              <div className="family-card-visual-wrapper">
+                <div className="visual-po-automation">
+                  <div className="po-doc">
+                    <span className="po-title">PO #504</span>
+                    <div className="po-bars">
+                      <div className="po-bar" />
+                      <div className="po-bar" />
+                    </div>
+                  </div>
+                  <div className="po-connection-line" />
+                  <div className="erp-database">
+                    <div className="db-cylinder">
+                      <div className="db-top" />
+                      <div className="db-mid" />
+                      <div className="db-bottom" />
+                    </div>
+                    <span className="db-label">ERP Sync</span>
+                  </div>
+                </div>
+              </div>
+              <div className="family-card-info">
+                <h4>Purchase Order Automation</h4>
+                <p>Connecting procurement with enterprise operations.</p>
+              </div>
+            </div>
+
+          </div>
+
+      </section>
+
+      {/* SECTION: EXPLORE THE ACE PLATFORM (Take a Closer Look — Apple MacBook Neo Style) */}
+      <section className="ace-closer-look-section">
+        <div className="closer-look-container">
+          <AnimatePresence>
+            {activeCapIndex < 0 && (
+              <motion.h2 
+                className="closer-look-title"
+                initial={{ opacity: 0, height: 0, marginBottom: 0, overflow: "hidden" }}
+                animate={{ opacity: 1, height: "auto", marginBottom: 40 }}
+                exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+              >
+                Take a closer look.
+              </motion.h2>
+            )}
+          </AnimatePresence>
+
+          <div className="closer-look-card">
+            {/* X close button — top right corner */}
+            {activeCapIndex >= 0 && (
+              <button
+                className="closer-look-close-btn"
+                onClick={() => setActiveCapIndex(-1)}
+                aria-label="Close all"
+              >
+                <X size={16} />
+              </button>
+            )}
+
+            {/* Left Column: Arrows + Nav pills */}
+            <div className="closer-look-left">
+              {/* Chevron arrows — floating outside, to the left of the pills */}
+              <div className="closer-look-arrows-col">
+                <button
+                  className="arrow-btn"
+                  onClick={() => setActiveCapIndex((prev) => (prev - 1 + capabilities.length) % capabilities.length)}
+                  aria-label="Previous"
+                >
+                  <ChevronUp size={14} />
+                </button>
+                <button
+                  className="arrow-btn"
+                  onClick={() => setActiveCapIndex((prev) => (prev + 1) % capabilities.length)}
+                  aria-label="Next"
+                >
+                  <ChevronDown size={14} />
+                </button>
+              </div>
+
+              {/* Navigation pills list */}
+              <motion.div layout className="closer-look-pills">
+                {capabilities.map((cap, idx) => (
+                  <motion.div key={idx} layout className="closer-look-pill-wrap">
+                    <AnimatePresence initial={false}>
+                      {idx !== activeCapIndex ? (
+                        <motion.button
+                          key="pill"
+                          layout="position"
+                          className="closer-look-pill"
+                          onClick={() => setActiveCapIndex(idx)}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.25 }}
+                        >
+                          <span className="pill-icon">{idx === 0 ? "○" : "＋"}</span>
+                          <span className="pill-text">{cap.label}</span>
+                        </motion.button>
+                      ) : (
+                        <motion.div
+                          key="content"
+                          layout="position"
+                          className="closer-look-accordion"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                        >
+                          <div className="accordion-inner">
+                            <p className="accordion-desc">
+                              <strong>{cap.label}.</strong> {cap.description}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Right Column: Large visual panel */}
+            <div className="closer-look-right">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCapIndex}
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+                  className="closer-look-visual-wrap"
+                >
+                  {renderCloserLookVisual()}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </section>
 
