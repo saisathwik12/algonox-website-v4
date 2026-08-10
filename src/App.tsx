@@ -4,7 +4,7 @@ import {
   AnimatePresence,
   useScroll,
   useTransform,
-  useSpring,
+  // useSpring, // Commented out to fix build error
   useInView,
 } from "framer-motion";
 import { Menu, X, Search, ChevronRight, Play, Pause, Landmark, Calculator, ShieldCheck, Pill, Briefcase, Tv, Factory, Cpu, Truck, Megaphone, Headphones, Scale, Globe, Users, Zap, Phone, ArrowRight } from "lucide-react";
@@ -48,11 +48,11 @@ function ScrollToTop() {
 // ============================================================
 // SCROLL PROGRESS BAR
 // ============================================================
-function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  return <motion.div className="scroll-progress" style={{ scaleX }} />;
-}
+// function ScrollProgress() {
+//   const { scrollYProgress } = useScroll();
+//   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+//   return <motion.div className="scroll-progress" style={{ scaleX }} />;
+// }
 
 
 

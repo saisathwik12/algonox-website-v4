@@ -362,7 +362,7 @@ export default function Ace() {
   ];
 
   const intelligentServices = [
-    { id: "hertz", name: "HERTZ", title: "Email Automation", desc: "Automates email intake, attachment extraction, and inbox workflow triggers.", icon: <Mail size={24} />, color: "#0071e3" },
+    { id: "hertz", name: "HERTZ", title: "Email Automation", desc: "Automates email intake, attachment extraction, and inbox workflow triggers.", icon: <Mail size={24} />, color: "#0090F7" },
     { id: "ionic", name: "IONIC", title: "Intelligent Data Extraction", desc: "Extracts structured data from unstructured PDFs, forms, scans, and documents.", icon: <FileText size={24} />, color: "#34c759" },
     { id: "gears", name: "GEARS", title: "Business Rules Engine", desc: "Validates compliance and data rules in plain natural business language.", icon: <Sliders size={24} />, color: "#ff9500" },
     { id: "smartflows", name: "SMARTFLOWS", title: "AI Workflows", desc: "Orchestrates complex business workflows, approval flows, and task routing.", icon: <Workflow size={24} />, color: "#5856d6" },
@@ -481,34 +481,6 @@ export default function Ace() {
             <a href="#how-it-works" className="btn-cinematic-secondary">
               <span>Watch Platform Overview</span>
             </a>
-          </motion.div>
-
-          {/* Animated Hero Canvas Diagram */}
-          <motion.div 
-            className="hero-flow-diagram"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-            <div className="flow-card">
-              <span className="flow-step-label">INTAKE</span>
-              <p>Enterprise Documents</p>
-            </div>
-            <div className="flow-arrow">→</div>
-            <div className="flow-card highlight-ai">
-              <span className="flow-step-label">INTELLIGENCE</span>
-              <p>ACE AI & Rules</p>
-            </div>
-            <div className="flow-arrow">→</div>
-            <div className="flow-card highlight-auto">
-              <span className="flow-step-label">ORCHESTRATION</span>
-              <p>Workflow Automation</p>
-            </div>
-            <div className="flow-arrow">→</div>
-            <div className="flow-card highlight-outcome">
-              <span className="flow-step-label">IMPACT</span>
-              <p>Business Outcomes</p>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -928,20 +900,20 @@ export default function Ace() {
             ACE is Algonox's Enterprise Hyper Automation Platform. It unifies AI, Intelligent Document Processing, Business Rules, Workflow Automation, Reconciliation, Reporting, and Enterprise Integrations into one scalable platform.
           </motion.p>
 
-          {/* Interactive Connected Architecture Graphic */}
-          <motion.div className="ace-core-graphic" {...fadeUp}>
-            <div className="core-node-center">
-              <Cpu size={40} className="core-cpu-icon" />
-              <h3>ACE PLATFORM</h3>
-            </div>
-            <div className="core-service-satellites">
-              {intelligentServices.map((svc) => (
-                <div key={svc.id} className="satellite-node" style={{ borderColor: `${svc.color}40` }}>
-                  <span className="sat-icon" style={{ color: svc.color }}>{svc.icon}</span>
-                  <span className="sat-name">{svc.name}</span>
-                </div>
-              ))}
-            </div>
+          <motion.div className="ace-modules-minimal-row" {...fadeUp}>
+            {intelligentServices.map((svc, idx) => (
+              <motion.div 
+                key={svc.id} 
+                className="minimal-module-chip"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+              >
+                <span className="chip-icon-wrap" style={{ color: svc.color }}>{svc.icon}</span>
+                <span className="chip-label">{svc.name}</span>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -1136,7 +1108,7 @@ export default function Ace() {
 
           {/* HERTZ SPOTLIGHT */}
           <motion.div className="spotlight-block" {...fadeUp}>
-            <div className="spotlight-badge" style={{ color: "#0071e3", borderColor: "#0071e330" }}>HERTZ EMAIL</div>
+            <div className="spotlight-badge" style={{ color: "#915cf0", borderColor: "#915cf030" }}>HERTZ EMAIL</div>
             <h3 className="spotlight-headline">Inboxes become Automated Action.</h3>
             <p className="spotlight-body">
               HERTZ eliminates manual inbox monitoring by reading business emails, extracting attachments, and initiating downstream operational workflows.
