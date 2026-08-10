@@ -489,7 +489,7 @@ export default function Ace() {
       <section className="ace-highlights-section">
         <div className="highlights-header-container">
           <motion.h2 
-            className="highlights-main-title"
+            className="highlights-main-title heading-gradient-amber"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -858,7 +858,7 @@ export default function Ace() {
         <div className="ace-container">
           <motion.div className="challenge-header" {...fadeUp}>
             <span className="challenge-eyebrow">The Enterprise Reality</span>
-            <h2 className="challenge-title">Disconnected Data. Manual Workarounds.</h2>
+            <h2 className="challenge-title heading-gradient-purple">Disconnected Data. Manual Workarounds.</h2>
           </motion.div>
 
           <div className="challenge-chips-grid">
@@ -923,7 +923,7 @@ export default function Ace() {
         <div className="ace-container">
           <motion.div className="section-header text-center" {...fadeUp}>
             <span className="section-eyebrow">Signature Architecture</span>
-            <h2 className="section-title">How ACE Works</h2>
+            <h2 className="section-title heading-gradient-spectrum">How ACE Works</h2>
             <p className="section-subtitle">
               From raw unstructured intake to verified enterprise payload in seconds.
             </p>
@@ -1068,7 +1068,7 @@ export default function Ace() {
         <div className="ace-container">
           <motion.div className="section-header text-center" {...fadeUp}>
             <span className="section-eyebrow">In-Depth Microservice Stories</span>
-            <h2 className="section-title">Platform Capabilities in Action</h2>
+            <h2 className="section-title heading-gradient-spectrum">Platform Capabilities in Action</h2>
           </motion.div>
 
           {/* IONIC SPOTLIGHT */}
@@ -1205,7 +1205,7 @@ export default function Ace() {
         <div className="ace-container text-center">
           <motion.div className="section-header" {...fadeUp}>
             <span className="section-eyebrow">Seamless Integrations</span>
-            <h2 className="section-title">Works with the tools you already use.</h2>
+            <h2 className="section-title heading-gradient-purple">Works with the tools you already use.</h2>
           </motion.div>
 
           <div className="ecosystem-chips">
@@ -1230,7 +1230,7 @@ export default function Ace() {
         <div className="ace-container">
           <motion.div className="section-header text-center" {...fadeUp}>
             <span className="section-eyebrow">Deployment Flexibility</span>
-            <h2 className="section-title">Deploy Anywhere</h2>
+            <h2 className="section-title heading-gradient-oklab">Deploy Anywhere</h2>
           </motion.div>
 
           <div className="deploy-cards-grid">
@@ -1328,7 +1328,7 @@ export default function Ace() {
       {/* SECTION 13: FINAL CTA */}
       <section className="ace-final-cta-section">
         <div className="ace-container text-center">
-          <motion.h2 className="final-cta-title" {...fadeUp}>
+          <motion.h2 className="final-cta-title heading-gradient-red" {...fadeUp}>
             Ready to transform enterprise automation?
           </motion.h2>
           <motion.p className="final-cta-desc" {...fadeUp}>
