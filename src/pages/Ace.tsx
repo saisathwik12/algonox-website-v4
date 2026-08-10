@@ -582,7 +582,13 @@ export default function Ace() {
         <div className="family-single-card-container">
             
             {/* Process Card 1 (Top Left) */}
-            <div className="inner-process-card top-left">
+            <motion.div 
+              className="inner-process-card top-left"
+              initial={{ opacity: 0, x: 140, y: 140, scale: 0.85 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="family-card-visual-wrapper">
                 <div className="visual-invoice-proc">
                   <div className="invoice-paper">
@@ -610,10 +616,16 @@ export default function Ace() {
                 <h4>Invoice Processing</h4>
                 <p>From manual data entry to intelligent automation.</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Process Card 2 (Top Right) */}
-            <div className="inner-process-card top-right">
+            <motion.div 
+              className="inner-process-card top-right"
+              initial={{ opacity: 0, x: -140, y: 140, scale: 0.85 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="family-card-visual-wrapper">
                 <div className="visual-claims-proc">
                   <div className="claim-doc">
@@ -639,7 +651,7 @@ export default function Ace() {
                 <h4>Claims Processing</h4>
                 <p>Accelerating decisions with intelligent workflows.</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Header Area inside the card (Center) */}
             <div className="family-center-text-block">
@@ -679,7 +691,13 @@ export default function Ace() {
             </div>
 
             {/* Process Card 3 (Bottom Left) */}
-            <div className="inner-process-card bottom-left">
+            <motion.div 
+              className="inner-process-card bottom-left"
+              initial={{ opacity: 0, x: 140, y: -140, scale: 0.85 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="family-card-visual-wrapper">
                 <div className="visual-customer-onboarding">
                   <div className="onboard-profile">
@@ -703,10 +721,16 @@ export default function Ace() {
                 <h4>Customer Onboarding</h4>
                 <p>Creating seamless onboarding experiences.</p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Process Card 4 (Bottom Right) */}
-            <div className="inner-process-card bottom-right">
+            <motion.div 
+              className="inner-process-card bottom-right"
+              initial={{ opacity: 0, x: -140, y: -140, scale: 0.85 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="family-card-visual-wrapper">
                 <div className="visual-po-automation">
                   <div className="po-doc">
@@ -731,7 +755,7 @@ export default function Ace() {
                 <h4>Purchase Order Automation</h4>
                 <p>Connecting procurement with enterprise operations.</p>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
