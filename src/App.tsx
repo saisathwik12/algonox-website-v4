@@ -1386,7 +1386,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <ScrollProgress />
       <div className="app light-theme">
         <AmbientBackground />
         <Nav />
