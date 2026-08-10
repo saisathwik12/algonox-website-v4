@@ -132,47 +132,56 @@ const capabilities = [
   {
     label: "Platform Overview",
     heading: "One platform. Every enterprise workflow.",
-    description: "ACE unifies intelligent document processing, AI, workflow automation, business rules, reconciliation, analytics, and enterprise integrations into one enterprise platform. Built on a modular architecture, it enables organizations to automate complex business processes while adapting to different industries, systems, and operational needs."
+    description: "ACE unifies intelligent document processing, AI, workflow automation, business rules, reconciliation, analytics, and enterprise integrations into one enterprise platform. Built on a modular architecture, it enables organizations to automate complex business processes while adapting to different industries, systems, and operational needs.",
+    image: "/closer_look/overview.png"
   },
   {
     label: "Intelligent Document Processing",
     heading: "Documents become intelligence.",
-    description: "Extract, classify, validate, and understand business information from invoices, claims, purchase orders, contracts, medical records, and more using AI-powered document intelligence."
+    description: "Extract, classify, validate, and understand business information from invoices, claims, purchase orders, contracts, medical records, and more using AI-powered document intelligence.",
+    image: "/closer_look/idp.png"
   },
   {
     label: "Workflow Automation",
     heading: "Work that moves itself.",
-    description: "Design and automate business workflows with intelligent routing, approvals, notifications, escalations, and human-in-the-loop collaboration across enterprise operations."
+    description: "Design and automate business workflows with intelligent routing, approvals, notifications, escalations, and human-in-the-loop collaboration across enterprise operations.",
+    image: "/closer_look/workflow.png"
   },
   {
     label: "Business Rules Engine",
     heading: "Every decision follows your rules.",
-    description: "Configure business rules to validate data, enforce compliance, standardize decisions, and automate enterprise logic without changing core business systems."
+    description: "Configure business rules to validate data, enforce compliance, standardize decisions, and automate enterprise logic without changing core business systems.",
+    image: "/closer_look/business_rules.png"
   },
   {
     label: "Reconciliation",
     heading: "Every transaction. Perfectly aligned.",
-    description: "Automatically reconcile financial and operational data across systems, identify mismatches, and improve operational accuracy with intelligent reconciliation."
+    description: "Automatically reconcile financial and operational data across systems, identify mismatches, and improve operational accuracy with intelligent reconciliation.",
+    image: "/closer_look/reconciliation.png"
   },
   {
     label: "Enterprise AI",
     heading: "Intelligence built into every process.",
-    description: "Leverage enterprise AI to understand business context, assist users, surface insights, and enable intelligent automation across every workflow."
+    description: "Leverage enterprise AI to understand business context, assist users, surface insights, and enable intelligent automation across every workflow.",
+    image: "/closer_look/enterprise_ai.png"
   },
   {
     label: "Analytics & Reporting",
     heading: "Every workflow tells a story.",
-    description: "Transform operational data into real-time dashboards, performance metrics, business insights, and actionable reports that support faster decision-making."
+    description: "Transform operational data into real-time dashboards, performance metrics, business insights, and actionable reports that support faster decision-making.",
+    image: "/closer_look/analytics.png"
   },
   {
     label: "Enterprise Integrations",
     heading: "Connected by design.",
-    description: "Integrate seamlessly with ERP, CRM, databases, cloud platforms, APIs, email systems, and enterprise applications without disrupting existing operations."
+    description: "Integrate seamlessly with ERP, CRM, databases, cloud platforms, APIs, email systems, and enterprise applications without disrupting existing operations.",
+    image: "/closer_look/integrations.png"
   },
   {
     label: "Deployment",
     heading: "Built for your enterprise.",
-    description: "Deploy ACE on-premises, in the cloud, or as a SaaS solution, providing the flexibility to align with your infrastructure, compliance, and business requirements."
+    description: "Deploy ACE on-premises, in the cloud, or as a SaaS solution, providing the flexibility to align with your infrastructure, compliance, and business requirements.",
+    image: "/closer_look/deployment.png"
   }
 ];
 
@@ -338,291 +347,7 @@ export default function Ace() {
     }
   };
 
-  const renderCloserLookVisual = () => {
-    switch (activeCapIndex) {
-      case 0: // Platform Overview
-        return (
-          <div className="closer-look-visual-box overview">
-            <div className="overview-3d-diagram">
-              <div className="diagram-top-row">
-                <div className="node cosmos-node">
-                  <span className="node-badge">AI Agent</span>
-                  <strong>COSMOS</strong>
-                </div>
-              </div>
-              <div className="diagram-mid-row">
-                <div className="node hertz-node">
-                  <span className="node-badge">Email</span>
-                  <strong>HERTZ</strong>
-                </div>
-                <div className="node ionic-node">
-                  <span className="node-badge">Extraction</span>
-                  <strong>IONIC</strong>
-                </div>
-                <div className="node gears-node">
-                  <span className="node-badge">Rules</span>
-                  <strong>GEARS</strong>
-                </div>
-              </div>
-              <div className="diagram-center-row">
-                <div className="node core-node">
-                  <span className="core-glow" />
-                  <strong>○ ACE CORE</strong>
-                  <span className="core-sub">Orchestrator</span>
-                </div>
-              </div>
-              <div className="diagram-bottom-row">
-                <div className="node smartflows-node">
-                  <span className="node-badge">Workflows</span>
-                  <strong>SMARTFLOWS</strong>
-                </div>
-                <div className="node lucid-node">
-                  <span className="node-badge">Reconciliation</span>
-                  <strong>LUCID</strong>
-                </div>
-              </div>
-              <div className="diagram-bottom-row secondary">
-                <div className="node instabolt-node">
-                  <span className="node-badge">Analytics</span>
-                  <strong>INSTABOLT</strong>
-                </div>
-                <div className="node sweethello-node">
-                  <span className="node-badge">Portal</span>
-                  <strong>SWEET HELLO</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      case 1: // Intelligent Document Processing
-        return (
-          <div className="closer-look-visual-box idp">
-            <div className="idp-flow-diagram">
-              <div className="flow-step">
-                <div className="step-icon-wrap"><FileText size={20} /></div>
-                <span>Invoice</span>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step">
-                <div className="step-icon-wrap"><Cpu size={20} /></div>
-                <span>OCR</span>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step highlight">
-                <div className="step-icon-wrap"><Sparkles size={20} /></div>
-                <span>AI Extraction</span>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step">
-                <div className="step-icon-wrap"><ShieldCheck size={20} /></div>
-                <span>Validation</span>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step final">
-                <div className="step-icon-wrap"><Database size={20} /></div>
-                <span>ERP</span>
-              </div>
-            </div>
-          </div>
-        );
-      case 2: // Workflow Automation
-        return (
-          <div className="closer-look-visual-box workflow">
-            <div className="workflow-flow-diagram">
-              <div className="flow-step">
-                <div className="step-icon-wrap"><Mail size={20} /></div>
-                <span>Request</span>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step">
-                <div className="step-icon-wrap"><Check size={20} /></div>
-                <span>Approval</span>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step">
-                <div className="step-icon-wrap"><Sliders size={20} /></div>
-                <span>Business Rules</span>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step">
-                <div className="step-icon-wrap"><Database size={20} /></div>
-                <span>ERP</span>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step final">
-                <div className="step-icon-wrap"><ShieldCheck size={20} /></div>
-                <span>Completed</span>
-              </div>
-            </div>
-          </div>
-        );
-      case 3: // Business Rules Engine
-        return (
-          <div className="closer-look-visual-box rules">
-            <div className="rules-flow-diagram">
-              <div className="flow-side">
-                <div className="flow-step">
-                  <div className="step-icon-wrap"><Database size={20} /></div>
-                  <span>Incoming Data</span>
-                </div>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-center">
-                <div className="rules-eval-box">
-                  <div className="rules-gear-icon"><Sliders size={28} /></div>
-                  <strong>Business Rules Evaluation</strong>
-                  <div className="rule-badge-list">
-                    <span className="rule-badge pass">Rule 1: Pass</span>
-                    <span className="rule-badge pass">Rule 2: Pass</span>
-                    <span className="rule-badge flag">Rule 3: Warning</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-side">
-                <div className="flow-step final">
-                  <div className="step-icon-wrap"><ShieldCheck size={20} /></div>
-                  <span>Validated Output</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      case 4: // Reconciliation
-        return (
-          <div className="closer-look-visual-box recon">
-            <div className="recon-flow-diagram">
-              <div className="flow-sources">
-                <div className="flow-step source-a">
-                  <div className="step-icon-wrap"><FileText size={18} /></div>
-                  <span>Invoice</span>
-                </div>
-                <div className="source-plus">+</div>
-                <div className="flow-step source-b">
-                  <div className="step-icon-wrap"><FileText size={18} /></div>
-                  <span>Purchase Order</span>
-                </div>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-middle">
-                <div className="recon-engine-box">
-                  <div className="recon-icon"><GitCompare size={24} /></div>
-                  <span>LUCID Matcher</span>
-                </div>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-targets">
-                <div className="flow-step erp-step">
-                  <div className="step-icon-wrap"><Database size={18} /></div>
-                  <span>ERP Payload</span>
-                </div>
-                <div className="flow-step final-step">
-                  <div className="step-icon-wrap"><ShieldCheck size={18} /></div>
-                  <span>Matched</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      case 5: // Enterprise AI
-        return (
-          <div className="closer-look-visual-box ai">
-            <div className="ai-brain-diagram">
-              <div className="brain-core">
-                <div className="brain-glow" />
-                <Sparkles size={40} className="brain-icon" />
-                <strong>Enterprise AI Brain</strong>
-              </div>
-              <div className="brain-connections">
-                <div className="connect-node">IDP</div>
-                <div className="connect-node">Workflows</div>
-                <div className="connect-node">Recon</div>
-                <div className="connect-node">Rules</div>
-                <div className="connect-node">Analytics</div>
-              </div>
-            </div>
-          </div>
-        );
-      case 6: // Analytics & Reporting
-        return (
-          <div className="closer-look-visual-box analytics">
-            <div className="analytics-flow-diagram">
-              <div className="analytics-chart-preview">
-                <div className="bar-chart">
-                  <div className="bar" style={{ height: "40%" }} />
-                  <div className="bar" style={{ height: "70%" }} />
-                  <div className="bar" style={{ height: "55%" }} />
-                  <div className="bar highlight" style={{ height: "90%" }} />
-                  <div className="bar" style={{ height: "65%" }} />
-                </div>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="analytics-metrics-box">
-                <div className="metric-item">
-                  <span className="metric-val">99.2%</span>
-                  <span className="metric-lbl">Accuracy</span>
-                </div>
-                <div className="metric-item">
-                  <span className="metric-val">10x</span>
-                  <span className="metric-lbl">SLA Speedup</span>
-                </div>
-              </div>
-              <div className="flow-arrow-next">→</div>
-              <div className="flow-step final">
-                <div className="step-icon-wrap"><BarChart3 size={20} /></div>
-                <span>Insights</span>
-              </div>
-            </div>
-          </div>
-        );
-      case 7: // Enterprise Integrations
-        return (
-          <div className="closer-look-visual-box integrations">
-            <div className="integrations-diagram">
-              <div className="system-icons-grid">
-                <div className="sys-icon">SAP</div>
-                <div className="sys-icon">Oracle</div>
-                <div className="sys-icon">Salesforce</div>
-                <div className="sys-icon">Microsoft</div>
-              </div>
-              <div className="integ-arrow-down">↓</div>
-              <div className="central-hub">
-                <Zap size={24} className="hub-zap" />
-                <span>ACE Hub</span>
-              </div>
-              <div className="integ-arrow-down">↓</div>
-              <div className="connected-enterprise-badge">
-                <Globe size={18} />
-                <span>Connected Enterprise</span>
-              </div>
-            </div>
-          </div>
-        );
-      case 8: // Deployment
-        return (
-          <div className="closer-look-visual-box deployment">
-            <div className="deployment-diagram">
-              <div className="deploy-step">
-                <div className="deploy-icon-wrap"><Server size={24} /></div>
-                <span>On-Premises</span>
-              </div>
-              <div className="flow-arrow-next">↔</div>
-              <div className="deploy-step highlight">
-                <div className="deploy-icon-wrap"><Layers size={24} /></div>
-                <span>Hybrid</span>
-              </div>
-              <div className="flow-arrow-next">↔</div>
-              <div className="deploy-step">
-                <div className="deploy-icon-wrap"><Cloud size={24} /></div>
-                <span>Cloud</span>
-              </div>
-            </div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+
 
   const fadeUp = {
     initial: { opacity: 0, y: 30 },
@@ -1059,6 +784,25 @@ export default function Ace() {
           </AnimatePresence>
 
           <div className="closer-look-card">
+            {/* Full Card Background Image Layer */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCapIndex >= 0 ? activeCapIndex : 0}
+                className="closer-look-full-bg-layer"
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.04 }}
+                transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <img
+                  src={capabilities[activeCapIndex >= 0 ? activeCapIndex : 0]?.image}
+                  alt={capabilities[activeCapIndex >= 0 ? activeCapIndex : 0]?.label}
+                  className="closer-look-full-bg-image"
+                />
+                <div className="closer-look-full-bg-overlay" />
+              </motion.div>
+            </AnimatePresence>
+
             {/* X close button — top right corner */}
             {activeCapIndex >= 0 && (
               <button
@@ -1132,21 +876,8 @@ export default function Ace() {
               </motion.div>
             </div>
 
-            {/* Right Column: Large visual panel */}
-            <div className="closer-look-right">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeCapIndex}
-                  initial={{ opacity: 0, scale: 0.97 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.97 }}
-                  transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-                  className="closer-look-visual-wrap"
-                >
-                  {renderCloserLookVisual()}
-                </motion.div>
-              </AnimatePresence>
-            </div>
+            {/* Right Column: Transparent spacer allowing full background image to show unified across left & right */}
+            <div className="closer-look-right" />
           </div>
         </div>
       </section>
