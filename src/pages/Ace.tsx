@@ -422,15 +422,14 @@ export default function Ace() {
         <div className="hero-grid-bg"></div>
         <div className="hero-particles"></div>
         <div className="ace-container text-center relative z-10">
-          <motion.div 
-            className="hero-badge"
+          <motion.span 
+            className="hero-eyebrow"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <Sparkles size={14} className="badge-icon" />
-            <span>Algonox Flagship Platform</span>
-          </motion.div>
+            Algonox Flagship Platform
+          </motion.span>
 
           <motion.h1 
             className="hero-main-title"

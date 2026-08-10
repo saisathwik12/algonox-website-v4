@@ -81,6 +81,13 @@
 .badge-icon {
   color: #0071e3;
 }
+.hero-eyebrow {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: #1d1d1f;
+  display: block;
+}
 
 .hero-main-title {
   font-size: 120px;
