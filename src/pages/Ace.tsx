@@ -583,7 +583,7 @@ export default function Ace() {
           className="family-single-card-container"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.60 }}
+          viewport={{ once: true, amount: 0.60 }}
         >
             
             {/* Process Card 1 (Top Left) */}
@@ -701,7 +701,7 @@ export default function Ace() {
               <motion.div 
                 className="family-cta-wrapper"
                 variants={{
-                  hidden: { opacity: 0.9, y: 20 },
+                  hidden: { opacity: 0, y: 20 },
                   visible: { 
                     opacity: 1, 
                     y: 0,

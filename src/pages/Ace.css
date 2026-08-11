@@ -35,7 +35,7 @@
 .ace-hero-cinematic {
   position: relative;
   padding: 35px 0 140px;
-  background: radial-gradient(circle at 50% 30%, #ffffff 0%, #fafafa 70%);
+  background: #f5f5f7;
   overflow: hidden;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
@@ -52,15 +52,7 @@
 }
 
 .hero-particles {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(186, 98, 252, 0.15) 0%, rgba(0, 144, 247, 0.1) 50%, transparent 70%);
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  filter: blur(80px);
-  pointer-events: none;
+  display: none;
 }
 
 .hero-badge {
@@ -1077,7 +1069,7 @@
    ============================================================ */
 .ace-final-cta-section {
   padding: 140px 0;
-  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f5f5f7 80%);
+  background: #ffffff;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -1274,7 +1266,7 @@
    ============================================================ */
 .ace-highlights-section {
   padding: 80px 0 60px;
-  background: #fafafa;
+  background: #ffffff;
   position: relative;
 }
 
@@ -1510,7 +1502,7 @@
    ============================================================ */
 .ace-family-grid-section {
   padding: 40px 0 50px;
-  background: #fafafa;
+  background: #f5f5f7;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -2041,12 +2033,12 @@
    ============================================================ */
 .ace-closer-look-section {
   padding: 80px 0 120px;
-  background: #f5f5f7;
+  background: #ffffff;
 }
 
 .closer-look-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 98%;
   margin: 0 auto;
   padding: 0 22px;
 }
@@ -2259,7 +2251,9 @@
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12),
               inset 0 0.5px 0 rgba(255, 255, 255, 0.9);
-  max-width: 380px;
+  max-width: 440px;
+  min-width: 400px;
+
 }
 
 .accordion-heading {
@@ -2271,11 +2265,13 @@
 }
 
 .accordion-desc {
-  font-size: 13px;
-  line-height: 1.55;
   color: #111115;
-  font-weight: 500;
   margin: 0;
+  font-family: SF Pro Text, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4705882353;
+  font-weight: 400;
+  letter-spacing: 0.022em;
 }
 
 .accordion-desc strong {
