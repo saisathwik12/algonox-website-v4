@@ -579,15 +579,26 @@ export default function Ace() {
       {/* SECTION: ONE PLATFORM, EVERY INDUSTRY, ENDLESS POSSIBILITIES */}
       <section className="ace-family-grid-section">
         
-        <div className="family-single-card-container">
+        <motion.div 
+          className="family-single-card-container"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.60 }}
+        >
             
             {/* Process Card 1 (Top Left) */}
             <motion.div 
               className="inner-process-card top-left"
-              initial={{ opacity: 0, x: 140, y: 140, scale: 0.85 }}
-              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              variants={{
+                hidden: { opacity: 0.9, x: 240, y: 160, scale: 0.92 },
+                visible: { 
+                  opacity: 1, 
+                  x: 0, 
+                  y: 0, 
+                  scale: 1,
+                  transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1] } 
+                }
+              }}
             >
               <div className="family-card-visual-wrapper">
                 <div className="visual-invoice-proc">
@@ -621,10 +632,16 @@ export default function Ace() {
             {/* Process Card 2 (Top Right) */}
             <motion.div 
               className="inner-process-card top-right"
-              initial={{ opacity: 0, x: -140, y: 140, scale: 0.85 }}
-              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              variants={{
+                hidden: { opacity: 0.9, x: -240, y: 160, scale: 0.92 },
+                visible: { 
+                  opacity: 1, 
+                  x: 0, 
+                  y: 0, 
+                  scale: 1,
+                  transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1] } 
+                }
+              }}
             >
               <div className="family-card-visual-wrapper">
                 <div className="visual-claims-proc">
@@ -657,17 +674,21 @@ export default function Ace() {
             <div className="family-center-text-block">
               <motion.h2 
                 className="family-main-title"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { duration: 1.8, ease: [0.16, 1, 0.3, 1] } 
+                  }
+                }}
               >
                 One platform. <br />
                 Every industry. <br />
                 Endless possibilities.
               </motion.h2>
               
-              <motion.p 
+              {/* <motion.p 
                 className="family-supporting-text"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -675,14 +696,18 @@ export default function Ace() {
                 transition={{ duration: 0.8, delay: 0.1 }}
               >
                 ACE is Algonox's Enterprise Hyper Automation Platform, bringing together AI, intelligent document processing, workflow orchestration, business rules, reconciliation, analytics, and enterprise integrations into one unified platform. Designed to adapt across industries and business functions, ACE empowers organizations to automate complex processes, accelerate decisions, and drive enterprise-wide transformation.
-              </motion.p>
+              </motion.p> */}
 
               <motion.div 
                 className="family-cta-wrapper"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                variants={{
+                  hidden: { opacity: 0.9, y: 20 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { duration: 1.4, ease: [0.16, 1, 0.3, 1] } 
+                  }
+                }}
               >
                 <Link to="/contact" className="btn-family-cta">
                   <span>Explore ACE</span>
@@ -693,10 +718,16 @@ export default function Ace() {
             {/* Process Card 3 (Bottom Left) */}
             <motion.div 
               className="inner-process-card bottom-left"
-              initial={{ opacity: 0, x: 140, y: -140, scale: 0.85 }}
-              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              variants={{
+                hidden: { opacity: 0.9, x: 240, y: -160, scale: 0.92 },
+                visible: { 
+                  opacity: 1, 
+                  x: 0, 
+                  y: 0, 
+                  scale: 1,
+                  transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1] } 
+                }
+              }}
             >
               <div className="family-card-visual-wrapper">
                 <div className="visual-customer-onboarding">
@@ -726,10 +757,16 @@ export default function Ace() {
             {/* Process Card 4 (Bottom Right) */}
             <motion.div 
               className="inner-process-card bottom-right"
-              initial={{ opacity: 0, x: -140, y: -140, scale: 0.85 }}
-              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              variants={{
+                hidden: { opacity: 0.9, x: -240, y: -160, scale: 0.92 },
+                visible: { 
+                  opacity: 1, 
+                  x: 0, 
+                  y: 0, 
+                  scale: 1,
+                  transition: { duration: 1.6, ease: [0.16, 1, 0.3, 1] } 
+                }
+              }}
             >
               <div className="family-card-visual-wrapper">
                 <div className="visual-po-automation">
@@ -757,7 +794,7 @@ export default function Ace() {
               </div>
             </motion.div>
 
-          </div>
+        </motion.div>
 
       </section>
 
