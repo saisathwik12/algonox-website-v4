@@ -24,19 +24,45 @@ import DetailPage from "./pages/DetailPage";
 import Ace from "./pages/Ace";
 
 const navItems = [
-  { key: "products", label: "Products" },
-  { key: "banking", label: "Banking" },
-  { key: "healthcare", label: "Healthcare" },
-  { key: "pharmaceuticals", label: "Pharmaceuticals" },
-  { key: "rcm", label: "RCM" },
-  { key: "media", label: "Media" },
-  { key: "finance-accounting", label: "Finance & Accounting" },
-  { key: "insurance", label: "Insurance" },
-  { key: "manufacturing", label: "Manufacturing" },
-  { key: "others", label: "Others" },
-  { key: "industries", label: "Industries" },
-  { key: "solutions", label: "Solutions" },
+  { key: "products", label: "Products", href: "/products" },
+  { key: "industries", label: "Industries", href: "/industries" },
+  { key: "solutions", label: "Solutions", href: "/solutions" },
   { key: "about", label: "About", href: "/about" },
+];
+
+const productsData = [
+  { title: "ACE", desc: "Enterprise Hyper Automation Platform", href: "/ace" },
+  { title: "IRIS", desc: "Enterprise AI Platform", href: "/iris" },
+  { title: "Spectra", desc: "Marketing Intelligence & Operations Platform", href: "/spectra" },
+  { title: "Voice Agent", desc: "AI-Powered Voice Automation", href: "/voice-agents" },
+  { title: "Codara", desc: "Medical Coding Automation", href: "/codara" },
+];
+
+const industriesData = [
+  { label: "Banking", href: "/banking" },
+  { label: "Healthcare", href: "/healthcare" },
+  { label: "Pharmaceuticals", href: "/pharmaceuticals" },
+  { label: "Revenue Cycle Management", href: "/rcm" },
+  { label: "Media", href: "/media" },
+  { label: "Finance & Accounting", href: "/finance-accounting" },
+  { label: "Insurance", href: "/insurance" },
+  { label: "Manufacturing", href: "/manufacturing" },
+];
+
+const solutionsData = [
+  { label: "Intelligent Document Processing", href: "/intelligent-document-processing" },
+  { label: "Workflow Automation", href: "/workflow-automation" },
+  { label: "Invoice & Accounts Payable Automation", href: "/invoice-processing" },
+  { label: "Reconciliation Automation", href: "/lucid-reconciliations" },
+  { label: "KYC & Customer Onboarding", href: "/kyc-aml" },
+  { label: "Conversational AI", href: "/conversational-ai" },
+  { label: "Data Integration & Processing", href: "/process-automation" },
+];
+
+const aboutData = [
+  { label: "About Algonox", href: "/about" },
+  { label: "Careers", href: "/about#careers" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
 function ScrollToTop() {
@@ -44,21 +70,6 @@ function ScrollToTop() {
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
 }
-
-// ============================================================
-// SCROLL PROGRESS BAR
-// ============================================================
-// function ScrollProgress() {
-//   const { scrollYProgress } = useScroll();
-//   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-//   return <motion.div className="scroll-progress" style={{ scaleX }} />;
-// }
-
-
-
-
-
-
 
 // ============================================================
 // NAVIGATION
@@ -70,33 +81,6 @@ export function Nav() {
 
   useEffect(() => { setMobileOpen(false); setActiveMenu(null); }, [location.pathname]);
 
-  // Determine current page title for the subnav (now integrated in main nav)
-  let pageTitle = "Algonox";
-  if (location.pathname === "/about") pageTitle = "About Algonox";
-  else if (location.pathname === "/resources") pageTitle = "Resources";
-  else if (location.pathname === "/contact") pageTitle = "Contact Us";
-  else if (location.pathname === "/products") pageTitle = "Products Suite";
-  else if (location.pathname === "/ai-solutions") pageTitle = "AI Solutions";
-  else if (location.pathname === "/automation-solutions") pageTitle = "Automation";
-  else if (location.pathname === "/industries") pageTitle = "Industries";
-  else if (location.pathname === "/use-cases") pageTitle = "Use Cases";
-  else {
-    // Check if it's a group index page (e.g., /banking, /healthcare)
-    const matchedGroupIndex = Object.values(groups).find(g => g.href === location.pathname);
-    if (matchedGroupIndex) {
-      pageTitle = matchedGroupIndex.label;
-    } else {
-      // Check if it's a detail page
-      const matchedGroup = Object.values(groups).find(g => 
-        g.items.some(item => item[1] === location.pathname)
-      );
-      if (matchedGroup) {
-        const item = matchedGroup.items.find(i => i[1] === location.pathname);
-        if (item) pageTitle = item[0];
-      }
-    }
-  }
-
   return (
     <>
       <nav className="nav">
@@ -105,18 +89,16 @@ export function Nav() {
             <Link to="/" className="logo" aria-label="Algonox Home">
               <img src="/algonox_logo.png" alt="Algonox Logo" />
             </Link>
-            <span className="nav-title-divider">|</span>
-            <span className="nav-page-title">{pageTitle}</span>
           </div>
 
           <div className="nav-links" onMouseLeave={() => setActiveMenu(null)}>
             {navItems.map((item) => (
               <div
                 key={item.key}
-                className="nav-item"
-                onMouseEnter={() => (!item.href && groups[item.key as keyof typeof groups]) ? setActiveMenu(item.key) : setActiveMenu(null)}
+                className={`nav-item ${activeMenu === item.key ? "active" : ""}`}
+                onMouseEnter={() => setActiveMenu(item.key)}
               >
-                <Link to={item.href || groups[item.key as keyof typeof groups]?.href || `/${item.key}`}>
+                <Link to={item.href}>
                   {item.label}
                 </Link>
               </div>
@@ -133,7 +115,7 @@ export function Nav() {
         </div>
 
         <AnimatePresence>
-          {activeMenu && groups[activeMenu as keyof typeof groups] && (
+          {activeMenu && (
             <motion.div
               className="mega-menu"
               initial={{ opacity: 0, y: -8 }}
@@ -143,149 +125,157 @@ export function Nav() {
               onMouseEnter={() => setActiveMenu(activeMenu)}
               onMouseLeave={() => setActiveMenu(null)}
             >
-              <div className="mega-columns">
-                {activeMenu === "products" ? (
-                  <>
-                    {/* Column 1: Primary Large Links */}
-                    <div className="mega-col">
-                      <span className="mega-col-label">In Products:</span>
-                      <div className="mega-large-links">
-                        {[
-                          ["ACE", "/ace"],
-                          ["Spectra", "/spectra"],
-                          ["Sweet Hello", "/sweet-hello"],
-                          ["Codara", "/codara"],
-                          ["Iris", "/iris"],
-                          ["Splash", "/splash"],
-                          ["Glide", "/glide"]
-                        ].map(([name, href], idx) => (
-                          <motion.div
-                            key={name}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.02 }}
-                          >
-                            <Link to={href} className="mega-large-link">
-                              {name}
-                            </Link>
-                          </motion.div>
-                        ))}
-                      </div>
+              {activeMenu === "products" ? (
+                <div className="mega-menu-inner">
+                  <div className="products-dropdown-grid">
+                    {productsData.map((item, idx) => (
+                      <motion.div
+                        key={item.title}
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: idx * 0.02 }}
+                      >
+                        <Link to={item.href} className="product-dropdown-card" onClick={() => setActiveMenu(null)}>
+                          <div className="product-dropdown-title">{item.title}</div>
+                          <div className="product-dropdown-desc">{item.desc}</div>
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              ) : activeMenu === "industries" ? (
+                <div className="mega-menu-inner">
+                  <div className="dropdown-list-container">
+                    <div className="dropdown-list-grid">
+                      {industriesData.map((item, idx) => (
+                        <motion.div
+                          key={item.label}
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.02 }}
+                        >
+                          <Link to={item.href} className="dropdown-list-item" onClick={() => setActiveMenu(null)}>
+                            {item.label}
+                          </Link>
+                        </motion.div>
+                      ))}
                     </div>
+                    <div className="dropdown-cta-row">
+                      <Link to="/industries" className="dropdown-cta-link" onClick={() => setActiveMenu(null)}>
+                        Explore All Industries <ChevronRight size={16} />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : activeMenu === "solutions" ? (
+                <div className="mega-menu-inner">
+                  <div className="dropdown-list-container">
+                    <div className="dropdown-list-grid">
+                      {solutionsData.map((item, idx) => (
+                        <motion.div
+                          key={item.label}
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.02 }}
+                        >
+                          <Link to={item.href} className="dropdown-list-item" onClick={() => setActiveMenu(null)}>
+                            {item.label}
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                    <div className="dropdown-cta-row">
+                      <Link to="/solutions" className="dropdown-cta-link" onClick={() => setActiveMenu(null)}>
+                        Explore All Solutions <ChevronRight size={16} />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : activeMenu === "about" ? (
+                <div className="mega-menu-inner">
+                  <div className="dropdown-list-container">
+                    <div className="dropdown-about-list">
+                      {aboutData.map((item, idx) => (
+                        <motion.div
+                          key={item.label}
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.02 }}
+                        >
+                          <Link to={item.href} className="dropdown-list-item" onClick={() => setActiveMenu(null)}>
+                            {item.label}
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : groups[activeMenu as keyof typeof groups] ? (
+                <div className="mega-columns">
+                  {/* Column 1: Primary Large Links */}
+                  <div className="mega-col">
+                    <span className="mega-col-label">Explore {groups[activeMenu as keyof typeof groups].label}</span>
+                    <div className="mega-large-links">
+                      {groups[activeMenu as keyof typeof groups].items.slice(0, Math.ceil(groups[activeMenu as keyof typeof groups].items.length / 2)).map(([name, href], idx) => (
+                        <motion.div
+                          key={name}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.02 }}
+                        >
+                          <Link to={href} className="mega-large-link" onClick={() => setActiveMenu(null)}>
+                            {name}
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
 
-                    {/* Column 2: Standard Secondary Links */}
-                    <div className="mega-col">
-                      <span className="mega-col-label">Explore More</span>
-                      <div className="mega-standard-links">
-                        {groups.products.items
-                          .filter(([name]) => !["ACE", "Spectra", "Sweet Hello", "Codara", "IRIS", "Iris", "Splash", "Glide"].includes(name))
-                          .map(([name, href], idx) => (
-                            <motion.div
-                              key={name}
-                              initial={{ opacity: 0, y: 5 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: idx * 0.02 }}
-                            >
-                              <Link to={href} className="mega-standard-link">
-                                {name}
-                              </Link>
-                            </motion.div>
-                          ))}
-                      </div>
+                  {/* Column 2: Standard Secondary Links */}
+                  <div className="mega-col">
+                    <span className="mega-col-label">Explore More</span>
+                    <div className="mega-standard-links">
+                      {groups[activeMenu as keyof typeof groups].items.slice(Math.ceil(groups[activeMenu as keyof typeof groups].items.length / 2)).map(([name, href], idx) => (
+                        <motion.div
+                          key={name}
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.02 }}
+                        >
+                          <Link to={href} className="mega-standard-link" onClick={() => setActiveMenu(null)}>
+                            {name}
+                          </Link>
+                        </motion.div>
+                      ))}
                     </div>
+                  </div>
 
-                    {/* Column 3: Quick Actions */}
-                    <div className="mega-col">
-                      <span className="mega-col-label">Quick Links</span>
-                      <div className="mega-standard-links">
-                        {[
-                          ["Schedule a Demo", "/contact"],
-                          ["Customer Stories", "/resources"],
-                          ["Developer Docs", "/resources"],
-                          ["Pricing Guide", "/contact"],
-                          ["Technical Whitepapers", "/resources"],
-                        ].map(([name, href], idx) => (
-                          <motion.div
-                            key={name}
-                            initial={{ opacity: 0, y: 5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.02 }}
-                          >
-                            <Link to={href} className="mega-standard-link">
-                              {name}
-                            </Link>
-                          </motion.div>
-                        ))}
-                      </div>
+                  {/* Column 3: Quick Actions */}
+                  <div className="mega-col">
+                    <span className="mega-col-label">Quick Links</span>
+                    <div className="mega-standard-links">
+                      {[
+                        ["Schedule a Demo", "/contact"],
+                        ["Customer Stories", "/resources"],
+                        ["Developer Docs", "/resources"],
+                        ["Pricing Guide", "/contact"],
+                        ["Technical Whitepapers", "/resources"],
+                      ].map(([name, href], idx) => (
+                        <motion.div
+                          key={name}
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.02 }}
+                        >
+                          <Link to={href} className="mega-standard-link" onClick={() => setActiveMenu(null)}>
+                            {name}
+                          </Link>
+                        </motion.div>
+                      ))}
                     </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Column 1: Primary Large Links */}
-                    <div className="mega-col">
-                      <span className="mega-col-label">Explore {groups[activeMenu as keyof typeof groups].label}</span>
-                      <div className="mega-large-links">
-                        {groups[activeMenu as keyof typeof groups].items.slice(0, Math.ceil(groups[activeMenu as keyof typeof groups].items.length / 2)).map(([name, href], idx) => (
-                          <motion.div
-                            key={name}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.02 }}
-                          >
-                            <Link to={href} className="mega-large-link">
-                              {name}
-                            </Link>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Column 2: Standard Secondary Links */}
-                    <div className="mega-col">
-                      <span className="mega-col-label">Explore More</span>
-                      <div className="mega-standard-links">
-                        {groups[activeMenu as keyof typeof groups].items.slice(Math.ceil(groups[activeMenu as keyof typeof groups].items.length / 2)).map(([name, href], idx) => (
-                          <motion.div
-                            key={name}
-                            initial={{ opacity: 0, y: 5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.02 }}
-                          >
-                            <Link to={href} className="mega-standard-link">
-                              {name}
-                            </Link>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Column 3: Quick Actions */}
-                    <div className="mega-col">
-                      <span className="mega-col-label">Quick Links</span>
-                      <div className="mega-standard-links">
-                        {[
-                          ["Schedule a Demo", "/contact"],
-                          ["Customer Stories", "/resources"],
-                          ["Developer Docs", "/resources"],
-                          ["Pricing Guide", "/contact"],
-                          ["Technical Whitepapers", "/resources"],
-                        ].map(([name, href], idx) => (
-                          <motion.div
-                            key={name}
-                            initial={{ opacity: 0, y: 5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.02 }}
-                          >
-                            <Link to={href} className="mega-standard-link">
-                              {name}
-                            </Link>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
+                  </div>
+                </div>
+              ) : null}
             </motion.div>
           )}
         </AnimatePresence>
