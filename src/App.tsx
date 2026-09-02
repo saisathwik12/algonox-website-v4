@@ -19,15 +19,23 @@ import SweetHello from "./pages/SweetHello";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
-import ListingPage from "./pages/ListingPage";
 import DetailPage from "./pages/DetailPage";
 import Ace from "./pages/Ace";
+import VoiceAgents from "./pages/VoiceAgents";
+import Banking from "./pages/Banking";
+import Healthcare from "./pages/Healthcare";
+import Pharmaceuticals from "./pages/Pharmaceuticals";
+import RCM from "./pages/RCM";
+import Media from "./pages/Media";
+import FinanceAccounting from "./pages/FinanceAccounting";
+import Insurance from "./pages/Insurance";
+import Manufacturing from "./pages/Manufacturing";
 
 const navItems = [
-  { key: "products", label: "Products", href: "/products" },
-  { key: "industries", label: "Industries", href: "/industries" },
-  { key: "solutions", label: "Solutions", href: "/solutions" },
-  { key: "about", label: "About", href: "/about" },
+  { key: "products", label: "Products" },
+  { key: "industries", label: "Industries" },
+  { key: "solutions", label: "Solutions" },
+  { key: "about", label: "About" },
 ];
 
 const productsData = [
@@ -98,9 +106,13 @@ export function Nav() {
                 className={`nav-item ${activeMenu === item.key ? "active" : ""}`}
                 onMouseEnter={() => setActiveMenu(item.key)}
               >
-                <Link to={item.href}>
+                <button
+                  type="button"
+                  className="nav-item-btn"
+                  onClick={() => setActiveMenu(activeMenu === item.key ? null : item.key)}
+                >
                   {item.label}
-                </Link>
+                </button>
               </div>
             ))}
           </div>
@@ -160,11 +172,6 @@ export function Nav() {
                         </motion.div>
                       ))}
                     </div>
-                    <div className="dropdown-cta-row">
-                      <Link to="/industries" className="dropdown-cta-link" onClick={() => setActiveMenu(null)}>
-                        Explore All Industries <ChevronRight size={16} />
-                      </Link>
-                    </div>
                   </div>
                 </div>
               ) : activeMenu === "solutions" ? (
@@ -183,11 +190,6 @@ export function Nav() {
                           </Link>
                         </motion.div>
                       ))}
-                    </div>
-                    <div className="dropdown-cta-row">
-                      <Link to="/solutions" className="dropdown-cta-link" onClick={() => setActiveMenu(null)}>
-                        Explore All Solutions <ChevronRight size={16} />
-                      </Link>
                     </div>
                   </div>
                 </div>
@@ -285,27 +287,77 @@ export function Nav() {
         {mobileOpen && (
           <motion.div
             className="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "100vh", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
           >
-            {navItems.map((item, i) => (
-              <motion.div
-                key={item.key}
-                initial={{ x: -10, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: i * 0.04 }}
-              >
-                <Link
-                  to={item.href || groups[item.key as keyof typeof groups]?.href || `/${item.key}`}
-                  className="mobile-link"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </motion.div>
-            ))}
+            <div className="mobile-menu-inner">
+              <div className="mobile-group">
+                <span className="mobile-group-title">Products</span>
+                <div className="mobile-group-items">
+                  {productsData.map((item) => (
+                    <Link
+                      key={item.title}
+                      to={item.href}
+                      className="mobile-product-card"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <span className="mobile-product-title">{item.title}</span>
+                      <span className="mobile-product-desc">{item.desc}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mobile-group">
+                <span className="mobile-group-title">Industries</span>
+                <div className="mobile-group-items">
+                  {industriesData.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="mobile-item"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mobile-group">
+                <span className="mobile-group-title">Solutions</span>
+                <div className="mobile-group-items">
+                  {solutionsData.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="mobile-item"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mobile-group">
+                <span className="mobile-group-title">About</span>
+                <div className="mobile-group-items">
+                  {aboutData.map((item) => (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      className="mobile-item"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1382,27 +1434,38 @@ export default function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ListingPage groupKey="products" />} />
-            <Route path="/ai-solutions" element={<ListingPage groupKey="ai" />} />
-            <Route path="/automation-solutions" element={<ListingPage groupKey="automation" />} />
-            <Route path="/solutions" element={<ListingPage groupKey="solutions" />} />
-            <Route path="/industries" element={<ListingPage groupKey="industries" />} />
-            <Route path="/use-cases" element={<ListingPage groupKey="usecases" />} />
-            {Object.entries(groups).map(([key, group]) => {
-              if (["products", "ai", "automation", "solutions", "industries", "usecases"].includes(key)) return null;
-              return <Route key={key} path={group.href} element={<ListingPage groupKey={key} />} />;
-            })}
+
+            {/* Dedicated Product Pages */}
             <Route path="/iris" element={<Iris />} />
             <Route path="/spectra" element={<Spectra />} />
             <Route path="/sweet-hello" element={<SweetHello />} />
             <Route path="/ace" element={<Ace />} />
+            <Route path="/voice-agents" element={<VoiceAgents />} />
+
+            {/* Dedicated Industry Pages */}
+            <Route path="/banking" element={<Banking />} />
+            <Route path="/healthcare" element={<Healthcare />} />
+            <Route path="/pharmaceuticals" element={<Pharmaceuticals />} />
+            <Route path="/rcm" element={<RCM />} />
+            <Route path="/media" element={<Media />} />
+            <Route path="/finance-accounting" element={<FinanceAccounting />} />
+            <Route path="/insurance" element={<Insurance />} />
+            <Route path="/manufacturing" element={<Manufacturing />} />
+
+            {/* Solution & Service Child Pages */}
             {Object.values(groups).flatMap((group) =>
               group.items.map(([_, href]) => {
                 const slug = href.replace("/", "");
-                if (slug === "iris" || slug === "spectra" || slug === "sweet-hello" || slug === "ace") return null;
+                if ([
+                  "iris", "spectra", "sweet-hello", "ace", "voice-agents",
+                  "banking", "healthcare", "pharmaceuticals", "rcm", "media",
+                  "finance-accounting", "insurance", "manufacturing"
+                ].includes(slug)) return null;
                 return <Route key={href} path={href} element={<DetailPage slug={slug} />} />;
               })
             )}
+
+            {/* Company & Support Pages */}
             <Route path="/about" element={<About />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/contact" element={<Contact />} />

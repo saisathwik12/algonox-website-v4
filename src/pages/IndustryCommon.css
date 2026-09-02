@@ -1,0 +1,637 @@
+/* ==========================================================================
+   Apple Design System for Industry Pages (Minimal Apple Aesthetic & Clean Centered Layout)
+   ========================================================================== */
+
+:root {
+  --apple-bg: #ffffff;
+  --apple-bg-subtle: #fbfbfd;
+  --apple-bg-alt: #f5f5f7;
+  --apple-text-primary: #1d1d1f;
+  --apple-text-secondary: #515154;
+  --apple-text-tertiary: #86868b;
+  --apple-border: rgba(0, 0, 0, 0.08);
+  --apple-border-light: rgba(0, 0, 0, 0.04);
+  --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --apple-shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --apple-shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.06);
+
+  /* Unified Minimal Apple Color Tokens */
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-blue-light: rgba(0, 113, 227, 0.08);
+  --apple-blue-border: rgba(0, 113, 227, 0.2);
+
+  --theme-primary: #0071e3;
+  --theme-primary-hover: #0077ed;
+  --theme-primary-light: rgba(0, 113, 227, 0.08);
+  --theme-primary-border: rgba(0, 113, 227, 0.2);
+  --theme-title-gradient: linear-gradient(180deg, #1d1d1f 20%, #434344 100%);
+  --theme-hero-aura: radial-gradient(circle at 50% 15%, rgba(0, 113, 227, 0.04) 0%, transparent 65%);
+}
+
+/* ==========================================================================
+   Base Page Layout
+   ========================================================================== */
+.industry-page {
+  background: var(--apple-bg);
+  color: var(--apple-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  padding-top: 52px;
+  width: 100%;
+}
+
+/* Typography & Titles */
+.theme-gradient-title {
+  background: var(--theme-title-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+
+.theme-gradient-accent {
+  color: #0071e3;
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* Apple Domain Badge */
+.theme-domain-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0071e3;
+  background: rgba(0, 113, 227, 0.06);
+  border: 1px solid rgba(0, 113, 227, 0.18);
+  padding: 6px 16px;
+  border-radius: 980px;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.theme-domain-tag svg {
+  color: #0071e3;
+}
+
+/* ==========================================================================
+   PERFECT HERO SECTION (Strictly Stacked & Centered)
+   ========================================================================== */
+.apple-hero-section {
+  padding: 100px 24px 70px 24px;
+  text-align: center;
+  position: relative;
+  background: var(--theme-hero-aura);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.apple-hero-container {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.apple-hero-title {
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 880px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  display: block;
+  width: 100%;
+  color: #1d1d1f;
+}
+
+.apple-hero-sub {
+  font-size: clamp(17px, 2vw, 21px);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  color: var(--apple-text-secondary);
+  max-width: 740px;
+  margin: 0 auto 34px auto;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.apple-section-title {
+  font-size: clamp(28px, 3.8vw, 46px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
+  color: #1d1d1f;
+}
+
+.apple-section-sub {
+  font-size: clamp(16px, 1.8vw, 19px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--apple-text-secondary);
+  max-width: 720px;
+}
+
+.apple-body-text {
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--apple-text-secondary);
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   Buttons & Links (Apple Minimal)
+   ========================================================================== */
+.apple-btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.theme-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #0071e3;
+  color: #ffffff !important;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 980px;
+  text-decoration: none;
+  transition: all 0.3s var(--apple-ease);
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.2);
+}
+
+.theme-btn-primary:hover {
+  background: #0077ed;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 113, 227, 0.3);
+}
+
+.theme-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f5f5f7;
+  color: #1d1d1f !important;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 22px;
+  border-radius: 980px;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s var(--apple-ease);
+}
+
+.theme-btn-secondary:hover {
+  background: #e8e8ed;
+  border-color: rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.theme-arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #0071e3;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s var(--apple-ease);
+  cursor: pointer;
+}
+
+.theme-arrow-link:hover {
+  gap: 10px;
+  color: #0077ed;
+}
+
+.theme-arrow-link svg {
+  transition: transform 0.2s var(--apple-ease);
+}
+
+.theme-arrow-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Fluid Sections
+   ========================================================================== */
+.apple-section {
+  padding: 90px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.apple-section-fluid {
+  padding: 90px 24px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.apple-section-fluid.bg-subtle {
+  background: var(--apple-bg-subtle);
+}
+
+.apple-section-fluid.bg-alt {
+  background: var(--apple-bg-alt);
+}
+
+.apple-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.apple-header-centered {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 48px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.apple-header-left {
+  margin-bottom: 40px;
+}
+
+/* ==========================================================================
+   Challenge Layout (Open, Minimal Left Borders)
+   ========================================================================== */
+.challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.challenge-item {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s var(--apple-ease);
+}
+
+.challenge-item:hover {
+  border-color: rgba(0, 113, 227, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.challenge-item-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(0, 113, 227, 0.06);
+  color: #0071e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.challenge-item-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+}
+
+.challenge-item-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--apple-text-secondary);
+}
+
+/* ==========================================================================
+   Solutions List Rows
+   ========================================================================== */
+.solutions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.solution-row {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 28px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: grid;
+  grid-template-columns: 1.3fr 2fr auto;
+  align-items: center;
+  gap: 24px;
+  transition: all 0.3s var(--apple-ease);
+}
+
+.solution-row:hover {
+  border-color: rgba(0, 113, 227, 0.3);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+.solution-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1d1d1f;
+}
+
+.solution-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--apple-text-secondary);
+}
+
+/* ==========================================================================
+   Powered By ACE Selector
+   ========================================================================== */
+.powered-selector {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 32px 0 24px 0;
+}
+
+.powered-pill {
+  padding: 10px 20px;
+  border-radius: 980px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  color: var(--apple-text-secondary);
+  cursor: pointer;
+  transition: all 0.25s var(--apple-ease);
+}
+
+.powered-pill:hover {
+  border-color: #0071e3;
+  color: #0071e3;
+}
+
+.powered-pill.active {
+  background: #1d1d1f;
+  color: #ffffff;
+  border-color: #1d1d1f;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.powered-display-box {
+  max-width: 680px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+  text-align: center;
+}
+
+.powered-module-code {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #0071e3;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.powered-module-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 10px;
+}
+
+.powered-module-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--apple-text-secondary);
+}
+
+/* ==========================================================================
+   Case Studies
+   ========================================================================== */
+.case-studies-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.case-study-block {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 28px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s var(--apple-ease);
+}
+
+.case-study-block:hover {
+  border-color: rgba(0, 113, 227, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+}
+
+.case-study-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 6px;
+}
+
+.case-study-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0071e3;
+  margin-bottom: 12px;
+}
+
+.case-study-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--apple-text-secondary);
+  margin-bottom: 24px;
+}
+
+.case-metrics-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.case-metric-item {
+  flex: 1;
+  min-width: 70px;
+}
+
+.case-metric-val {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #1d1d1f;
+  line-height: 1;
+}
+
+.case-metric-lbl {
+  font-size: 11px;
+  color: var(--apple-text-tertiary);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Related Products
+   ========================================================================== */
+.related-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.related-product-item {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 28px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s var(--apple-ease);
+}
+
+.related-product-item.is-primary {
+  border-color: rgba(0, 113, 227, 0.25);
+  box-shadow: 0 6px 24px rgba(0, 113, 227, 0.05);
+}
+
+.related-product-item:hover {
+  border-color: #0071e3;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+}
+
+.product-tag-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0071e3;
+  background: rgba(0, 113, 227, 0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.product-item-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 4px;
+}
+
+.product-item-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--apple-text-tertiary);
+  margin-bottom: 12px;
+}
+
+.product-item-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--apple-text-secondary);
+  margin-bottom: 16px;
+}
+
+.product-relevant-to {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--apple-text-tertiary);
+  background: var(--apple-bg-alt);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   Final CTA Section
+   ========================================================================== */
+.apple-cta-section {
+  padding: 120px 24px;
+  text-align: center;
+  background: #f5f5f7;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.workflow-supporting {
+  text-align: center;
+  max-width: 680px;
+  margin: 36px auto 0 auto;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .solutions-list .solution-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .case-studies-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .related-products-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .apple-hero-section {
+    padding: 70px 16px 50px 16px;
+  }
+  .apple-section {
+    padding: 60px 16px;
+  }
+  .apple-section-fluid {
+    padding: 60px 16px;
+  }
+  .challenge-grid {
+    grid-template-columns: 1fr;
+  }
+  .case-studies-container {
+    grid-template-columns: 1fr;
+  }
+  .related-products-grid {
+    grid-template-columns: 1fr;
+  }
+}

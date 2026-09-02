@@ -1,0 +1,268 @@
+/* ==========================================================================
+   RCM PAGE: The Financial Velocity Ring & Cashflow Loop
+   ========================================================================== */
+
+/* Rotating Cashflow Velocity Ring Sim in Hero (Apple Dark Glass) */
+.velocity-ring-box {
+  max-width: 780px;
+  width: 100%;
+  margin: 44px auto 0 auto;
+  background: #0f172a;
+  border-radius: 20px;
+  padding: 24px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.velocity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.velocity-title-tag {
+  font-size: 11px;
+  font-family: -apple-system, BlinkMacSystemFont, monospace;
+  color: #38bdf8;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.velocity-cycle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.velocity-cycle-node {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.velocity-cycle-node:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.velocity-node-label {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, monospace;
+}
+
+.velocity-node-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: #34d399;
+}
+
+/* Revenue Leakage Audit Grid */
+.leakage-audit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.leakage-audit-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.leakage-audit-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 113, 227, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+}
+
+.leakage-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(0, 113, 227, 0.08);
+  color: #0071e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.leakage-card-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+}
+
+.leakage-card-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--apple-text-secondary);
+}
+
+/* Cashflow Accelerator Cards */
+.accelerator-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.accelerator-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px 28px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.35s ease;
+}
+
+.accelerator-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 113, 227, 0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+}
+
+.accelerator-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0071e3;
+  background: rgba(0, 113, 227, 0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  align-self: flex-start;
+  margin-bottom: 16px;
+}
+
+.accelerator-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+}
+
+.accelerator-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--apple-text-secondary);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+/* Continuous ERA Payment Posting Loop */
+.era-loop-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.era-node-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.era-node-card:hover {
+  transform: translateY(-4px);
+  border-color: #0071e3;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+.era-node-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 113, 227, 0.08);
+  color: #0071e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  margin: 0 auto 10px auto;
+}
+
+.era-node-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1d1d1f;
+  line-height: 1.35;
+}
+
+.era-node-status {
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #0071e3;
+  background: rgba(0, 113, 227, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Revenue Acceleration Bento */
+.rcm-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.rcm-bento-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.rcm-bento-card:hover {
+  border-color: rgba(0, 113, 227, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 1024px) {
+  .velocity-cycle-grid { grid-template-columns: repeat(2, 1fr); }
+  .leakage-audit-grid { grid-template-columns: 1fr; }
+  .accelerator-grid { grid-template-columns: repeat(2, 1fr); }
+  .era-loop-container { grid-template-columns: repeat(3, 1fr); }
+  .rcm-bento-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .velocity-cycle-grid { grid-template-columns: 1fr; }
+  .accelerator-grid { grid-template-columns: 1fr; }
+  .era-loop-container { grid-template-columns: 1fr 1fr; }
+  .rcm-bento-grid { grid-template-columns: 1fr; }
+}

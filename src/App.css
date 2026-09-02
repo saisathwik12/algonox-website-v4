@@ -148,7 +148,8 @@ button {
   position: relative;
 }
 
-.nav-item a {
+.nav-item a,
+.nav-item button.nav-item-btn {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -156,10 +157,16 @@ button {
   transition: color 0.2s ease, opacity 0.2s ease;
   letter-spacing: -0.01em;
   white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .nav-item:hover a,
-.nav-item.active a {
+.nav-item.active a,
+.nav-item:hover button.nav-item-btn,
+.nav-item.active button.nav-item-btn {
   color: #000000;
   opacity: 1;
 }
